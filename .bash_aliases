@@ -4,38 +4,36 @@ shopt -s autocd #change directory w/o cd, e.g.: Downloads
 
 PS1="\[\033[1;44m\] \t \[\033[1;41m\] \w >>> \[\033[00m\]"
 
-alias b="bash"
-alias l="ls -lah --group-directories-first --color=auto"
-alias g="grep -i --color=auto "
-alias c="code ."
-alias p="python3 "
-alias v="vim "
-alias u="sudo apt update && sudo apt upgrade && sudo apt autoremove"
-alias i="sudo apt install "
-
 # ----- system -----
+alias b="bash"
+alias l="ls -a --group-directories-first --color=auto"
+alias ll="ls -lah --group-directories-first --color=auto"
 alias lt="ls -lahtr --color=auto"
 alias ..="cd ..; l"
 alias ...="cd ../..; l"
 alias ....="cd ../../..; l"
 alias rma="rm -rI *"
 alias rmd="rm -rI"
+alias u="sudo apt update && sudo apt upgrade && sudo apt autoremove"
+alias i="sudo apt install "
+
+# ----- tools -----
+alias grep="grep -i --color=auto "
+alias py="python3 "
+alias rsync="rsync -avzPhI --chmod=775 "
+alias filter="find . | grep -i --color=auto "
+alias space_del='for i in *\ *; do mv -v "$i" "${i// /_}"; done'
 
 # ----- rcs // dotfiles -----
 alias rc="vim ~/.bash_aliases"
 alias nrc="vim ~/.nedit/nedit.rc"
 alias vrc="vim ~/.vimrc"
 
-alias rsync="rsync -avzPhI --chmod=775 "
-
-alias flt="find . -type d | grep -i --color=auto"
-alias sdl='for i in *\ *; do mv -v "$i" "${i// /_}"; done'
-
 #backup TODO - stup backup path
 #alias backup=""
 
-#cds
-alias py='cd ~/projects/python/; l'
+# ----- cds -----
+alias pydir='cd ~/projects/python/; l'
 alias dwn='cd ~/Downloads; l'
 alias tst='cd ~/test; l'
 
@@ -62,5 +60,23 @@ function md () {
 
 function del() { mv $@ ~/.trash }
 
-function n () { nedit $1 & }
+function n () { for txt in $@; do nedit ${txt} &; done }
+
+function git_init () {
+    touch .gitignore README.md
+    git init
+    git add -A
+    git commit -m "Initial commit."
+    read -p "Repository name: " repo_name
+    git remote add origin https://github.com/lukinkratas/${repo_name}.git
+    git push -u origin master
+}
+
+function git_push () {
+    git add -A
+    read -p "Commit message: " commit_message
+    git commit -m "${commit_message}"
+    git push -u origin master
+}
+
 
