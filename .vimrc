@@ -26,6 +26,7 @@ set nobackup nowritebackup noswapfile               " Turn off backup files
 set number relativenumber                           " Enable relative line numbers
 set scrolloff=5                                     " Leave 5 lines of buffer when scrolling
 set sidescrolloff=10                                " Leave 10 characters of horizontal buffer when scrolling
+set cursorline                                      " enable cursor cross
 " set number                                          " Enable line numbers
 
 colorscheme slate
@@ -59,10 +60,17 @@ nnoremap <C-t> :tabnew<CR>
 nnoremap <C-Tab> :tabnext<CR>
 nnoremap <C-S-Tab> :tabprevious<CR>
 
-" ----- cursor cross -----
-set cursorline cursorcolumn " enable cursor cross
-highlight CursorLine ctermbg=Yellow cterm=bold guibg=#2b2b2b
-highlight CursorColumn ctermbg=Yellow cterm=bold guibg=#2b2b2b
+" ----- status line -----
+set laststatus=2 " enable statusline
+set statusline=
+set statusline+=\ %y
+set statusline+=\ %r
+set statusline+=\ %F                      " Full path
+set statusline+=%=                        " Right side settings
+set statusline+=\ C:%c    " C:Column
+set statusline+=\ L:%l/%L " L:Line/Last line
+set statusline+=\ (%p%%)    " Percetange
+set statusline+=\ [%n]                    " Buffer
 
 " ----- Persistent undo -----
 set undodir=~/.vim/undo/
@@ -71,7 +79,10 @@ set undolevels=1000
 set undoreload=10000
 
 " ----- Comments -----
-map <leader>8 :s/^/** /<CR>  " abaqus comment
-map <leader>* :s/^** //<CR>  " uncomment abaqus
-map <leader>3 :s/^/# /<CR>   " python // bash comment
-map <leader># :s/^# //<CR>   " uncomment python // bash
+map <C-2> :s/^/** /<CR>  " abaqus comment
+map <C-S-2> :s/^** //<CR>  " uncomment abaqus
+map <C-1> :s/^/# /<CR>   " python // bash comment
+map <C-S-1># :s/^# //<CR>   " uncomment python // bash
+map <C-3>' :s/^/" /<CR>   " vim comment
+map <C-S-3>" :s/^" //<CR>   " uncomment vim
+

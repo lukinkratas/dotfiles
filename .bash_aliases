@@ -5,7 +5,7 @@ shopt -s autocd #change directory w/o cd, e.g.: Downloads
 PS1="\[\033[1;44m\] \t \[\033[1;41m\] \w >>> \[\033[00m\]"
 
 # ----- system -----
-alias b="bash"
+alias b="source ~/.bashrc"
 alias l="ls -a --group-directories-first --color=auto"
 alias ll="ls -lah --group-directories-first --color=auto"
 alias lt="ls -lahtr --color=auto"
@@ -33,7 +33,8 @@ alias vrc="vim ~/.vimrc"
 #alias backup=""
 
 # ----- cds -----
-alias pydir='cd ~/projects/python/; l'
+alias proj='cd ~/projects/; l'
+alias pyproj='cd ~/projects/python/; l'
 alias dwn='cd ~/Downloads; l'
 alias tst='cd ~/test; l'
 
