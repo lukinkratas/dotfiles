@@ -14,19 +14,19 @@ alias ...="cd ../..; l"
 alias ....="cd ../../..; l"
 alias rma="rm -rI *"
 alias rmd="rm -rI"
-alias u="sudo apt update && sudo apt upgrade && sudo apt autoremove"
-alias i="sudo apt install "
+alias au="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove"
+alias ai="sudo apt install  -y "
 
 # ----- tools -----
 alias grep="grep -i --color=auto "
 alias py="python3 "
 alias rsync="rsync -avzPhI --chmod=775 "
 alias filter="find . | grep -i --color=auto "
-alias space_del='for i in *\ *; do mv -v "$i" "${i// /_}"; done'
+alias spaceren='for i in *\ *; do mv -v "$i" "${i// /_}"; done'
+alias del="gvfs-trash "
 
 # ----- rcs // dotfiles -----
 alias rc="vim ~/.bash_aliases"
-alias nrc="vim ~/.nedit/nedit.rc"
 alias vrc="vim ~/.vimrc"
 
 #backup TODO - stup backup path
@@ -52,18 +52,16 @@ function cs() {
 }
 
 function md () {
-  id [[ $# -eq 1 ]]; then
+  if [[ $# -eq 1 ]]; then
     mkdir -v -p $1 && cd $1 && l
   else
     mkdir -v -p $@
   fi
 }
 
-function del() { mv $@ ~/.trash }
+# function del() { mv $@ ~/.trash }
 
-function n () { for txt in $@; do nedit ${txt} &; done }
-
-function git_init () {
+function gi () {
     touch .gitignore README.md
     git init
     git add -A
@@ -73,7 +71,7 @@ function git_init () {
     git push -u origin master
 }
 
-function git_push () {
+function gp () {
     git add -A
     read -p "Commit message: " commit_message
     git commit -m "${commit_message}"
