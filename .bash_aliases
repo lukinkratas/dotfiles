@@ -2,12 +2,12 @@
 
 shopt -s autocd #change directory w/o cd, e.g.: Downloads
 
+# ----- prompt -----
 BG_AUBERGINE=$(tput setab 90)
 BG_ORANGE=$(tput setab 202)
 FG_BLK=$(tput setaf 0)
 FG_WHT=$(tput setaf 255)
 FORMAT_RESET=$(tput sgr0)
-
 export PS1="\[${BG_AUBERGINE}${FG_WHT}\] \t \[${BG_ORANGE}${FG_BLK}\] \w >>> \[${FORMAT_RESET}\] "
 
 # ----- system -----
