@@ -1,6 +1,8 @@
 #!/bin/bash
 
 shopt -s autocd #change directory w/o cd, e.g.: Downloads
+export TERM=xterm-256color
+export EDITOR=vim
 
 # ----- prompt -----
 # Ubuntu
@@ -20,25 +22,26 @@ FORMAT_RESET=$(tput sgr0)
 export PS1="\[${BG_BLUE}${FG_BLK}\] \t \[${BG_TLW}${FG_BLK}\] \w >>> \[${FORMAT_RESET}\] "
 
 # ----- system -----
-alias b="source ~/.bashrc"
 alias l="ls -a --group-directories-first --color=auto"
 alias ll="ls -lah --group-directories-first --color=auto"
 alias lt="ls -lahtr --color=auto"
 alias ..="cd ..; l"
-alias ...="cd ../..; l"
-alias ....="cd ../../..; l"
+alias ...="cd ../../; l"
+alias ....="cd ../../../; l"
+alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove"
+alias install="sudo apt install  -y "
+alias reload="source ~/.bashrc"
+alias mkdir="mkdir -vp "
 alias rma="rm -rI *"
 alias rmd="rm -rI"
-alias au="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove"
-alias ai="sudo apt install  -y "
 
 # ----- tools -----
-alias grep="grep -i --color=auto "
 alias py="python3 "
+alias grep="grep -Hnri --color=auto "
 alias rsync="rsync -avzPhI --chmod=775 "
+alias del="gvfs-trash "
 alias filter="find . | grep -i --color=auto "
 alias spaceren='for i in *\ *; do mv -v "$i" "${i// /_}"; done'
-alias del="gvfs-trash "
 
 # ----- rcs // dotfiles -----
 alias rc="vim ~/.bash_aliases"
@@ -55,8 +58,8 @@ alias tst='cd ~/test; l'
 
 # ----- functions -----
 function cs() {
-  if [[ $# -eq 1 ]]; then
-    if [[ -d $1 ]]; then
+  if [ $# -eq 1 ]; then
+    if [ -d $1 ]; then
       cd $1 && l
     else
       echo -e "  \e[41m ERROR: \e[0m Directory $1 does not exist."
@@ -67,16 +70,37 @@ function cs() {
 }
 
 function md () {
-  if [[ $# -eq 1 ]]; then
-    mkdir -v -p $1 && cd $1 && l
+  if [ $# -eq 1 ]; then
+    mkdir $1 && cd $1
   else
-    mkdir -v -p $@
+    mkdir $@
   fi
 }
 
-# function del() { mv $@ ~/.trash }
+extract () {
+  if [ -f $1 ]; then
+    case $1 in
+      *.tar.bz2)   tar xjvf $1;;
+      *.tar.gz)    tar xzvf $1;;
+      *.tar.xz)    tar xvf $1;;
+      *.bz2)       bzip2 -d $1;;
+      *.rar)       unrar2dir $1;;
+      *.gz)        gunzip $1;;
+      *.tar)       tar xf $1;;
+      *.tbz2)      tar xjf $1;;
+      *.tgz)       tar xzf $1;;
+      *.zip)       unzip2dir $1;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1;;
+      *)           echo -e "  \e[41m ERROR: \e[0m $1 cannot be extracted via extract().";;
+    esac
+  else
+    echo -e "  \e[41m ERROR: \e[0m $1 is not a valid file"
+  fi
+}
 
-function gi () {
+
+function ginit () {
     touch .gitignore README.md
     git init
     git add -A
@@ -86,7 +110,7 @@ function gi () {
     git push -u origin master
 }
 
-function gp () {
+function gpush () {
     git add -A
     read -p "Commit message: " commit_message
     git commit -m "${commit_message}"
