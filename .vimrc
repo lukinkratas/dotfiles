@@ -56,9 +56,6 @@ map <C-l> <C-w>l
 
 " ----- tabs -----
 nnoremap <C-t> :tabnew<CR>
-" navigation
-nnoremap <C-Tab> :tabnext<CR>
-nnoremap <C-S-Tab> :tabprevious<CR>
 
 " ----- status line -----
 set laststatus=2 " enable statusline
