@@ -19,7 +19,7 @@ BG_BLUE=$(tput setab 37)
 BG_YLW=$(tput setab 214)
 FG_BLK=$(tput setaf 0)
 FORMAT_RESET=$(tput sgr0)
-export PS1="\[${BG_BLUE}${FG_BLK}\] \t \[${BG_TLW}${FG_BLK}\] \w >>> \[${FORMAT_RESET}\] "
+export PS1="\[${BG_BLUE}${FG_BLK}\] \t \[${BG_YLW}${FG_BLK}\] \w >>> \[${FORMAT_RESET}\] "
 
 # ----- system -----
 alias l="ls -a --group-directories-first --color=auto"
