@@ -1,8 +1,10 @@
 #!/bin/bash
 
-shopt -s autocd #change directory w/o cd, e.g.: Downloads
+shopt -s autocd # change directory w/o cd, e.g.: Downloads
+compelte -cf sudo # enable tab completion for sudo
 export TERM=xterm-256color
 export EDITOR=vim
+export VISUAL=vim
 
 # ----- prompt -----
 # Ubuntu
@@ -12,7 +14,6 @@ FG_BLK=$(tput setaf 0)
 FG_WHT=$(tput setaf 255)
 FORMAT_RESET=$(tput sgr0)
 export PS1="\[${BG_AUBERGINE}${FG_WHT}\] \t \[${BG_ORANGE}${FG_BLK}\] \w >>> \[${FORMAT_RESET}\] "
-
 
 # Pop_OS!
 BG_BLUE=$(tput setab 37)
@@ -29,19 +30,23 @@ alias ..="cd ..; l"
 alias ...="cd ../../; l"
 alias ....="cd ../../../; l"
 alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove"
-alias install="sudo apt install  -y "
+alias install="sudo apt install -y "
 alias reload="source ~/.bashrc"
 alias mkdir="mkdir -vp "
-alias rma="rm -rI *"
-alias rmd="rm -rI"
+alias mv="mv -iv"
+alias rm="rm -iv"
+alias rmd="rm -riv"
+alias rma="rm -riv *"
 
 # ----- tools -----
-alias py="python3 "
+alias py="python "
+alias venv="python -m venv venv; source venv/bin/activate"
 alias grep="grep -Hnri --color=auto "
-alias rsync="rsync -avzPhI --chmod=775 "
+alias rsync="rsync -avzPhI --chmod=774 "
 alias del="gvfs-trash "
+alias g="git"
 alias filter="find . | grep -i --color=auto "
-alias spaceren='for i in *\ *; do mv -v "$i" "${i// /_}"; done'
+alias renamespaces='for i in *\ *; do mv -v "$i" "${i// /_}"; done'
 
 # ----- rcs // dotfiles -----
 alias rc="vim ~/.bash_aliases"
@@ -69,7 +74,7 @@ function cs() {
   fi
 }
 
-function md () {
+function md() {
   if [ $# -eq 1 ]; then
     mkdir $1 && cd $1
   else
@@ -77,7 +82,7 @@ function md () {
   fi
 }
 
-extract () {
+function extract() {
   if [ -f $1 ]; then
     case $1 in
       *.tar.bz2)   tar xjvf $1;;
@@ -99,20 +104,35 @@ extract () {
   fi
 }
 
-
-function ginit () {
-    touch .gitignore README.md
+function ginit() {
+    if [ $# -eq 0 ]; then
+        read -p "Repository name: " repo_name
+    elif [ $# -eq 1 ]; then
+        repo_name=$1
+    else
+        echo -e " \e[41m ERROR: \e[0m Moooc argumentu bracho."
+        break
+    fi
+    python -m venv venv
+    "venv" > .gitignore
+    "#$repo_name  " > README.md
     git init
     git add -A
     git commit -m "Initial commit."
-    read -p "Repository name: " repo_name
     git remote add origin https://github.com/lukinkratas/${repo_name}.git
     git push -u origin master
 }
 
-function gpush () {
+function gpush() {
+    if [ $# -eq 0 ]; then
+        read -p "Commit message: " commit_message
+    elif [ $# -eq 1 ]; then
+        commit_message=$1
+    else
+        echo -e " \e[41m ERROR: \e[0m Moooc argumentu bracho."
+        break
+    fi
     git add -A
-    read -p "Commit message: " commit_message
     git commit -m "${commit_message}"
     git push -u origin master
 }

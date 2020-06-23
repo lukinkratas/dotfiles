@@ -31,9 +31,9 @@ set cursorline                                      " enable cursor cross
 
 colorscheme slate
 
-map <Leader>w :update<CR>
-map <Leader>q :qall<CR>
-map <Leader>erc :e! ~/.vimrc<CR>
+map <leader>w :update<CR>
+map <leader>q :qall<CR>
+map <leader>erc :e! ~/.vimrc<CR>
 
 
 " ----- enable // disable auto commenting -----
