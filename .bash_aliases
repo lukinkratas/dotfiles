@@ -1,7 +1,7 @@
 #!/bin/bash
 
 shopt -s autocd # change directory w/o cd, e.g.: Downloads
-compelte -cf sudo # enable tab completion for sudo
+compelete -cf sudo # enable tab completion for sudo
 export TERM=xterm-256color
 export EDITOR=vim
 export VISUAL=vim
@@ -114,8 +114,10 @@ function ginit() {
         break
     fi
     python -m venv venv
-    "venv" > .gitignore
-    "#$repo_name  " > README.md
+    if [ -z $(ls .gitignore) ]; then
+        touch .gitignore
+    if [ -z $(ls README.md) ]; then
+        "#$repo_name  " > README.md
     git init
     git add -A
     git commit -m "Initial commit."
