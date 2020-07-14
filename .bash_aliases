@@ -39,14 +39,15 @@ alias rmd="rm -riv"
 alias rma="rm -riv *"
 
 # ----- tools -----
-alias py="python "
-alias venv="python -m venv venv; source venv/bin/activate"
 alias grep="grep -Hnri --color=auto "
 alias rsync="rsync -avzPhI --chmod=774 "
 alias del="gvfs-trash "
-alias g="git"
 alias filter="find . | grep -i --color=auto "
 alias renamespaces='for i in *\ *; do mv -v "$i" "${i// /_}"; done'
+alias py="python "
+alias venv="python -m venv venv; source venv/bin/activate"
+alias g="git"
+alias jnb="jupyter notebook"
 
 # ----- rcs // dotfiles -----
 alias rc="vim ~/.bash_aliases"
