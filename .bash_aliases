@@ -1,7 +1,7 @@
 #!/bin/bash
 
 shopt -s autocd # change directory w/o cd, e.g.: Downloads
-compelete -cf sudo # enable tab completion for sudo
+complete -cf sudo # enable tab completion for sudo
 export TERM=xterm-256color
 export EDITOR=vim
 export VISUAL=vim
@@ -46,8 +46,8 @@ alias filter="find . | grep -i --color=auto "
 alias renamespaces='for i in *\ *; do mv -v "$i" "${i// /_}"; done'
 alias py="python "
 alias venv="python -m venv venv; source venv/bin/activate"
-alias g="git"
 alias jnb="jupyter notebook"
+alias g="git"
 
 # ----- rcs // dotfiles -----
 alias rc="vim ~/.bash_aliases"
@@ -117,8 +117,10 @@ function ginit() {
     python -m venv venv
     if [ -z $(ls .gitignore) ]; then
         touch .gitignore
+    fi
     if [ -z $(ls README.md) ]; then
         "#$repo_name  " > README.md
+    fi
     git init
     git add -A
     git commit -m "Initial commit."
