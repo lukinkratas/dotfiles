@@ -8,19 +8,19 @@ export VISUAL=vim
 
 # ----- prompt -----
 # Ubuntu
-BG_AUBERGINE=$(tput setab 90)
-BG_ORANGE=$(tput setab 202)
-FG_BLK=$(tput setaf 0)
-FG_WHT=$(tput setaf 255)
-FORMAT_RESET=$(tput sgr0)
-export PS1="\[${BG_AUBERGINE}${FG_WHT}\] \t \[${BG_ORANGE}${FG_BLK}\] \w >>> \[${FORMAT_RESET}\] "
+# BG_AUBERGINE=$(tput setab 90)
+# BG_ORANGE=$(tput setab 202)
+# FG_BLK=$(tput setaf 0)
+# FG_WHT=$(tput setaf 255)
+# FORMAT_RESET=$(tput sgr0)
+# export PS1="\[${BG_AUBERGINE}${FG_WHT}\] \t \[${BG_ORANGE}${FG_BLK}\] \w >>> \[${FORMAT_RESET}\] "
 
 # Pop_OS!
-BG_BLUE=$(tput setab 37)
-BG_YLW=$(tput setab 214)
-FG_BLK=$(tput setaf 0)
-FORMAT_RESET=$(tput sgr0)
-export PS1="\[${BG_BLUE}${FG_BLK}\] \t \[${BG_YLW}${FG_BLK}\] \w >>> \[${FORMAT_RESET}\] "
+# BG_BLUE=$(tput setab 37)
+# BG_YLW=$(tput setab 214)
+# FG_BLK=$(tput setaf 0)
+# FORMAT_RESET=$(tput sgr0)
+# export PS1="\[${BG_BLUE}${FG_BLK}\] \t \[${BG_YLW}${FG_BLK}\] \w >>> \[${FORMAT_RESET}\] "
 
 # ----- system -----
 alias l="ls -a --group-directories-first --color=auto"
@@ -52,6 +52,7 @@ alias g="git"
 # ----- rcs // dotfiles -----
 alias rc="vim ~/.bash_aliases"
 alias vrc="vim ~/.vimrc"
+alias sshrc="vim ~/.ssh/config"
 
 #backup TODO - stup backup path
 #alias backup=""
