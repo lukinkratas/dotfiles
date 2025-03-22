@@ -1,0 +1,7 @@
+line-length = 88
+
+[lint]
+extend-select = ["E501", "N", "R", "I"]
+
+[format]
+quote-style = "single"
