@@ -7,20 +7,7 @@ export EDITOR=vim
 export VISUAL=vim
 
 # ----- prompt -----
-# Ubuntu
-# BG_AUBERGINE=$(tput setab 90)
-# BG_ORANGE=$(tput setab 202)
-# FG_BLK=$(tput setaf 0)
-# FG_WHT=$(tput setaf 255)
-# FORMAT_RESET=$(tput sgr0)
-# export PS1="\[${BG_AUBERGINE}${FG_WHT}\] \t \[${BG_ORANGE}${FG_BLK}\] \w >>> \[${FORMAT_RESET}\] "
-
-# Pop_OS!
-# BG_BLUE=$(tput setab 37)
-# BG_YLW=$(tput setab 214)
-# FG_BLK=$(tput setaf 0)
-# FORMAT_RESET=$(tput sgr0)
-# export PS1="\[${BG_BLUE}${FG_BLK}\] \t \[${BG_YLW}${FG_BLK}\] \w >>> \[${FORMAT_RESET}\] "
+export PS1="%W %T %d %n@%m:"
 
 # ----- system -----
 alias l="ls -a --group-directories-first --color=auto"
@@ -44,24 +31,18 @@ alias rsync="rsync -avzPhI --chmod=774 "
 alias del="gvfs-trash "
 alias filter="find . | grep -i --color=auto "
 alias renamespaces='for i in *\ *; do mv -v "$i" "${i// /_}"; done'
-alias py="python "
-alias venv="python -m venv venv; source venv/bin/activate"
+alias py="python3 "
+alias venv="python -m venv .venv; source .venv/bin/activate"
 alias jnb="jupyter notebook"
 alias g="git"
 
 # ----- rcs // dotfiles -----
-alias rc="vim ~/.bash_aliases"
-alias vrc="vim ~/.vimrc"
-alias sshrc="vim ~/.ssh/config"
-
-#backup TODO - stup backup path
-#alias backup=""
+alias rc="vim $HOME/.bash_aliases"
+alias vrc="vim $HOME/.vimrc"
+alias sshrc="vim $HOME/.ssh/config"
 
 # ----- cds -----
-alias proj='cd ~/projects/; l'
-alias pyproj='cd ~/projects/python/; l'
-alias dwn='cd ~/Downloads; l'
-alias tst='cd ~/test; l'
+alias proj='cd $HOME/projects/; l'
 
 # ----- functions -----
 function cs() {
