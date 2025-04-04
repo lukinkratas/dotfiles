@@ -1,11 +1,5 @@
 #!/bin/bash
 
-shopt -s autocd # change directory w/o cd, e.g.: Downloads
-complete -cf sudo # enable tab completion for sudo
-export TERM=xterm-256color
-export EDITOR=vim
-export VISUAL=vim
-
 # ----- prompt -----
 export PS1="%W %T %d %n@%m:"
 
@@ -28,13 +22,12 @@ alias rma="rm -riv *"
 # ----- tools -----
 alias grep="grep -Hnri --color=auto "
 alias rsync="rsync -avzPhI --chmod=774 "
-alias del="gvfs-trash "
-alias filter="find . | grep -i --color=auto "
-alias renamespaces='for i in *\ *; do mv -v "$i" "${i// /_}"; done'
 alias py="python3 "
-alias venv="python -m venv .venv; source .venv/bin/activate"
 alias jnb="jupyter notebook"
-alias g="git"
+alias gi="git init"
+alias ga="git add -A"
+alias gm="git commit -m "
+alias gp="git push"
 
 # ----- rcs // dotfiles -----
 alias rc="vim $HOME/.bash_aliases"
