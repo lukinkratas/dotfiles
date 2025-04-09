@@ -27,11 +27,12 @@ alias jnb="jupyter notebook"
 alias gcl="git clone "
 alias gi="git init && git commit --all --message 'init'"
 alias gb="git branch "
-alias gs="git status"
+alias gst="git status"
 alias ga="git add --all"
 alias gcm="git commit --message "
 alias gpl="git pull"
 alias gp="git push"
+alias gsh="git show"
 
 # ----- rcs // dotfiles -----
 alias rc="vim $HOME/.bash_aliases"
@@ -39,7 +40,7 @@ alias vrc="vim $HOME/.vimrc"
 alias sshrc="vim $HOME/.ssh/config"
 
 # ----- cds -----
-alias proj='cd $HOME/projects/; l'
+alias proj='cd $HOME/projects/; ll'
 
 # ----- functions -----
 function cs() {
