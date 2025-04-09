@@ -39,7 +39,7 @@ alias vrc="vim $HOME/.vimrc"
 alias sshrc="vim $HOME/.ssh/config"
 
 # ----- cds -----
-alias proj='cd $HOME/projects/; ll'
+alias proj='cd $HOME/projects/ && l'
 
 # ----- functions -----
 function gpl {
@@ -50,15 +50,7 @@ function gp{
 }
 
 function cs {
-  if [ $# -eq 1 ]; then
-    if [ -d $1 ]; then
-      cd $1 && l
-    else
-      echo -e "  \e[41m ERROR: \e[0m Directory $1 does not exist."
-    fi
-  else
-    echo -e "  \e[41m ERROR: \e[0m Too many arguments."
-  fi
+  [[ $# -eq 1 ]] && [[ -d $1 ]] && cd $1 && l
 }
 
 function md {
