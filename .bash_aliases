@@ -28,7 +28,7 @@ alias gcl="git clone "
 alias gi="git init && git commit --all --message 'init'"
 alias gs="git status"
 alias gcam="git commit --all --message "
-alias gpl="git pull --rebase"
+alias gpl="git pull"
 alias gp="git push"
 
 # ----- rcs // dotfiles -----
