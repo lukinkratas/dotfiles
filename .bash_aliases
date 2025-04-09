@@ -4,8 +4,7 @@
 export PS1="%W %T %d %n@%m:"
 
 # ----- system -----
-alias l="ls -a --group-directories-first --color=auto"
-alias ll="ls -lah --group-directories-first --color=auto"
+alias l="ls -lah --group-directories-first --color=auto"
 alias lt="ls -lahtr --color=auto"
 alias ..="cd ..; l"
 alias ...="cd ../../; l"
@@ -31,8 +30,6 @@ alias gb="git branch"
 alias gs="git status"
 alias ga="git add --all"
 alias gcm="git commit --message "
-alias gpl="git pull origin $(git branch --show-current)"
-alias gp="git push origin $(git branch --show-current)"
 alias gd="git diff"
 alias gl="git log"
 
@@ -45,7 +42,14 @@ alias sshrc="vim $HOME/.ssh/config"
 alias proj='cd $HOME/projects/; ll'
 
 # ----- functions -----
-function cs() {
+function gpl {
+  git pull origin $(git branch --show-current) # has to be done in a function to have current branch and not thhe one, that stored during shell reload
+}
+function gp{
+  git push origin $(git branch --show-current) # has to be done in a function to have current branch and not thhe one, that stored during shell reload
+}
+
+function cs {
   if [ $# -eq 1 ]; then
     if [ -d $1 ]; then
       cd $1 && l
@@ -57,15 +61,11 @@ function cs() {
   fi
 }
 
-function md() {
-  if [ $# -eq 1 ]; then
-    mkdir $1 && cd $1
-  else
-    mkdir $@
-  fi
+function md {
+  [[ $# -eq 1 ]] && mkdir $1 && cd $1 || mkdir $@
 }
 
-function extract() {
+function extract {
   if [ -f $1 ]; then
     case $1 in
       *.tar.bz2)   tar xjvf $1;;
@@ -86,42 +86,3 @@ function extract() {
     echo -e "  \e[41m ERROR: \e[0m $1 is not a valid file"
   fi
 }
-
-function ginit() {
-    if [ $# -eq 0 ]; then
-        read -p "Repository name: " repo_name
-    elif [ $# -eq 1 ]; then
-        repo_name=$1
-    else
-        echo -e " \e[41m ERROR: \e[0m Moooc argumentu bracho."
-        break
-    fi
-    python -m venv venv
-    if [ -z $(ls .gitignore) ]; then
-        touch .gitignore
-    fi
-    if [ -z $(ls README.md) ]; then
-        "#$repo_name  " > README.md
-    fi
-    git init
-    git add -A
-    git commit -m "Initial commit."
-    git remote add origin https://github.com/lukinkratas/${repo_name}.git
-    git push -u origin master
-}
-
-function gpush() {
-    if [ $# -eq 0 ]; then
-        read -p "Commit message: " commit_message
-    elif [ $# -eq 1 ]; then
-        commit_message=$1
-    else
-        echo -e " \e[41m ERROR: \e[0m Moooc argumentu bracho."
-        break
-    fi
-    git add -A
-    git commit -m "${commit_message}"
-    git push -u origin master
-}
-
-
