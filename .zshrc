@@ -1,5 +1,7 @@
 # ----- prompt -----
-export PS1="%W %T %d %n@%m:"
+# made with https://zsh-prompt-generator.site/
+PROMPT="%B%K{white}%F{black} %? %f%k%b%K{39} %d %k%K{214} %n@%m:%k "
+RPROMPT="%K{27} %W %T %k"
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"
