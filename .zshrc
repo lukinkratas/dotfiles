@@ -2,8 +2,8 @@
 export PS1="%W %T %d %n@%m:"
 
 # ----- system -----
-alias l="ls -lah --color=auto"
-alias lt="ls -lahtr --color=auto"
+alias l="ls -lahFG --color=auto"
+alias lt="ls -lahFGtr --color=auto"
 alias reload="source $HOME/.zshrc"
 alias mkdir="mkdir -vp "
 alias mv="mv -iv"
