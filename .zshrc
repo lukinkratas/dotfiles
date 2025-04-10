@@ -1,17 +1,10 @@
-#!/bin/bash
-
 # ----- prompt -----
 export PS1="%W %T %d %n@%m:"
 
 # ----- system -----
-alias l="ls -lah --group-directories-first --color=auto"
+alias l="ls -lah --color=auto"
 alias lt="ls -lahtr --color=auto"
-alias ..="cd ..; l"
-alias ...="cd ../../; l"
-alias ....="cd ../../../; l"
-alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove"
-alias install="sudo apt install -y "
-alias reload="source ~/.bashrc"
+alias reload="source $HOME/.zshrc"
 alias mkdir="mkdir -vp "
 alias mv="mv -iv"
 alias rm="rm -iv"
@@ -23,18 +16,21 @@ alias grep="grep -Hnri --color=auto "
 alias rsync="rsync -avzPhI --chmod=774 "
 alias py="python3 "
 alias jnb="jupyter notebook"
-alias gcl="git clone "
+alias gcl="git clone"
 alias gi="git init"
-alias gco="git checkout"
-alias gb="git branch" 
+alias gc="git checkout"
+alias gcb="git checkout -b"
+alias gb="git branch"
 alias gs="git status"
-alias ga="git add --all"
+alias gaa="git add --all"
 alias gcm="git commit --message "
 alias gd="git diff"
 alias gl="git log"
+alias gp="git_push_to_current_branch"
+alias gpl="git_pull_current_branch"
 
 # ----- rcs // dotfiles -----
-alias rc="vim $HOME/.bash_aliases"
+alias zrc="vim $HOME/.zshrc"
 alias vrc="vim $HOME/.vimrc"
 alias sshrc="vim $HOME/.ssh/config"
 
@@ -42,11 +38,16 @@ alias sshrc="vim $HOME/.ssh/config"
 alias proj='cd $HOME/projects/ && l'
 
 # ----- functions -----
-function gpl {
-  git pull origin $(git branch --show-current) # has to be done in a function to have current branch and not thhe one, that stored during shell reload
+function git_current_branch {
+  git branch --show-current
 }
-function gp{
-  git push origin $(git branch --show-current) # has to be done in a function to have current branch and not thhe one, that stored during shell reload
+
+function git_push_to_current_branch {
+  git push origin $(git_current_branch)
+}
+
+function git_pull_current_branch {
+  git pull origin $(git_current_branch)
 }
 
 function cs {
