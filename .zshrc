@@ -2,8 +2,8 @@ export EDITOR=vim
 
 # ----- prompt -----
 # made with https://zsh-prompt-generator.site/
-PROMPT=" %? %F{69}%d%f %F{214}%n@%m%f > "
-RPROMPT="%F{69}%w %*%f "
+export PROMPT=" %? %F{69}%d%f %F{214}%n@%m%f > "
+export RPROMPT="%F{69}%w %*%f "
 
 # ----- configs -----
 alias vrc="vim $HOME/.vimrc"
