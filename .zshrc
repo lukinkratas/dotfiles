@@ -1,7 +1,13 @@
+export EDITOR=vim
+
 # ----- prompt -----
 # made with https://zsh-prompt-generator.site/
 PROMPT=" %? %F{69}%d%f %F{214}%n@%m%f > "
 RPROMPT="%F{69}%w %*%f "
+
+# ----- configs -----
+alias vrc="vim $HOME/.vimrc"
+alias sshrc="vim $HOME/.ssh/config"
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"
@@ -17,6 +23,8 @@ alias grep="grep -Hnri --color=auto "
 alias rsync="rsync -avzPhI --chmod=774 "
 alias py="python3 "
 alias jnb="jupyter notebook"
+
+# ----- git -----
 alias gcl="git clone"
 alias gi="git init"
 alias gc="git checkout"
@@ -30,41 +38,53 @@ alias gl="git log"
 alias gp="git_push_to_current_branch"
 alias gpl="git_pull_current_branch"
 
-# ----- rcs // dotfiles -----
-alias zrc="vim $HOME/.zshrc"
-alias vrc="vim $HOME/.vimrc"
-alias sshrc="vim $HOME/.ssh/config"
-
 # ----- cds -----
-alias proj='cd $HOME/projects/ && l'
+alias proj="cd $HOME/projects/ && l"
 
 # ----- functions -----
+function rc {
+  [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
+  case $SHELL in
+    *zsh) $EDITOR $HOME/.zshrc ;;
+    *bash) $EDITOR $HOME/.bashrc ;;
+    *) echo "Unknown Shell." ;;
+  esac
+}
+
 function reload {
-  [[ $# -eq 0 ]] || echo "No arguments are allowed" && return 1
-  source $HOME/.zshrc
+  [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
+  case $SHELL in
+    *zsh) source $HOME/.zshrc ;;
+    *bash) source $HOME/.bashrc ;;
+    *) echo "Unknown Shell." ;;
+  esac
 }
 
 function git_current_branch {
-  [[ $# -eq 0 ]] || echo "No arguments are allowed" && return 1
+  [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
   git branch --show-current
 }
 
 function git_push_to_current_branch {
-  [[ $# -eq 0 ]] || echo "No arguments are allowed" && return 1
-  git push origin $current_branch
+  [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
+  git push origin $(git_current_branch)
 }
 
 function git_pull_current_branch {
-  [[ $# -eq 0 ]] || echo "No arguments are allowed" && return 1
-  git pull origin $current_branch
+  [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
+  git pull origin $(git_current_branch)
 }
 
 function cs {
-  [[ $# -eq 1 ]] && [[ -d $1 ]] && cd $1 && l
+  [[ $# -ne 1 ]] && echo "Only one argument is allowed" && return 1
+  [[ -d $1 ]] && cd $1 && l
 }
 
 function md {
-  [[ $# -eq 1 ]] && mkdir $1 && cd $1 || mkdir $@
+  # create directory from all args
+  mkdir $@
+  # if single arg, then cd into it
+  [[ $# -eq 1 ]] && cd $1
 }
 
 function extract {
