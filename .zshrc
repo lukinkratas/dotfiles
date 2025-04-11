@@ -40,24 +40,23 @@ alias proj='cd $HOME/projects/ && l'
 
 # ----- functions -----
 function reload {
+  [[ $# -eq 0 ]] || echo "No arguments are allowed" && return 1
   source $HOME/.zshrc
 }
 
 function git_current_branch {
-  [[ $# -eq 0 ]] && echo "No arguemnts are allowed" || exit 1
-  git branch --show-current || echo ".git not found" && exit 1
+  [[ $# -eq 0 ]] || echo "No arguments are allowed" && return 1
+  git branch --show-current
 }
 
 function git_push_to_current_branch {
-  [[ $# -eq 0 ]] && echo "No arguemnts are allowed" || exit 1
-  current_branch=$(git_current_branch)
-  [[ -n current_branch ]] && git push origin $current_branch
+  [[ $# -eq 0 ]] || echo "No arguments are allowed" && return 1
+  git push origin $current_branch
 }
 
 function git_pull_current_branch {
-  [[ $# -eq 0 ]] && echo "No arguemnts are allowed" || exit 1
-  current_branch=$(git_current_branch)
-  [[ -n current_branch ]] && git pull origin $current_branch
+  [[ $# -eq 0 ]] || echo "No arguments are allowed" && return 1
+  git pull origin $current_branch
 }
 
 function cs {
