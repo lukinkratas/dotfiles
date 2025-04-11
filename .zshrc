@@ -1,12 +1,11 @@
 # ----- prompt -----
 # made with https://zsh-prompt-generator.site/
-PROMPT="%B%K{white}%F{black} %? %f%k%b%K{39} %d %k%K{214} %n@%m:%k "
-RPROMPT="%K{27} %W %T %k"
+PROMPT=" %? %F{69}%d%f %F{214}%n@%m%f > "
+RPROMPT="%F{69}%w %*%f "
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"
 alias lt="ls -lahFGtr --color=auto"
-alias reload="source $HOME/.zshrc"
 alias mkdir="mkdir -vp "
 alias mv="mv -iv"
 alias rm="rm -iv"
@@ -40,16 +39,25 @@ alias sshrc="vim $HOME/.ssh/config"
 alias proj='cd $HOME/projects/ && l'
 
 # ----- functions -----
+function reload {
+  source $HOME/.zshrc
+}
+
 function git_current_branch {
-  git branch --show-current
+  [[ $# -eq 0 ]] && echo "No arguemnts are allowed" || exit 1
+  git branch --show-current || echo ".git not found" && exit 1
 }
 
 function git_push_to_current_branch {
-  git push origin $(git_current_branch)
+  [[ $# -eq 0 ]] && echo "No arguemnts are allowed" || exit 1
+  current_branch=$(git_current_branch)
+  [[ -n current_branch ]] && git push origin $current_branch
 }
 
 function git_pull_current_branch {
-  git pull origin $(git_current_branch)
+  [[ $# -eq 0 ]] && echo "No arguemnts are allowed" || exit 1
+  current_branch=$(git_current_branch)
+  [[ -n current_branch ]] && git pull origin $current_branch
 }
 
 function cs {
