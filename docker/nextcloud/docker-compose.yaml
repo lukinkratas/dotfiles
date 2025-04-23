@@ -1,0 +1,44 @@
+# https://hub.docker.com/_/nextcloud/
+# https://github.com/Haxxnet/Compose-Examples/tree/main/examples/nextcloud
+# https://github.com/nextcloud/docker?tab=readme-ov-file#running-this-image-with-docker-compose
+
+volumes:
+  db:
+  nextcloud:
+
+services:
+
+  db:
+    image: mariadb:lts
+    container_name: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_USER
+    volumes:
+      - db:/var/lib/mysql
+    command: --transaction-isolation=READ-COMMITTED
+    restart: unless-stopped
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: unless-stopped
+
+  app:
+    image: nextcloud
+    container_name: app
+    ports:
+      - 8080:80
+    environment:
+      - MYSQL_PASSWORD=
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_HOST
+    volumes:
+      - nextcloud:/var/www/html
+    depends_on:
+      - redis
+      - db
+    restart: unless-stopped
