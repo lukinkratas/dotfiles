@@ -38,7 +38,7 @@ alias gl="git log"
 alias gp="git_push_to_current_branch"
 alias gpl="git_pull_current_branch"
 alias pci="pre-commit install"
-alias pcr="pre-commit run --all-files"
+alias pcr="pre-commit run --all-files --verbose"
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
