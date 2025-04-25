@@ -1,18 +1,20 @@
 # https://docs.n8n.io/hosting/installation/docker/
 # https://github.com/Haxxnet/Compose-Examples/tree/main/examples/n8n
 # https://github.com/n8n-io/n8n-hosting/tree/main
+# https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.lmollama/common-issues/#if-ollama-and-n8n-are-running-in-separate-docker-containers
 
 version: '3.8'
 
 volumes:
   db:
-  n8n:
+  storage:
 
 services:
 
   db:
     image: postgres:16
     container_name: postgres
+    restart: unless-stopped
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
@@ -22,7 +24,6 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
       - ./init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
-    restart: unless-stopped
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
       interval: 5s
@@ -31,7 +32,8 @@ services:
 
   n8n:
     image: docker.n8n.io/n8nio/n8n
-    container_name: server
+    container_name: n8n
+    restart: unless-stopped
     environment:
       - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=postgres
@@ -41,9 +43,10 @@ services:
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_NON_ROOT_PASSWORD}
     ports:
       - 5678:5678
+    extra_hosts:
+      - host.docker.internal:host-gateway
     volumes:
-      - n8n:/home/node/.n8n
-    restart: unless-stopped
+      - storage:/home/node/.n8n
     links:
       - db
     depends_on:

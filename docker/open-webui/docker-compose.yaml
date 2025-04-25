@@ -1,16 +1,19 @@
-# docker run -d --name open-webui -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --restart no ghcr.io/open-webui/open-webui:main
+# https://github.com/open-webui/open-webui/blob/main/docker-compose.yaml
 
 volumes:
-  open-webui:
+  storage:
 
 services:
 
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    restart: unless-stopped
+    # environment:
+    #   - OLLAMA_BASE_URL=host.docker.internal:11434
     ports:
       - 3000:8080
     extra_hosts:
       - host.docker.internal:host-gateway
     volumes:
-      - open-webui:/app/backend/data
-    restart: unless-stopped
+      - storage:/app/backend/data
