@@ -1,5 +1,4 @@
 export EDITOR=vim
-export AIRFLOW_HOME=$HOME/Applications/airflow
 
 # ----- prompt -----
 # made with https://zsh-prompt-generator.site/
