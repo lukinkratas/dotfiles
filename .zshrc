@@ -27,9 +27,11 @@ alias jnb="jupyter notebook"
 # ----- git -----
 alias gcl="git clone"
 alias gi="git init"
-alias gc="git checkout"
-alias gcb="git checkout -b"
-alias gb="git branch"
+alias gc="git checkout"     # switch to a branch
+alias gcb="git checkout -b" # create new branch and switch
+alias gb="git branch"       # see local branches
+alias gbr="git branch -r"   # see remote branches
+alias gba="git branch -a"   # see local and remote branches
 alias gs="git status"
 alias gaa="git add --all"
 alias gcm="git commit --message "
