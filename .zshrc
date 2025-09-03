@@ -23,10 +23,12 @@ alias grep="grep -Hnri --color=auto "
 alias rsync="rsync -avzPhI --chmod=774 "
 alias py="python3 "
 alias jnb="jupyter notebook"
+alias pci="pre-commit install"
+alias pcr="pre-commit run --all-files --verbose"
 
 # ----- git -----
-alias gcl="git clone"
 alias gi="git init"
+alias gcl="git clone"
 alias gc="git checkout"     # switch to a branch
 alias gcb="git checkout -b" # create new branch and switch
 alias gb="git branch"       # see local branches
@@ -39,8 +41,6 @@ alias gd="git diff"
 alias gl="git log"
 alias gp="git_push_to_current_branch"
 alias gpl="git_pull_current_branch"
-alias pci="pre-commit install"
-alias pcr="pre-commit run --all-files --verbose"
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
@@ -76,7 +76,7 @@ function git_push_to_current_branch {
 
 function git_pull_current_branch {
   [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
-  git pull origin $(git_current_branch)
+  git pull --rebase origin $(git_current_branch)
 }
 
 function cs {
