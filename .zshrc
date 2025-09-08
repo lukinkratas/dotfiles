@@ -39,8 +39,8 @@ alias gaa="git add --all"
 alias gcm="git commit --message "
 alias gd="git diff"
 alias gl="git log"
-alias gp="git_push_to_current_branch"
-alias gpl="git_pull_current_branch"
+alias gp="git push origin $(git_current_branch)"
+alias gpl="git pull --rebase origin $(git_current_branch)"
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
@@ -69,15 +69,15 @@ function git_current_branch {
   git branch --show-current
 }
 
-function git_push_to_current_branch {
-  [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
-  git push origin $(git_current_branch)
-}
+# function git_push_to_current_branch {
+#   [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
+#   git push origin $(git_current_branch)
+# }
 
-function git_pull_current_branch {
-  [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
-  git pull --rebase origin $(git_current_branch)
-}
+# function git_pull_current_branch {
+#   [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
+#   git pull --rebase origin $(git_current_branch)
+# }
 
 function cs {
   [[ $# -ne 1 ]] && echo "Only one argument is allowed" && return 1
