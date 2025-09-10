@@ -29,11 +29,11 @@ alias pcr="pre-commit run --all-files --verbose"
 # ----- git -----
 alias gi="git init"
 alias gcl="git clone"
-alias gc="git checkout"     # switch to a branch
-alias gcb="git checkout -b" # create new branch and switch
-alias gb="git branch"       # see local branches
-alias gbr="git branch -r"   # see remote branches
-alias gba="git branch -a"   # see local and remote branches
+alias gc="git checkout"
+alias gcb="git checkout -b"
+alias gb="git branch"            # see local branches
+alias gbr="git branch --remotes" # see remote branches
+alias gba="git branch --all"     # see local and remote branches
 alias gs="git status"
 alias gaa="git add --all"
 alias gcm="git commit --message "
