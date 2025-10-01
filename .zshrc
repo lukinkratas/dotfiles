@@ -39,8 +39,8 @@ alias gaa="git add --all"
 alias gcm="git commit --message "
 alias gd="git diff"
 alias gl="git log"
-alias gp="[[ -n $git_current_branch ]] && git push origin $(git_current_branch) || echo 'Not a git repository or no current branch.'"
-alias gpl="[[ -n $git_current_branch ]] && git pull --rebase origin $(git_current_branch) || echo 'Not a git repository or no current branch.'"
+alias gp="git push origin $(git_current_branch)"
+alias gpl="git pull --rebase origin $(git_current_branch)"
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
