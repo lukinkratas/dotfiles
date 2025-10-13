@@ -45,6 +45,11 @@ alias gpl="git pull --rebase origin $(git_current_branch)"
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
 
+# ----- .env -----
+if [ -f ~/.env ]; then
+    . ~/.env
+fi
+
 # ----- functions -----
 function rc {
   [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
