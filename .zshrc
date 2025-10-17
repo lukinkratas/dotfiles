@@ -46,8 +46,8 @@ alias gpl="git pull --rebase origin $(git_current_branch)"
 alias proj="cd $HOME/projects/ && l"
 
 # ----- .env -----
-if [ -f ~/.env ]; then
-    . ~/.env
+if [[ -f ~/.env ]]; then
+    source ~/.env
 fi
 
 # ----- functions -----
