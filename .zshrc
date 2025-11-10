@@ -1,6 +1,6 @@
 export EDITOR=vim
 
-export PATH="$PATH:$HOME/brew/bin:$HOME/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 
 # ----- prompt -----
 # made with https://zsh-prompt-generator.site/
