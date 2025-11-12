@@ -7,15 +7,11 @@
     },
     "filesystem": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "REDACTED"
-      ]
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "REDACTED"]
     },
     "context7": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@latest"]
+      "args": ["-y", "@upstash/context7-mcp@latest", "--api-key", "REDACTED"]
     }
   }
 }
