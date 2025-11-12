@@ -5,6 +5,10 @@
       "args": ["-y", "@modelcontextprotocol/server-brave-search"],
       "env": {"BRAVE_API_KEY": "REDACTED"}
     },
+    "fetch": {
+      "command": "uvx",
+      "args": ["mcp-server-fetch"]
+    },
     "filesystem": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-filesystem", "REDACTED"]
@@ -12,6 +16,17 @@
     "context7": {
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp@latest", "--api-key", "REDACTED"]
-    }
+    },
+    "awslabs.aws-api-mcp-server": {
+      "command": "uvx",
+      "args": ["awslabs.aws-api-mcp-server@latest"],
+      "env": {"AWS_REGION": "REDACTED"},
+      "disabled": false,
+      "autoApprove": []
+    },
+    "git": {
+      "command": "uvx",
+      "args": ["mcp-server-git", "--repository", "REDACTED"]
+    },
   }
 }
