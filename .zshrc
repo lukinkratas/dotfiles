@@ -37,6 +37,7 @@ alias gb="git branch"            # see local branches
 alias gbr="git branch --remotes" # see remote branches
 alias gba="git branch --all"     # see local and remote branches
 alias gs="git status"
+alias ga="git add "
 alias gaa="git add --all"
 alias gcm="git commit --message "
 alias gd="git diff"
@@ -119,3 +120,5 @@ function extract {
     echo -e "  \e[41m ERROR: \e[0m $1 is not a valid file"
   fi
 }
+# Added by Antigravity
+export PATH="/Users/lukaskratochvila/.antigravity/antigravity/bin:$PATH"
