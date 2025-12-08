@@ -43,6 +43,7 @@ alias gcm="git commit --message "
 alias gd="git diff"
 alias gl="git log"
 alias gp="git_push_to_current_branch" # function to avoid command not found: git_current_branch on reload
+alias gpt="git push --tags"
 alias gpl="git_pull_current_branch"   # function to avoid command not found: git_current_branch on reload
 
 # ----- cds -----
