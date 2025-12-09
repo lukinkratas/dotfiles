@@ -1,14 +1,13 @@
 #!/bin/bash
 
-DOTFILES_DIR=$HOME
 WORKING_DIR=$(pwd -P)
 
-for f in .actrc .env .vimrc .zshrc; do
-    ln -svf "$WORKING_DIR/$f" "$DOTFILES_DIR/"
+for file in .actrc .env .vimrc .zshrc; do
+    ln -svf $WORKING_DIR/$file $HOME/
 done
 
-if [[ -d "$DOTFILES_DIR/.claude" ]]; then
-    ln -svf "$WORKING_DIR/.claude/agents" "$DOTFILES_DIR/.claude"
-else
-    ln -svf "$WORKING_DIR/.claude" "$DOTFILES_DIR/"
-fi
+# create .claude directory if it doesn't exist and link agents to claude code
+[[ ! -d $HOME/.claude ]] && mkdir -v $HOME/.claude && ln -svf $WORKING_DIR/.claude/agents $HOME/.claude
+
+# link mcps to cluade desktop
+ln -svf $WORKING_DIR/mcp.json "/Users/lukaskratochvila/Library/Application Support/Claude/claude_desktop_config.json"

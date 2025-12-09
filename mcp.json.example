@@ -9,6 +9,13 @@
       "command": "uvx",
       "args": ["mcp-server-fetch"]
     },
+    "firecrawl-mcp": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "REDACTED"
+      }
+    },
     "filesystem": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-filesystem", "REDACTED"]
@@ -27,6 +34,6 @@
     "git": {
       "command": "uvx",
       "args": ["mcp-server-git", "--repository", "REDACTED"]
-    },
+    }
   }
 }

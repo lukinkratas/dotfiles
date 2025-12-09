@@ -123,3 +123,8 @@ function extract {
 }
 # Added by Antigravity
 export PATH="/Users/lukaskratochvila/.antigravity/antigravity/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/lukaskratochvila/.lmstudio/bin"
+# End of LM Studio CLI section
+
