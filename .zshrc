@@ -1,6 +1,9 @@
-export EDITOR=vim
+export EDITOR=nvim
 
 export PATH="$PATH:$HOME/.lmstudio/bin"
+
+# Setup fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 # ----- prompt -----
 # made with https://zsh-prompt-generator.site/
@@ -10,6 +13,8 @@ export RPROMPT="%F{69}%w %*%f "
 # ----- configs -----
 alias vrc="vim $HOME/.vimrc"
 alias sshrc="vim $HOME/.ssh/config"
+alias nvrc="nvim $HOME/.config/init.lua"
+alias ghstrc="nvim $HOME/.config/ghostty/config"
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"
@@ -23,10 +28,13 @@ alias rma="rm -riv *"
 # ----- tools -----
 alias grep="grep -Hnri --color=auto "
 alias rsync="rsync -avzPhI --chmod=774 "
+alias bat="bat --color=always "
 alias py="python3 "
 alias jnb="jupyter notebook"
 alias pci="pre-commit install"
 alias pcr="pre-commit run --all-files --verbose"
+alias vi="nvim "
+alias nvimm='nvim $(fzf -m --preview="bat --color=always {}")'
 
 # ----- git -----
 alias gi="git init"
