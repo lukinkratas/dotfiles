@@ -1,6 +1,7 @@
 export EDITOR=nvim
 
 export PATH="$PATH:$HOME/.lmstudio/bin"
+export XDG_CONFIG_HOME=$HOME/.config
 
 # Setup fzf key bindings and fuzzy completion
 source <(fzf --zsh)
@@ -11,15 +12,14 @@ export PROMPT=" %? %F{69}%d%f %F{214}%n@%m%f > "
 export RPROMPT="%F{69}%w %*%f "
 
 # ----- configs -----
-alias vrc="vim $HOME/.vimrc"
-alias sshrc="vim $HOME/.ssh/config"
-alias nvrc="nvim $HOME/.config/init.lua"
-alias ghstrc="nvim $HOME/.config/ghostty/config"
+alias vrc="$EDITOR $HOME/.vimrc"
+alias nvrc="$EDITOR ${XDG_CONFIG_FOME:-$HOME/.config}/nvim/init.lua"
+alias ghstrc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"
 alias lt="ls -lahFGtr --color=auto"
-alias mkdir="mkdir -vp "
+alias mkdir="mkdir -vp"
 alias mv="mv -iv"
 alias rm="rm -iv"
 alias rmd="rm -riv"
@@ -28,13 +28,13 @@ alias rma="rm -riv *"
 # ----- tools -----
 alias grep="grep -Hnri --color=auto "
 alias rsync="rsync -avzPhI --chmod=774 "
-alias bat="bat --color=always "
-alias py="python3 "
+alias bat="bat --color=always"
+alias py="python3"
 alias jnb="jupyter notebook"
 alias pci="pre-commit install"
 alias pcr="pre-commit run --all-files --verbose"
-alias vi="nvim "
-alias nvimm='nvim $(fzf -m --preview="bat --color=always {}")'
+alias v="nvim"
+alias vf='nvim $(fzf -m --preview="bat --color=always {}")'
 
 # ----- git -----
 alias gi="git init"
