@@ -12,9 +12,8 @@ export PROMPT=" %? %F{69}%d%f %F{214}%n@%m%f > "
 export RPROMPT="%F{69}%w %*%f "
 
 # ----- configs -----
-alias vrc="$EDITOR $HOME/.vimrc"
-alias nvrc="$EDITOR ${XDG_CONFIG_FOME:-$HOME/.config}/nvim/init.lua"
-alias ghstrc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
+alias vrc="$EDITOR ${XDG_CONFIG_FOME:-$HOME/.config}/nvim/init.lua"
+alias grc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"
