@@ -12,8 +12,10 @@ export PROMPT=" %? %F{69}%d%f %F{214}%n@%m%f > "
 export RPROMPT="%F{69}%w %*%f "
 
 # ----- configs -----
-alias vrc="$EDITOR ${XDG_CONFIG_FOME:-$HOME/.config}/nvim/init.lua"
-alias grc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
+alias nvrc="$EDITOR ${XDG_CONFIG_FOME:-$HOME/.config}/nvim/init.lua"
+alias grc="$EDITOR $HOME/.gitconfig"
+alias ghstrc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
+alias dbxrc="$EDITOR $HOME/.databrickscfg"
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"
@@ -32,8 +34,9 @@ alias py="python3"
 alias jnb="jupyter notebook"
 alias pci="pre-commit install"
 alias pcr="pre-commit run --all-files --verbose"
-alias v="nvim"
-alias vf='nvim $(fzf -m --preview="bat --color=always {}")'
+alias nv="nvim"
+alias nvf='nvim $(fzf -m --preview="bat --color=always {}")'
+alias y="yazi"
 
 # ----- git -----
 alias gi="git init"
@@ -52,6 +55,15 @@ alias gl="git log"
 alias gp="git_push_to_current_branch" # function to avoid command not found: git_current_branch on reload
 alias gpt="git push --tags"
 alias gpl="git_pull_current_branch"   # function to avoid command not found: git_current_branch on reload
+
+# ----- dbx -----
+alias dat="databricks auth token --host" # following: host
+alias dat="databricks auth login --host" # following: host
+alias dbi="databricks bundle init"
+alias dbv="databricks bundle validate"
+alias dbd="databricks bundle deploy --target" # following: target
+alias dbr="databricks bundle run --target" # following: target, job
+alias dbrm="databricks bundle destroy --target" # following: target
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
