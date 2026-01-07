@@ -10,5 +10,6 @@ link:
 	bash scripts/link.sh
 
 install:
-	brew install fzf bat
+	brew tap databricks/tap
+	brew install fzf bat yazi databricks
 
