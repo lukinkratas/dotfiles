@@ -8,9 +8,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 source <(fzf --zsh)
 
 # ----- .env -----
-if [[ -f ~/.env ]]; then
-    source ~/.env
-fi
+[[ -f ~/.env ]] && source ~/.env
 
 # ----- prompt -----
 # made with https://zsh-prompt-generator.site/
