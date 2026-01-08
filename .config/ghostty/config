@@ -4,3 +4,5 @@ theme = Monokai Classic
 # theme = Rose Pine
 
 font-size = 14
+
+quick-terminal-size = 93px,30px
