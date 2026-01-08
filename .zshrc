@@ -67,6 +67,7 @@ alias dbrm="databricks bundle destroy --target" # following: target
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
+alias dot="cd $HOME/projects/dotfiles && l"
 
 # ----- .env -----
 if [[ -f ~/.env ]]; then
