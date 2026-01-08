@@ -92,36 +92,11 @@ function git_pull_current_branch {
 # ----- dbx -----
 alias dbi="databricks bundle init"
 alias dbv="databricks bundle validate"
-
-function dat {
-  [[ $# -eq 0 ]] && echo "Missing host argument." && return 1
-  [[ $# -ge 2 ]] && echo "Only host argument is allowed." && return 1
-  databricks auth token --host $1
-}
-
-function dal {
-  [[ $# -eq 0 ]] && echo "Missing host argument." && return 1
-  [[ $# -ge 2 ]] && echo "Only host argument is allowed." && return 1
-  databricks auth login --host $1
-}
-
-function dbd {
-  [[ $# -eq 0 ]] && echo "Missing target argument." && return 1
-  [[ $# -ge 2 ]] && echo "Only target argument is allowed." && return 1
-  databricks bundle deploy --target $1
-}
-
-function dbr {
-  [[ $# -le 1 ]] && echo "Missing target or job argument." && return 1
-  [[ $# -ge 3 ]] && echo "Only target and job arguments are allowed." && return 1
-  databricks bundle run --target $1 $2
-}
-
-function dbrm {
-  [[ $# -eq 0 ]] && echo "Missing target argument." && return 1
-  [[ $# -ge 2 ]] && echo "Only target argument is allowed." && return 1
-  databricks bundle destroy --target $1
-}
+alias dat="databricks auth token --host"
+alias dal="databricks auth login --host"
+alias dbd="databricks bundle deploy --target"
+alias dbr="databricks bundle run --target"
+alias dbrm="databricks bundle destroy --target"
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
