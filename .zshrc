@@ -1,10 +1,16 @@
 export EDITOR=nvim
 
-export PATH="$PATH:$HOME/.lmstudio/bin"
+export PATH="$PATH:$HOME/.antigravity/antigravity/bin"
+
 export XDG_CONFIG_HOME=$HOME/.config
 
 # Setup fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+
+# ----- .env -----
+if [[ -f ~/.env ]]; then
+    source ~/.env
+fi
 
 # ----- prompt -----
 # made with https://zsh-prompt-generator.site/
@@ -12,6 +18,7 @@ export PROMPT=" %? %F{69}%d%f %F{214}%n@%m%f > "
 export RPROMPT="%F{69}%w %*%f "
 
 # ----- configs -----
+alias rc="$EDITOR $HOME/.zshrc"
 alias nvrc="$EDITOR ${XDG_CONFIG_FOME:-$HOME/.config}/nvim/init.lua"
 alias grc="$EDITOR $HOME/.gitconfig"
 alias ghstrc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
@@ -25,6 +32,19 @@ alias mv="mv -iv"
 alias rm="rm -iv"
 alias rmd="rm -riv"
 alias rma="rm -riv *"
+alias reload="source $HOME/.zshrc"
+
+function cs {
+  [[ $# -ne 1 ]] && echo "Only directory argument is allowed" && return 1
+  [[ -d $1 ]] && cd $1 && l
+}
+
+function md {
+  # create directory from all args
+  mkdir $@
+  # if single arg, then cd into it
+  [[ $# -eq 1 ]] && cd $1
+}
 
 # ----- tools -----
 alias grep="grep -Hnri --color=auto "
@@ -56,43 +76,6 @@ alias gp="git_push_to_current_branch" # function to avoid command not found: git
 alias gpt="git push --tags"
 alias gpl="git_pull_current_branch"   # function to avoid command not found: git_current_branch on reload
 
-# ----- dbx -----
-alias dat="databricks auth token --host" # following: host
-alias dat="databricks auth login --host" # following: host
-alias dbi="databricks bundle init"
-alias dbv="databricks bundle validate"
-alias dbd="databricks bundle deploy --target" # following: target
-alias dbr="databricks bundle run --target" # following: target, job
-alias dbrm="databricks bundle destroy --target" # following: target
-
-# ----- cds -----
-alias proj="cd $HOME/projects/ && l"
-alias dot="cd $HOME/projects/dotfiles && l"
-
-# ----- .env -----
-if [[ -f ~/.env ]]; then
-    source ~/.env
-fi
-
-# ----- functions -----
-function rc {
-  [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
-  case $SHELL in
-    *zsh) $EDITOR $HOME/.zshrc ;;
-    *bash) $EDITOR $HOME/.bashrc ;;
-    *) echo "Unknown Shell." ;;
-  esac
-}
-
-function reload {
-  [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
-  case $SHELL in
-    *zsh) source $HOME/.zshrc ;;
-    *bash) source $HOME/.bashrc ;;
-    *) echo "Unknown Shell." ;;
-  esac
-}
-
 function git_current_branch {
   [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
   [[ -d .git ]] && git branch --show-current
@@ -108,18 +91,46 @@ function git_pull_current_branch {
   git pull --rebase origin $(git_current_branch)
 }
 
-function cs {
-  [[ $# -ne 1 ]] && echo "Only one argument is allowed" && return 1
-  [[ -d $1 ]] && cd $1 && l
+# ----- dbx -----
+alias dbi="databricks bundle init"
+alias dbv="databricks bundle validate"
+
+function dat {
+  [[ $# -eq 0 ]] && echo "Missing host argument." && return 1
+  [[ $# -ge 2 ]] && echo "Only host argument is allowed." && return 1
+  databricks auth token --host $1
 }
 
-function md {
-  # create directory from all args
-  mkdir $@
-  # if single arg, then cd into it
-  [[ $# -eq 1 ]] && cd $1
+function dal {
+  [[ $# -eq 0 ]] && echo "Missing host argument." && return 1
+  [[ $# -ge 2 ]] && echo "Only host argument is allowed." && return 1
+  databricks auth login --host $1
 }
 
+function dbd {
+  [[ $# -eq 0 ]] && echo "Missing target argument." && return 1
+  [[ $# -ge 2 ]] && echo "Only target argument is allowed." && return 1
+  databricks bundle deploy --target $1
+}
+
+function dbr {
+  [[ $# -le 1 ]] && echo "Missing target or job argument." && return 1
+  [[ $# -ge 3 ]] && echo "Only target and job arguments are allowed." && return 1
+  databricks bundle run --target $1 $2
+}
+
+function dbrm {
+  [[ $# -eq 0 ]] && echo "Missing target argument." && return 1
+  [[ $# -ge 2 ]] && echo "Only target argument is allowed." && return 1
+  databricks bundle destroy --target $1
+}
+
+# ----- cds -----
+alias proj="cd $HOME/projects/ && l"
+alias dot="cd $HOME/projects/dotfiles && l"
+
+
+# ----- functions -----
 function extract {
   if [ -f $1 ]; then
     case $1 in
@@ -135,16 +146,11 @@ function extract {
       *.zip)       unzip2dir $1;;
       *.Z)         uncompress $1;;
       *.7z)        7z x $1;;
-      *)           echo -e "  \e[41m ERROR: \e[0m $1 cannot be extracted via extract().";;
+      *)           echo -e "Unknown archive format.";;
     esac
   else
-    echo -e "  \e[41m ERROR: \e[0m $1 is not a valid file"
+    echo -e "$1 is not a valid file."
   fi
 }
-# Added by Antigravity
-export PATH="/Users/lukaskratochvila/.antigravity/antigravity/bin:$PATH"
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/lukaskratochvila/.lmstudio/bin"
-# End of LM Studio CLI section
 
