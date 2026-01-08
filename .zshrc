@@ -33,7 +33,7 @@ alias rma="rm -riv *"
 alias reload="source $HOME/.zshrc"
 
 function cs {
-  [[ $# -ne 1 ]] && echo "Only directory argument is allowed" && return 1
+  [[ $# -ne 1 ]] && echo "Only directory argument is allowed." && return 1
   [[ -d $1 ]] && cd $1 && l
 }
 
@@ -75,25 +75,25 @@ alias gpt="git push --tags"
 alias gpl="git_pull_current_branch"   # function to avoid command not found: git_current_branch on reload
 
 function git_current_branch {
-  [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
-  [[ -d .git ]] && git branch --show-current
+  [[ $# -ne 0 ]] && echo "No arguments are allowed." && return 1
+  [[ -d .git ]] && git branch --show-current || ".git not found."
 }
 
 function git_push_to_current_branch {
-  [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
+  [[ $# -ne 0 ]] && echo "No arguments are allowed." && return 1
   git push origin $(git_current_branch)
 }
 
 function git_pull_current_branch {
-  [[ $# -ne 0 ]] && echo "No arguments are allowed" && return 1
+  [[ $# -ne 0 ]] && echo "No arguments are allowed." && return 1
   git pull --rebase origin $(git_current_branch)
 }
 
 # ----- dbx -----
-alias dbi="databricks bundle init"
-alias dbv="databricks bundle validate"
 alias dat="databricks auth token --host"
 alias dal="databricks auth login --host"
+alias dbi="databricks bundle init"
+alias dbv="databricks bundle validate"
 alias dbd="databricks bundle deploy --target"
 alias dbr="databricks bundle run --target"
 alias dbrm="databricks bundle destroy --target"
@@ -101,7 +101,6 @@ alias dbrm="databricks bundle destroy --target"
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
 alias dot="cd $HOME/projects/dotfiles && l"
-
 
 # ----- functions -----
 function extract {
