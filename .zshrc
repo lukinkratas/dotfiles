@@ -29,7 +29,7 @@ alias mkdir="mkdir -vp"
 alias mv="mv -v"
 alias rm="rm -v"
 alias rmd="rm -Rv"
-alias rma="rm -Rv *"
+alias rma="rm -RIv *"
 alias reload="source $HOME/.zshrc"
 alias cp="cp -Rv"
 
