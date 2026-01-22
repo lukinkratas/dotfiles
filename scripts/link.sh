@@ -7,10 +7,12 @@ for file in .actrc .env .vimrc .zshrc; do
 done
 
 # create .config directory if it doesn't exist and link config files
-[[ ! -d $HOME/.config ]] && mkdir -v $HOME/.config && ln -svf $WORKING_DIR/.config/* $HOME/.config/
+[[ ! -d $HOME/.config ]] && mkdir -v $HOME/.config
+ln -svf $WORKING_DIR/.config/* $HOME/.config/
 
 # create .claude directory if it doesn't exist and link agents to claude code
-[[ ! -d $HOME/.claude ]] && mkdir -v $HOME/.claude && ln -svf $WORKING_DIR/.claude/agents $HOME/.claude/
+[[ ! -d $HOME/.claude ]] && mkdir -v $HOME/.claude
+ln -svf $WORKING_DIR/.claude/agents $HOME/.claude/
 
-# link mcps to cluade desktop
-ln -svf $WORKING_DIR/mcp.json "/Users/lukaskratochvila/Library/Application Support/Claude/claude_desktop_config.json"
+# link mcps to claude desktop
+ln -svf $WORKING_DIR/mcp.json $HOME"/Library/Application Support/Claude/claude_desktop_config.json"

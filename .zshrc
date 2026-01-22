@@ -26,11 +26,12 @@ alias dbxrc="$EDITOR $HOME/.databrickscfg"
 alias l="ls -lahFG --color=auto"
 alias lt="ls -lahFGtr --color=auto"
 alias mkdir="mkdir -vp"
-alias mv="mv -iv"
-alias rm="rm -iv"
-alias rmd="rm -riv"
-alias rma="rm -riv *"
+alias mv="mv -v"
+alias rm="rm -v"
+alias rmd="rm -Rv"
+alias rma="rm -Rv *"
 alias reload="source $HOME/.zshrc"
+alias cp="cp -Rv"
 
 function cs {
   [[ $# -ne 1 ]] && echo "Only directory argument is allowed." && return 1
@@ -55,6 +56,7 @@ alias pcr="pre-commit run --all-files --verbose"
 alias nv="nvim"
 alias nvf='nvim $(fzf -m --preview="bat --color=always {}")'
 alias y="yazi"
+alias chrome="open -a 'Google Chrome'"
 
 # ----- git -----
 alias gi="git init"
@@ -125,4 +127,9 @@ function extract {
   fi
 }
 
+
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/lukaskratochvila/.lmstudio/bin"
+# End of LM Studio CLI section
 
