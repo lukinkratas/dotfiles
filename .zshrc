@@ -4,7 +4,6 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 # Setup fzf key bindings and fuzzy completion
 source <(fzf --zsh)
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ----- .env -----
