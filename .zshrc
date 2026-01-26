@@ -1,19 +1,20 @@
 export EDITOR=nvim
-
 export PATH="$PATH:$HOME/.antigravity/antigravity/bin"
-
 export XDG_CONFIG_HOME=$HOME/.config
 
 # Setup fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ----- .env -----
 [[ -f ~/.env ]] && source ~/.env
 
 # ----- prompt -----
-# made with https://zsh-prompt-generator.site/
-export PROMPT=" %? %F{69}%d%f %F{214}%n@%m%f > "
-export RPROMPT="%F{69}%w %*%f "
+# # made with https://zsh-prompt-generator.site/
+# export PROMPT=" %? %F{69}%~%f %F{214}${vcs_info_msg_0_}%f > "
+# export RPROMPT="%F{69}%w %*%f "
+eval "$(starship init zsh)"
 
 # ----- configs -----
 alias rc="$EDITOR $HOME/.zshrc"
@@ -21,6 +22,7 @@ alias nvrc="$EDITOR ${XDG_CONFIG_FOME:-$HOME/.config}/nvim/init.lua"
 alias grc="$EDITOR $HOME/.gitconfig"
 alias ghstrc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
 alias dbxrc="$EDITOR $HOME/.databrickscfg"
+alias ssrc="$EDITOR $HOME/.config/starship.toml"
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"
@@ -92,8 +94,8 @@ function git_pull_current_branch {
 }
 
 # ----- dbx -----
-alias dat="databricks auth token --host"
-alias dal="databricks auth login --host"
+alias dat="databricks auth token --profile"
+alias dal="databricks auth login --profile"
 alias dbi="databricks bundle init"
 alias dbv="databricks bundle validate"
 alias dbd="databricks bundle deploy --target"

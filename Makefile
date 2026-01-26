@@ -11,5 +11,5 @@ link:
 
 install:
 	brew tap databricks/tap
-	brew install fzf bat yazi databricks
-
+	brew install fzf bat yazi databricks starship zsh-autosuggestions zsh-syntax-highlighting
+	brew install --cask ghostty
