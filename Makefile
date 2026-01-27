@@ -1,15 +1,13 @@
-.PHONY: link install
+.PHONY: link stow-all
 
 help:
 	@echo "Available targets:"
 	@echo "  link     - make symbolic links in home folder"
-	@echo "  install  - install packages"
+	@echo "  stow-all - make symbolic links via stow"
 	@echo "  help     - Show this help message"
 
 link:
 	bash scripts/link.sh
 
-install:
-	brew tap databricks/tap
-	brew install fzf bat yazi databricks starship zsh-syntax-highlighting
-	brew install --cask ghostty
+stow-all:
+	stow --target=$HOME --ignore='.*\.example' --adopt --verbose zsh ghostty starship nvim actrc
