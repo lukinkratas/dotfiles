@@ -71,7 +71,7 @@ alias gs="git status"
 alias ga="git add "
 alias gaa="git add --all"
 alias gcm="git commit --message "
-alias gd="git difftool --tool=vimdiff "
+alias gd="git difftool --tool=nvimdiff --no-prompt"
 alias gl="git log"
 alias gp="git_push_to_current_branch" # function to avoid command not found: git_current_branch on reload
 alias gpt="git push --tags"
