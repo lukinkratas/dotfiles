@@ -1,3 +1,5 @@
+setopt globdots
+
 export EDITOR=nvim
 export PATH="$PATH:$HOME/.antigravity/antigravity/bin"
 export XDG_CONFIG_HOME=$HOME/.config
@@ -30,7 +32,7 @@ alias nvrc="$EDITOR ${XDG_CONFIG_FOME:-$HOME/.config}/nvim/init.lua"
 alias grc="$EDITOR $HOME/.gitconfig"
 alias ghstrc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
 alias dbxrc="$EDITOR $HOME/.databrickscfg"
-alias ssrc="$EDITOR $HOME/.config/starship.toml"
+alias omprc="$EDITOR $HOME/.config/omp.toml"
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"
