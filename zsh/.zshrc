@@ -56,7 +56,6 @@ alias pci="pre-commit install"
 alias pcr="pre-commit run --all-files --verbose"
 alias nv="nvim"
 alias nvf='nvim $(fzf -m --preview="bat --color=always {}")'
-alias y="yazi"
 alias chrome="open -a 'Google Chrome'"
 
 # ----- git -----
