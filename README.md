@@ -14,7 +14,7 @@
 
 ``` sh
 	brew tap databricks/tap
-	brew install fzf bat yazi databricks starship zsh-syntax-highlighting stow
+	brew install fzf bat databricks starship zsh-syntax-highlighting stow lazygit
 	brew install --cask ghostty
 ```
 
