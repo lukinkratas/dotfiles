@@ -31,6 +31,15 @@ final_space = true
       always_enabled = true
 
   [[blocks.segments]]
+    type = "executiontime"
+    foreground = "p:blue"
+    template = " {{ .FormattedMs }}"
+
+    [blocks.segments.options]
+      threshold = 100
+      style = "austin"
+
+  [[blocks.segments]]
     type = 'time'
     template = ' {{ .CurrentDate | date "15:04:05.000" }}'
     foreground = 'p:blue'
@@ -42,7 +51,7 @@ final_space = true
 
   [[blocks.segments]]
     type = 'git'
-    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}'
+    template = ' [{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}]'
     foreground = 'p:green'
     foreground_templates = ['{{ if or (.Working.Changed) (.Staging.Changed) }}p:yellow{{ end }}', '{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:red{{ end }}']
 
