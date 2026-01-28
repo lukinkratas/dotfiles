@@ -13,7 +13,16 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # # made with https://zsh-prompt-generator.site/
 # export PROMPT=" %? %F{69}%~%f %F{214}${vcs_info_msg_0_}%f > "
 # export RPROMPT="%F{69}%w %*%f "
-eval "$(starship init zsh)"
+
+# starhip
+# eval "$(starship init zsh)"
+
+# omp
+eval "$(oh-my-posh init zsh)"
+# standard terminal has issues displaying the ANSI characters correctly
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh --config $HOME/.config/omp.toml)"
+fi
 
 # ----- configs -----
 alias rc="$EDITOR $HOME/.zshrc"
