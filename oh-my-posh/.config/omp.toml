@@ -44,6 +44,9 @@ final_space = true
     template = ' {{ path .Path .Location }}'
     foreground = 'p:orange'
 
+    [blocks.segments.options]
+      style = "full"
+
   [[blocks.segments]]
     type = 'git'
     template = ' [{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}]'
