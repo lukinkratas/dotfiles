@@ -40,11 +40,6 @@ final_space = true
       style = "austin"
 
   [[blocks.segments]]
-    type = 'time'
-    template = ' {{ .CurrentDate | date "15:04:05.000" }}'
-    foreground = 'p:blue'
-
-  [[blocks.segments]]
     type = 'path'
     template = ' {{ path .Path .Location }}'
     foreground = 'p:orange'
