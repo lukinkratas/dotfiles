@@ -66,6 +66,7 @@ alias pcr="pre-commit run --all-files --verbose"
 alias nv="nvim"
 alias nvf='nvim $(fzf -m --preview="bat --color=always {}")'
 alias chrome="open -a 'Google Chrome'"
+alias lg='lazygit'
 
 # ----- git -----
 alias gi="git init"
