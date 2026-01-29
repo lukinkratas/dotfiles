@@ -12,4 +12,4 @@ background-opacity = 0.90
 # font-family = Ubuntu Nerd Font
 font-family = JetBrainsMono Nerd Font
 
-quick-terminal-size = 93px,36px
+quick-terminal-size = 50%,50%
