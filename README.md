@@ -19,5 +19,5 @@
 ```
 
 ```sh
-    stow --target=$HOME --ignore='.*\.example' --adopt --verbose zsh ghostty nvim actrc oh-my-posh lazygit
+    stow --target=$HOME --ignore='.*\.example' --adopt --verbose zsh ghostty nvim oh-my-posh lazygit
 ```
