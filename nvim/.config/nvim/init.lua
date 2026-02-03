@@ -139,11 +139,11 @@ local plugins = {
   { 'sphamba/smear-cursor.nvim' },
   {
     'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    config = function()
-      require('tokyonight').setup()
-      -- vim.cmd.colorscheme 'tokyonight'
-    end,
+    -- priority = 1000, -- Make sure to load this before all the other start plugins.
+    -- config = function()
+    --   require('tokyonight').setup()
+    --   vim.cmd.colorscheme 'tokyonight'
+    -- end,
   },
   {
     'rose-pine/neovim',
@@ -151,7 +151,7 @@ local plugins = {
     priority = 1000,
     config = function()
       require('rose-pine').setup()
-      vim.cmd.colorscheme 'rose-pine'
+      vim.cmd.colorscheme 'rose-pine-moon'
     end,
   },
   {
@@ -595,8 +595,8 @@ local plugins = {
       local servers = {
         -- clangd = {},
         gopls = {},
-        -- pyright = {},
-        ruff = {},
+        pyright = {},
+        -- ruff = {},
         -- rust_analyzer = {},
         lua_ls = {
           settings = {
@@ -811,7 +811,8 @@ local plugins = {
       spec = {
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        -- { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>h', group = '[H]arpoon' },
       },
     },
   },
