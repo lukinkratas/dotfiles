@@ -136,7 +136,6 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   -- Detect tabstop and shiftwidth automatically
   { 'NMAC427/guess-indent.nvim' },
-  { 'sphamba/smear-cursor.nvim' },
   {
     'folke/tokyonight.nvim',
     -- priority = 1000, -- Make sure to load this before all the other start plugins.
@@ -865,6 +864,12 @@ local plugins = {
     'norcalli/nvim-colorizer.lua',
     config = function()
       require('colorizer').setup()
+    end,
+  },
+  {
+    'sphamba/smear-cursor.nvim',
+    config = function()
+      require('smear_cursor').setup()
     end,
   },
 }
