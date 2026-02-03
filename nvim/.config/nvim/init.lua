@@ -160,8 +160,8 @@ local plugins = {
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { signs = false },
   },
-  -- Adds git related signs to the gutter, as well as utilities for managing changes
   {
+    -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
@@ -210,8 +210,8 @@ local plugins = {
       },
     },
   },
-  -- Autocompletion
   {
+    -- Autocompletion
     'saghen/blink.cmp',
     event = 'VimEnter',
     version = '1.*',
@@ -310,6 +310,7 @@ local plugins = {
     },
   },
   {
+    -- Formatting
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
@@ -341,11 +342,15 @@ local plugins = {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
         python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
-        --
-        -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { 'prettier', stop_after_first = true },
+        javascriptreact = { 'prettier', stop_after_first = true },
+        typescript = { 'prettier', stop_after_first = true },
+        typescriptreact = { 'prettier', stop_after_first = true },
+        yaml = { 'yamlfmt' },
+        html = { 'prettier' },
+        json = { 'prettier' },
+        sql = { 'sqlfmt' },
       },
     },
   },
@@ -354,7 +359,6 @@ local plugins = {
     'echasnovski/mini.nvim',
     config = function()
       -- Better Around/Inside textobjects
-      --
       -- Examples:
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
@@ -362,7 +366,6 @@ local plugins = {
       require('mini.ai').setup { n_lines = 500 }
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      --
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
@@ -815,6 +818,54 @@ local plugins = {
         { '<leader>h', group = '[H]arpoon' },
       },
     },
+  },
+  {
+    -- Automatically adds matching bracket
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = function()
+      local npairs = require 'nvim-autopairs'
+      npairs.setup {}
+    end,
+    opts = {},
+  },
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      -- Normal mode:
+      -- gcc - Toggles the current line using linewise comment
+      -- gbc - Toggles the current line using blockwise comment
+      -- [count]gcc - Toggles the number of line given as a prefix-count using linewise
+      -- [count]gbc - Toggles the number of line given as a prefix-count using blockwise
+      -- gc[count]{motion} - (Op-pending) Toggles the region using linewise comment
+      -- gb[count]{motion} - (Op-pending) Toggles the region using blockwise comment
+      -- gco - Insert comment to the next line and enters INSERT mode
+      -- gcO - Insert comment to the previous line and enters INSERT mode
+      -- gcA - Insert comment to end of the current line and enters INSERT mode
+      -- Visual mode:
+      -- gc - Toggles the region using linewise comment
+      -- gb - Toggles the region using blockwise comment
+      require('Comment').setup()
+    end,
+    opts = {},
+  },
+  {
+    -- split or join multi lines
+    'Wansmer/treesj',
+    keys = { '<space>m', '<space>j', '<space>s' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
+    config = function()
+      -- <space>m split list over multi lines
+      -- <space>j join multi lines
+      require('treesj').setup()
+    end,
+  },
+  {
+    -- colorize hex codes
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup()
+    end,
   },
 }
 local ui = {
