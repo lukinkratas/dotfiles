@@ -7,8 +7,8 @@
 ```
 
 ``` sh
-    brew install docker
-    brew install --cask google-chrome docker-desktop obsidian slack
+    brew install docker ollama
+    brew install --cask google-chrome docker-desktop obsidian slack dbeaver-community claude-code
 	brew tap databricks/tap
     brew install databricks
 	brew install fzf bat zsh-syntax-highlighting stow jandedobbeleer/oh-my-posh/oh-my-posh lazygit ydiff
