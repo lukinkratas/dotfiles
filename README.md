@@ -1,11 +1,5 @@
 # Dotfiles
 
-* neovim
-* ghostty
-* starship
-* databricks-cli
-* claude code
-
 ## Install
 
 ```sh
@@ -13,8 +7,12 @@
 ```
 
 ``` sh
+    brew install google-chrome docker docker-desktop obsidian
 	brew tap databricks/tap
-	brew install fzf bat databricks zsh-syntax-highlighting stow jandedobbeleer/oh-my-posh/oh-my-posh lazygit ydiff
+    brew install databricks
+	brew install fzf bat zsh-syntax-highlighting stow jandedobbeleer/oh-my-posh/oh-my-posh lazygit ydiff
+    brew install --cask ghostty
+    # fonts
     brew install --cask ghostty font-0xproto-nerd-font font-ubuntu-mono-nerd-font font-hack-nerd-font font-jetbrains-mono-nerd-font
 ```
 
