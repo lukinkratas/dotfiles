@@ -240,6 +240,15 @@ local plugins = {
           -- },
         },
         opts = {},
+        config = function()
+          local ls = require 'luasnip'
+          -- ls.snippet, ls.text_node, ls.insert_node, ls.function_node
+          ls.add_snippets('python', {
+            ls.snippet('ini', { ls.text_node 'def __init__(self) -> None:' }),
+            ls.snippet('sf', { ls.text_node 'import pyspark.sql.function as F' }),
+            ls.snippet('st', { ls.text_node 'import pyspark.sql.types as T' }),
+          })
+        end,
       },
       'folke/lazydev.nvim',
     },
