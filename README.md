@@ -7,13 +7,14 @@
 ```
 
 ``` sh
-    brew install google-chrome docker docker-desktop obsidian
+    brew install docker
+    brew install --cask google-chrome docker-desktop obsidian slack
 	brew tap databricks/tap
     brew install databricks
 	brew install fzf bat zsh-syntax-highlighting stow jandedobbeleer/oh-my-posh/oh-my-posh lazygit ydiff
     brew install --cask ghostty
     # fonts
-    brew install --cask ghostty font-0xproto-nerd-font font-ubuntu-mono-nerd-font font-hack-nerd-font font-jetbrains-mono-nerd-font
+    brew install --cask font-0xproto-nerd-font font-ubuntu-mono-nerd-font font-hack-nerd-font font-jetbrains-mono-nerd-font
 ```
 
 ```sh
