@@ -7,7 +7,7 @@
 ```
 
 ``` sh
-    brew install docker ollama
+    brew install docker ollama node ripgrep
     brew install --cask google-chrome docker-desktop obsidian slack dbeaver-community claude-code
 	brew tap databricks/tap
     brew install databricks
