@@ -121,15 +121,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- attempt to automatically CsvViewEnable
--- vim.api.nvim_create_augroup('csv', { clear = true })
---
--- vim.api.nvim_create_autocmd('AutoCsvView', {
---   desc = 'CsvViewEnable, when file suffix is .csv',
---   group = 'csv',
---   pattern = '*csv',
---   command = 'CsvViewEnable',
--- })
+-- Load CsvViewEnable on *.csv automatically
+vim.api.nvim_create_augroup('csv', { clear = true })
+
+vim.api.nvim_create_autocmd('BufEnter', {
+  desc = 'CsvViewEnable, when file suffix is .csv',
+  group = 'csv',
+  pattern = '*csv',
+  command = ':silent! CsvViewEnable',
+})
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 
