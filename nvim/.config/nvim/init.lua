@@ -893,6 +893,8 @@ local plugins = {
   },
   {
     'hat0uma/csvview.nvim',
+    ---@module "csvview"
+    ---@type CsvView.Options
     opts = {
       parser = { comments = { '#', '//' } },
       keymaps = {
@@ -911,7 +913,10 @@ local plugins = {
     },
     cmd = { 'CsvViewEnable', 'CsvViewDisable', 'CsvViewToggle' },
     config = function()
-      require('csvview').setup()
+      -- local csvview = require 'csvview'
+      vim.keymap.set('n', '<leader>ct', function()
+        vim.cmd [[ CsvViewToggle ]]
+      end, { desc = '[C]svView [T]oggle' })
     end,
   },
   {
