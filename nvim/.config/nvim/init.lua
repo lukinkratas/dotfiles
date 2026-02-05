@@ -860,7 +860,6 @@ local plugins = {
   {
     -- split or join multi lines
     'Wansmer/treesj',
-    keys = { '<space>m', '<space>j', '<space>s' },
     dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
     config = function()
       -- <space>m split list over multi lines
