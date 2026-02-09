@@ -116,6 +116,7 @@ alias dbrm="databricks bundle destroy --target"
 alias ti="terraform init"
 alias tp="terraform plan"
 alias ta="terraform apply"
+alias tsl="terraform state list"
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
