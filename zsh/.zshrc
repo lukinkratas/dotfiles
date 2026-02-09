@@ -112,6 +112,11 @@ alias dbd="databricks bundle deploy --target"
 alias dbr="databricks bundle run --target"
 alias dbrm="databricks bundle destroy --target"
 
+# ----- terraform -----
+alias ti="terraform init"
+alias tp="terraform plan"
+alias ta="terraform apply"
+
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
 alias dot="cd $HOME/projects/dotfiles && l"
