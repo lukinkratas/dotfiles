@@ -436,6 +436,7 @@ local plugins = {
         'yaml',
         'toml',
         'regex',
+        'hcl', -- terraform
       },
       auto_install = true,
       highlight = {
@@ -617,9 +618,10 @@ local plugins = {
       local servers = {
         -- clangd = {},
         gopls = {},
-        pyright = {},
-        -- ruff = {},
+        -- pyright = {},
+        ruff = {},
         -- rust_analyzer = {},
+        terraform_ls = {},
         lua_ls = {
           settings = {
             Lua = {
