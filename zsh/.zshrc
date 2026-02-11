@@ -114,13 +114,15 @@ alias dbrm="databricks bundle destroy --target"
 
 # ----- terraform -----
 alias ti="terraform init"
-alias tp="terraform plan"
-alias ta="terraform apply"
+alias tf="terraform fmt"
+alias tp="terraform fmt && terraform plan"
+alias ta="terraform fmt && terraform apply"
+alias ti="terraform import"
 alias tsl="terraform state list"
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
-alias dot="cd $HOME/projects/dotfiles && l"
+alias cdd="cd $HOME/projects/dotfiles && l"
 
 # ----- functions -----
 function extract {
