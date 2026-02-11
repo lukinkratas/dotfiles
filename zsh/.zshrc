@@ -122,7 +122,7 @@ alias tsl="terraform state list"
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
-alias cdd="cd $HOME/projects/dotfiles && l"
+alias cdd="cd $HOME/dotfiles && l"
 
 # ----- functions -----
 function extract {
