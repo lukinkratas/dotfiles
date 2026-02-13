@@ -119,7 +119,6 @@ alias tff="terraform fmt"
 alias tfv="terraform validate"
 alias tfp="terraform fmt && terraform plan"
 alias tfa="terraform fmt && terraform apply"
-alias tfi="terraform import"
 alias tfsl="terraform state list"
 alias tfd="terraform destroy"
 
