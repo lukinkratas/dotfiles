@@ -113,12 +113,15 @@ alias dbr="databricks bundle run --target"
 alias dbrm="databricks bundle destroy --target"
 
 # ----- terraform -----
-alias ti="terraform init"
-alias tf="terraform fmt"
-alias tp="terraform fmt && terraform plan"
-alias ta="terraform fmt && terraform apply"
-alias ti="terraform import"
-alias tsl="terraform state list"
+alias tf="terraform"
+alias tfi="terraform init"
+alias tff="terraform fmt"
+alias tfv="terraform validate"
+alias tfp="terraform fmt && terraform plan"
+alias tfa="terraform fmt && terraform apply"
+alias tfi="terraform import"
+alias tfsl="terraform state list"
+alias tfd="terraform destroy"
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
