@@ -3,6 +3,7 @@ setopt globdots
 export EDITOR=nvim
 export PATH="$PATH:$HOME/.antigravity/antigravity/bin"
 export XDG_CONFIG_HOME=$HOME/.config
+export AWS_PROFILE=terraform
 
 # Setup fzf key bindings and fuzzy completion
 source <(fzf --zsh)
@@ -114,7 +115,7 @@ alias dbrm="databricks bundle destroy --target"
 
 # ----- terraform -----
 alias tf="terraform"
-alias tfi="terraform init"
+alias tfi="terraform init -backend-config='profile=terraform'"
 alias tff="terraform fmt"
 alias tfv="terraform validate"
 alias tfp="terraform fmt && terraform validate && terraform plan"
