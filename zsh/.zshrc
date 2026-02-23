@@ -71,6 +71,23 @@ alias nvf='nvim $(fzf -m --preview="bat --color=always {}")'
 alias chrome="open -a 'Google Chrome'"
 alias lg='lazygit'
 
+# used for prompting llms
+function prompt {
+  [[ -f prompt.txt ]] && echo "prompt.txt already exists" && return
+
+  # add tree
+  echo "### Project Structure" >> prompt.txt
+  tree >> prompt.txt
+
+  # add chosen filename and its content
+  for file in $@; do
+    echo >> prompt.txt
+    echo "$file: \`\`\`" >> prompt.txt
+    cat $file >> prompt.txt
+    echo "\`\`\`" >> prompt.txt
+  done
+}
+
 # ----- git -----
 alias gi="git init"
 alias gcl="git clone"
@@ -147,10 +164,3 @@ function extract {
     echo -e "$1 is not a valid file."
   fi
 }
-
-
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/lukaskratochvila/.lmstudio/bin"
-# End of LM Studio CLI section
-
