@@ -87,10 +87,12 @@ function prompt {
 
   # add chosen filename and its content
   for file in $@; do
-    echo >> prompt.txt
-    echo "$file: \`\`\`" >> prompt.txt
-    cat $file >> prompt.txt
-    echo "\`\`\`" >> prompt.txt
+    if [[ -f $file ]]; then
+      echo >> prompt.txt
+      echo "$file: \`\`\`" >> prompt.txt
+      cat $file >> prompt.txt
+      echo "\`\`\`" >> prompt.txt
+    fi
   done
 }
 
