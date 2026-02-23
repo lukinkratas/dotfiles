@@ -73,6 +73,12 @@ alias lg='lazygit'
 
 # used for prompting llms
 function prompt {
+  # todo:
+  # - exclude pycache dir from tree
+  # - if dir in for loop, add all files
+  # -a for all
+  # -c for clipboard
+  # - introduce prompt versioning - input - d for delete, k for keep (get renamed)
   [[ -f prompt.txt ]] && echo "prompt.txt already exists" && return
 
   # add tree
