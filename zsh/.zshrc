@@ -83,7 +83,7 @@ function prompt {
 
   # add tree
   echo "### Project Structure" >> prompt.txt
-  tree >> prompt.txt
+  tree -I __pycache__ >> prompt.txt
 
   # add chosen filename and its content
   for file in $@; do
