@@ -146,14 +146,14 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   -- Detect tabstop and shiftwidth automatically
   { 'NMAC427/guess-indent.nvim' },
-  {
-    'folke/tokyonight.nvim',
-    -- priority = 1000, -- Make sure to load this before all the other start plugins.
-    -- config = function()
-    --   require('tokyonight').setup()
-    --   vim.cmd.colorscheme 'tokyonight'
-    -- end,
-  },
+  -- {
+  --   'folke/tokyonight.nvim',
+  -- priority = 1000, -- Make sure to load this before all the other start plugins.
+  -- config = function()
+  --   require('tokyonight').setup()
+  --   vim.cmd.colorscheme 'tokyonight'
+  -- end,
+  -- },
   {
     'rose-pine/neovim',
     name = 'rose-pine',
