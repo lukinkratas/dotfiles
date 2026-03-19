@@ -34,6 +34,7 @@ alias grc="$EDITOR $HOME/.gitconfig"
 alias ghstrc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
 alias dbxrc="$EDITOR $HOME/.databrickscfg"
 alias omprc="$EDITOR $HOME/.config/omp.toml"
+alias trc="$EDITOR $HOME/.tmux.conf"
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"

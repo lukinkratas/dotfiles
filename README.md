@@ -7,11 +7,12 @@
 ```
 
 ``` sh
-	brew install docker ollama node ripgrep neovim fzf bat zsh-syntax-highlighting stow jandedobbeleer/oh-my-posh/oh-my-posh lazygit ydiff awscli uv pre-commit gemini-cli ffmpeg ruff
-    brew install --cask google-chrome ghostty docker-desktop obsidian slack dbeaver-community claude-code codex codex-app imageoptim
+	brew install docker ollama node ripgrep neovim fzf bat zsh-syntax-highlighting stow jandedobbeleer/oh-my-posh/oh-my-posh lazygit ydiff awscli uv pre-commit gemini-cli ffmpeg ruff tmux
+
+    brew install --cask google-chrome ghostty docker-desktop obsidian slack dbeaver-community claude claude-code codex codex-app imageoptim
 
     # databricks
-	brew tap databricks/tap
+    brew tap databricks/tap
     brew install databricks
 
     # terraform
@@ -23,5 +24,5 @@
 ```
 
 ```sh
-    stow --target=$HOME --ignore='.*\.example' --adopt --verbose zsh ghostty nvim oh-my-posh lazygit
+    stow --target=$HOME --ignore='.*\.example' --adopt --verbose zsh ghostty nvim oh-my-posh lazygit claude tmux
 ```
