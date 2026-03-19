@@ -34,6 +34,10 @@
     "git": {
       "command": "uvx",
       "args": ["mcp-server-git", "--repository", "REDACTED"]
+    },
+    "openmarkets": {
+      "command": "uvx",
+      "args": ["openmarkets@latest"]
     }
   }
 }

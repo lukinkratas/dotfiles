@@ -1,0 +1,18 @@
+{
+  "preferences": {
+    "coworkScheduledTasksEnabled": false,
+    "ccdScheduledTasksEnabled": false,
+    "coworkWebSearchEnabled": true,
+    "sidebarMode": "chat"
+  },
+  "mcpServers": {
+    "yfinance": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/richin13/yahoo-finance-mcp",
+        "yahoo-finance-mcp"
+      ]
+    }
+  }
+}
