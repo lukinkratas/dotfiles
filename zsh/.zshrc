@@ -79,6 +79,8 @@ function prompt {
   # - [ ] -c for clipboard
   # - [ ] -m for msg
   # - [x] prompt versioning - prompt.txt.1, ...
+
+  # prompt versioning
   if [[ -f prompt.txt ]]; then
     echo "prompt.txt already exists"
     # Find available num
@@ -87,6 +89,7 @@ function prompt {
       ((n++))
     done
 
+    # keep renaming prev versions
     for i in $(seq $n -1 1); do
       if [[ $i -ge 2 ]]; then
         mv "prompt.txt.$((i-1))" "prompt.txt.$i"
