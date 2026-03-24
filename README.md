@@ -7,9 +7,9 @@
 ```
 
 ``` sh
-	brew install docker ollama node ripgrep neovim fzf bat zsh-syntax-highlighting stow jandedobbeleer/oh-my-posh/oh-my-posh lazygit ydiff awscli uv pre-commit gemini-cli ffmpeg ruff tmux
+	brew install docker ollama node ripgrep neovim fzf bat zsh-syntax-highlighting stow jandedobbeleer/oh-my-posh/oh-my-posh lazygit ydiff awscli uv pre-commit ffmpeg ruff tmux
 
-    brew install --cask google-chrome ghostty docker-desktop obsidian slack dbeaver-community claude claude-code codex codex-app imageoptim cursor
+    brew install --cask google-chrome ghostty docker-desktop obsidian slack dbeaver-community claude claude-code
 
     # databricks
     brew tap databricks/tap
