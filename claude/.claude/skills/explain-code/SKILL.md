@@ -6,10 +6,8 @@ description: Explains code with visual diagrams and analogies. Use when explaini
 When explaining code, always include:
 
 1. **Reason**: What problem is the code trying to solve?
-1. **Start with an analogy**: Compare the code to something from everyday life
-2. **Draw a diagram**: Use ASCII art to show the flow, structure, or relationships
-3. **Walk through the code**: Explain step-by-step what happens
-4. **Highlight a gotcha**: What's a common mistake or misconception?
-5. **Examples**: Provide code usage examples.
+4. **Walk through the code**: Explain step-by-step what happens
+5. **Highlight a gotcha**: What's a common mistake or misconception?
+6. **Examples**: Provide code usage examples.
 
-Keep explanations conversational. For complex concepts, use multiple analogies.
+Keep explanations conversational. For complex concepts, use multiple analogies. If needed, use ASCII art to show the flow, structure, or relationships.
