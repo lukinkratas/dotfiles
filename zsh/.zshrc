@@ -1,7 +1,7 @@
 setopt globdots
 
 export EDITOR=nvim
-export PATH="$PATH:$HOME/.antigravity/antigravity/bin"
+export PATH="$PATH:$HOME/.antigravity/antigravity/bin:$HOME/.local/bin"
 export XDG_CONFIG_HOME=$HOME/.config
 export AWS_PROFILE=terraform
 
