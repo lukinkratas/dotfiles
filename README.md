@@ -26,3 +26,11 @@
 ```sh
     stow --target=$HOME --ignore='.*\.example' --adopt --verbose zsh ghostty nvim oh-my-posh lazygit claude tmux
 ```
+
+CC Skills:
+
+https://github.com/obra/superpowers
+
+anthropics/skills https://github.com/anthropics/skills/tree/main/skills
+frontend-design, canvas-design, mcp-builder, skill-creator
+
