@@ -9,6 +9,7 @@ When reviewing the code, focus on:
 
 1. **Funcionality**
 	- [ ] Works as intended without caveats or potential offsets from expected behaviour.
+    - [ ] Look for unused code paths.
 
 2. **Code Quality**
 	- [ ] Follows clean code principles and best practices
