@@ -112,6 +112,9 @@ function prompt {
       echo "\`\`\`" >> prompt.txt
     fi
   done
+
+  # copy to clipboard
+  cat prompt.txt | pbcopy
 }
 
 # ----- git -----
