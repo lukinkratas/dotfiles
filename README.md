@@ -9,7 +9,7 @@
 ``` sh
 	brew install docker ollama node ripgrep neovim fzf bat zsh-syntax-highlighting stow jandedobbeleer/oh-my-posh/oh-my-posh lazygit ydiff awscli uv pre-commit ffmpeg ruff tmux
 
-    brew install --cask google-chrome ghostty docker-desktop obsidian slack dbeaver-community claude claude-code
+    brew install --cask google-chrome ghostty docker-desktop obsidian slack dbeaver-community
 
     # databricks
     brew tap databricks/tap
@@ -26,11 +26,3 @@
 ```sh
     stow --target=$HOME --ignore='.*\.example' --adopt --verbose zsh ghostty nvim oh-my-posh lazygit claude tmux
 ```
-
-CC Skills:
-
-https://github.com/obra/superpowers
-
-anthropics/skills https://github.com/anthropics/skills/tree/main/skills
-frontend-design, canvas-design, mcp-builder, skill-creator
-
