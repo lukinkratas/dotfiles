@@ -30,9 +30,7 @@ fi
 # ----- configs -----
 alias rc="$EDITOR $HOME/.zshrc"
 alias nvrc="$EDITOR ${XDG_CONFIG_FOME:-$HOME/.config}/nvim/init.lua"
-alias grc="$EDITOR $HOME/.gitconfig"
 alias ghstrc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
-alias dbxrc="$EDITOR $HOME/.databrickscfg"
 alias omprc="$EDITOR $HOME/.config/omp.toml"
 alias trc="$EDITOR $HOME/.tmux.conf"
 
@@ -120,6 +118,7 @@ function prompt {
 }
 
 # ----- git -----
+alias grc="$EDITOR $HOME/.gitconfig"
 alias gi="git init"
 alias gcl="git clone"
 alias gc="git checkout"
@@ -153,6 +152,7 @@ function git_pull_current_branch {
 }
 
 # ----- dbx -----
+alias dbxrc="$EDITOR $HOME/.databrickscfg"
 alias dat="databricks auth token --profile"
 alias dal="databricks auth login --profile"
 alias dbi="databricks bundle init"
@@ -168,11 +168,6 @@ alias tfv="terraform validate"
 alias tfp="terraform fmt && terraform validate && terraform plan"
 alias tfa="terraform fmt && terraform validate && terraform apply"
 alias tfsls="terraform state list"
-
-# ----- terraform -----
-alias dps="docker ps"
-alias db="docker build ."
-alias dcu="docker compose up -d"
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
