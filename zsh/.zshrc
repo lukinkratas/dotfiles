@@ -72,6 +72,7 @@ alias nv="nvim"
 alias nvf='nvim $(fzf -m --preview="bat --color=always {}")'
 alias chrome="open -a 'Google Chrome'"
 alias lg='lazygit'
+alias ld='lazydocker'
 
 # used for prompting llms
 function prompt {
@@ -166,7 +167,12 @@ alias tfi="terraform init -backend-config='profile=terraform'"
 alias tfv="terraform validate"
 alias tfp="terraform fmt && terraform validate && terraform plan"
 alias tfa="terraform fmt && terraform validate && terraform apply"
-alias tfls="terraform state list"
+alias tfsls="terraform state list"
+
+# ----- terraform -----
+alias dps="docker ps"
+alias db="docker build ."
+alias dcu="docker compose up -d"
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
