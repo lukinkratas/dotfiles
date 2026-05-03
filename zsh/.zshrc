@@ -104,14 +104,19 @@ function prompt {
   tree -I __pycache__ >> prompt.txt
 
   # add chosen filename and its content
-  for file in $@; do
-    if [[ -f $file ]]; then
-      echo >> prompt.txt
-      echo "$file: \`\`\`" >> prompt.txt
-      cat $file >> prompt.txt
-      echo "\`\`\`" >> prompt.txt
-    fi
-  done
+  find "$@" \
+    -type d \( -name __pycache__ -o -name .git -o -name node_modules \) -prune -o \
+    -type f -exec sh -c '
+      for f; do
+        # omit binaries
+        if grep -Iq . "$f"; then
+          echo
+          echo "$f: \`\`\`"
+          cat $f
+          echo "\`\`\`"
+        fi
+      done
+    ' _ {} + >> prompt.txt
 
   # copy to clipboard
   cat prompt.txt | pbcopy
