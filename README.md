@@ -24,5 +24,5 @@
 ```
 
 ```sh
-    stow --target=$HOME --ignore='.*\.example' --adopt --verbose zsh ghostty nvim oh-my-posh lazygit claude tmux
+    stow --target=$HOME --ignore='.*\.example' --adopt --verbose zsh ghostty nvim oh-my-posh lazygit claude tmux pi
 ```
