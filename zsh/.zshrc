@@ -64,8 +64,6 @@ alias bat="bat --color=always"
 alias py="python3"
 alias pip="pip3"
 alias jnb="jupyter notebook"
-alias pci="pre-commit install"
-alias pcr="pre-commit run --all-files --verbose"
 alias nv="nvim"
 alias nvf='nvim $(fzf -m --preview="bat --color=always {}")'
 alias chrome="open -a 'Google Chrome'"
@@ -155,6 +153,11 @@ function git_pull_current_branch {
   [[ $# -ne 0 ]] && echo "No arguments are allowed." && return 1
   git pull --rebase origin $(git_current_branch)
 }
+
+# ----- pre-commit -----
+alias pc="pre-commit"
+alias pci="pre-commit install"
+alias pcr="pre-commit run --all-files --verbose"
 
 # ----- dbx -----
 alias dbxrc="$EDITOR $HOME/.databrickscfg"
