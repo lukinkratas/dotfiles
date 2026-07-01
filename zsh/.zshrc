@@ -75,35 +75,32 @@ function prompt {
   # todo:
   # - [x] prompt versioning - prompt.txt.1, ...
   # - [ ] default copy to clipboard, into text file only if -o flag
-  # - [ ] -t for tree as optinal (in case I do not want node_modules in prompt)
+  # - [x] -t for tree as optinal (in case I do not want node_modules in prompt)
   # - [ ] -o for output into storage
-  # - [ ] -m for msg - not really needed
 
-  # prompt versioning
-  if [[ -f prompt.txt ]]; then
-    echo "prompt.txt already exists"
-    # Find available num
-    n=1
-    while [[ -f "prompt.txt.$n" ]]; do
-      ((n++))
-    done
+  local include_tree=false
+  local args=()
 
-    # keep renaming prev versions
-    for i in $(seq $n -1 1); do
-      if [[ $i -ge 2 ]]; then
-        mv "prompt.txt.$((i-1))" "prompt.txt.$i"
-      else
-        mv "prompt.txt" "prompt.txt.1"
-      fi
-    done
+  # parse args
+  for arg in "$@"; do
+    case "$arg" in
+      -t)
+        include_tree=true
+        ;;
+      *)
+        args+=("$arg")
+        ;;
+    esac
+  done
+
+  # add tree (optional)
+  if $include_tree; then
+    echo "### Project Structure" >> prompt.txt
+    tree -I __pycache__ >> prompt.txt
   fi
 
-  # add tree
-  echo "### Project Structure" >> prompt.txt
-  tree -I __pycache__ >> prompt.txt
-
   # add chosen filename and its content
-  find "$@" \
+  find "${args[@]}" \
     -type d \( -name __pycache__ -o -name .git -o -name node_modules \) -prune -o \
     -type f -exec sh -c '
       for f; do
