@@ -73,10 +73,11 @@ alias ld='lazydocker'
 # used for prompting llms
 function prompt {
   # todo:
-  # - [ ] -a for all
-  # - [ ] -c for clipboard
-  # - [ ] -m for msg
   # - [x] prompt versioning - prompt.txt.1, ...
+  # - [ ] default copy to clipboard, into text file only if -o flag
+  # - [ ] -t for tree as optinal (in case I do not want node_modules in prompt)
+  # - [ ] -o for output into storage
+  # - [ ] -m for msg - not really needed
 
   # prompt versioning
   if [[ -f prompt.txt ]]; then
