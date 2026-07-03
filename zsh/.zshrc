@@ -5,6 +5,9 @@ export PATH="$PATH:$HOME/.antigravity/antigravity/bin:$HOME/.local/bin"
 export XDG_CONFIG_HOME=$HOME/.config
 export AWS_PROFILE=terraform
 
+# add Homebrew to PATH
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+
 # Setup fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
