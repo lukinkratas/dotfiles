@@ -2,7 +2,7 @@
 
 ## Prereq
 
-Install brew
+Install brew + append to PATH
 
 ## Install
 
@@ -15,6 +15,9 @@ Install brew
 
     brew install --cask google-chrome ghostty docker-desktop obsidian slack dbeaver-community
 
+    # fonts
+    brew install --cask font-0xproto-nerd-font font-ubuntu-mono-nerd-font font-hack-nerd-font font-jetbrains-mono-nerd-font
+
     # databricks
     brew tap databricks/tap
     brew install databricks
@@ -22,9 +25,6 @@ Install brew
     # terraform
     brew tap hashicorp/tap
     brew install hashicorp/tap/terraform
-
-    # fonts
-    brew install --cask font-0xproto-nerd-font font-ubuntu-mono-nerd-font font-hack-nerd-font font-jetbrains-mono-nerd-font
 ```
 
 ```sh
