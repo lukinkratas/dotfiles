@@ -13,7 +13,7 @@ Install brew + append to PATH
 ``` sh
 	brew install docker ollama node ripgrep neovim fzf bat zsh-syntax-highlighting stow jandedobbeleer/oh-my-posh/oh-my-posh lazygit ydiff awscli uv pre-commit ffmpeg tmux
 
-    brew install --cask google-chrome ghostty docker-desktop obsidian slack dbeaver-community ollama-app visual-studio-code
+    brew install --cask google-chrome ghostty docker-desktop obsidian slack dbeaver-community ollama-app visual-studio-code bruno
 
     # fonts
     brew install --cask font-0xproto-nerd-font font-ubuntu-mono-nerd-font font-hack-nerd-font font-jetbrains-mono-nerd-font
