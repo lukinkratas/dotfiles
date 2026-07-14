@@ -25,6 +25,13 @@ Install brew + append to PATH
     # terraform
     brew tap hashicorp/tap
     brew install hashicorp/tap/terraform
+
+    # cmux
+    brew tap manaflow-ai/cmux
+    brew install --cask cmux
+
+    # optional
+    brew install pi-coding-agent anomalyco/tap/opencode
 ```
 
 ```sh
