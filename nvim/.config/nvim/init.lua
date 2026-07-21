@@ -181,14 +181,14 @@ local plugins = {
         changedelete = { text = '~' },
       },
     },
-    {
-      'folke/lazydev.nvim',
-      ft = 'lua',
-      opts = {
-        library = {
-          -- Load luvit types when the `vim.uv` word is found
-          { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-        },
+  },
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        -- Load luvit types when the `vim.uv` word is found
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
       },
     },
   },
@@ -361,10 +361,10 @@ local plugins = {
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
-        javascript = { 'prettier', stop_after_first = true },
-        javascriptreact = { 'prettier', stop_after_first = true },
-        typescript = { 'prettier', stop_after_first = true },
-        typescriptreact = { 'prettier', stop_after_first = true },
+        javascript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescript = { 'prettier' },
+        typescriptreact = { 'prettier' },
         yaml = { 'yamlfmt' },
         html = { 'prettier' },
         json = { 'prettier' },
@@ -848,23 +848,20 @@ local plugins = {
   },
   {
     'numToStr/Comment.nvim',
-    config = function()
-      -- Normal mode:
-      -- gcc - Toggles the current line using linewise comment
-      -- gbc - Toggles the current line using blockwise comment
-      -- [count]gcc - Toggles the number of line given as a prefix-count using linewise
-      -- [count]gbc - Toggles the number of line given as a prefix-count using blockwise
-      -- gc[count]{motion} - (Op-pending) Toggles the region using linewise comment
-      -- gb[count]{motion} - (Op-pending) Toggles the region using blockwise comment
-      -- gco - Insert comment to the next line and enters INSERT mode
-      -- gcO - Insert comment to the previous line and enters INSERT mode
-      -- gcA - Insert comment to end of the current line and enters INSERT mode
-      -- Visual mode:
-      -- gc - Toggles the region using linewise comment
-      -- gb - Toggles the region using blockwise comment
-      require('Comment').setup()
-    end,
     opts = {},
+    -- Normal mode:
+    -- gcc - Toggles the current line using linewise comment
+    -- gbc - Toggles the current line using blockwise comment
+    -- [count]gcc - Toggles the number of line given as a prefix-count using linewise
+    -- [count]gbc - Toggles the number of line given as a prefix-count using blockwise
+    -- gc[count]{motion} - (Op-pending) Toggles the region using linewise comment
+    -- gb[count]{motion} - (Op-pending) Toggles the region using blockwise comment
+    -- gco - Insert comment to the next line and enters INSERT mode
+    -- gcO - Insert comment to the previous line and enters INSERT mode
+    -- gcA - Insert comment to end of the current line and enters INSERT mode
+    -- Visual mode:
+    -- gc - Toggles the region using linewise comment
+    -- gb - Toggles the region using blockwise comment
   },
   {
     -- split or join multi lines
