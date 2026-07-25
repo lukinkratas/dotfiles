@@ -139,6 +139,7 @@ alias gl="git log"
 alias gp="git_push_to_current_branch" # function to avoid command not found: git_current_branch on reload
 alias gpt="git push --tags"
 alias gpl="git_pull_current_branch"   # function to avoid command not found: git_current_branch on reload
+alias gcp="git_config_personal"
 
 function git_current_branch {
   [[ $# -ne 0 ]] && echo "No arguments are allowed." && return 1
@@ -153,6 +154,11 @@ function git_push_to_current_branch {
 function git_pull_current_branch {
   [[ $# -ne 0 ]] && echo "No arguments are allowed." && return 1
   git pull --rebase origin $(git_current_branch)
+}
+
+function git_config_personal {
+  git config user.name lukinkratas
+  git config user.email lukinkratas@seznam.cz
 }
 
 # ----- pre-commit -----
