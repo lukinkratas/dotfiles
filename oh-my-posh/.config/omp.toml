@@ -47,9 +47,14 @@ final_space = true
     [blocks.segments.options]
       style = "full"
 
+
+  [[blocks.segments]]
+    type = "aws"
+    template = "  {{.Profile}}{{if .Region}}@{{.Region}}{{end}}"
+
   [[blocks.segments]]
     type = 'git'
-    template = ' [{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} {{ .User.Email }}]'
+    template = ' {{ .UpstreamIcon }}{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} {{ .User.Email }}'
     foreground = 'p:green'
     foreground_templates = [
       '{{ if or (.Working.Changed) (.Staging.Changed) }}p:yellow{{ end }}',
@@ -59,4 +64,6 @@ final_space = true
     [blocks.segments.options]
       branch_icon = ''
       fetch_status = true
+      fetch_upstream_icon = true
       fetch_user = true
+
