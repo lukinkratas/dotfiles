@@ -54,7 +54,7 @@ final_space = true
 
   [[blocks.segments]]
     type = 'git'
-    template = ' {{ .UpstreamIcon }}{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} {{ .User.Email }}'
+    template = ' {{ .UpstreamIcon }} {{.User.Email}} {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}'
     foreground = 'p:green'
     foreground_templates = [
       '{{ if or (.Working.Changed) (.Staging.Changed) }}p:yellow{{ end }}',
