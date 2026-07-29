@@ -31,7 +31,8 @@ Install brew + append to PATH
     brew install --cask cmux
 
     # optional
-    brew install pi-coding-agent anomalyco/tap/opencode
+    brew install pi-coding-agent anomalyco/tap/opencode omnigent-ai/tap/omnigent
+    brew install --cask codex claude claude-code grok-build cursor
 ```
 
 ```sh
