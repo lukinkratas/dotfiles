@@ -1,4 +1,7 @@
 .DS_Store
 .env
-mcp.json
 lazy-lock.json
+
+claude/mcp.json
+claude/.claude/backups
+pi/.pi/agent/sessions
