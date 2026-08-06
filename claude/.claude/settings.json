@@ -1,28 +1,11 @@
 {
-  "enabledPlugins": {
-    "ecc@ecc": true,
-    "superpowers@claude-plugins-official": true
+  "model": "opus[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 2
   },
-  "extraKnownMarketplaces": {
-    "anthropic-agent-skills": {
-      "source": {
-        "source": "github",
-        "repo": "anthropics/skills"
-      }
-    },
-    "everything-claude-code": {
-      "source": {
-        "source": "github",
-        "repo": "affaan-m/everything-claude-code"
-      }
-    },
-    "superpowers": {
-      "source": {
-        "source": "github",
-        "repo": "obra/superpowers-marketplace"
-      }
-    }
-  },
-  "effortLevel": "medium",
-  "model": "opus[1m]"
+  "effortLevel": "xhigh",
+  "tui": "fullscreen",
+  "theme": "dark"
 }
