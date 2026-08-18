@@ -22,7 +22,7 @@
     },
     "context7": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@latest", "--api-key", "REDACTED"]
+      "args": ["-y", "@upstash/context7-mcp", "--api-key", "REDACTED"]
     },
     "awslabs.aws-api-mcp-server": {
       "command": "uvx",
