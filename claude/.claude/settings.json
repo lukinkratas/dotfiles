@@ -5,7 +5,18 @@
     "command": "~/.claude/statusline.sh",
     "padding": 2
   },
+  "extraKnownMarketplaces": {
+    "databricks-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "databricks/databricks-agent-skills"
+      }
+    }
+  },
   "effortLevel": "xhigh",
   "tui": "fullscreen",
-  "theme": "dark"
+  "theme": "dark",
+  "enabledPlugins": {
+    "databricks@databricks-agent-skills": true
+  }
 }
