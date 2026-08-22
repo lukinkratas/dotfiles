@@ -18,5 +18,6 @@
   "theme": "dark",
   "enabledPlugins": {
     "databricks@databricks-agent-skills": true
-  }
+  },
+  "outputStyle": "Concise"
 }
