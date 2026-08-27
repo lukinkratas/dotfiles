@@ -483,7 +483,6 @@ local plugins = {
           --  To jump back, press <C-t>.
           map('grd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
-          -- Find references for the word under your cursor.
           map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
@@ -723,7 +722,14 @@ local plugins = {
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            hidden = true,
+            no_ignore = true,
+            -- optionally hide .git/ or other folders if needed:
+            file_ignore_patterns = { '.git/', 'node_modules' },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
