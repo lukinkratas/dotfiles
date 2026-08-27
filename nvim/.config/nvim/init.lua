@@ -722,14 +722,14 @@ local plugins = {
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        pickers = {
-          find_files = {
-            hidden = true,
-            no_ignore = true,
-            -- optionally hide .git/ or other folders if needed:
-            file_ignore_patterns = { '.git/', 'node_modules' },
-          },
-        },
+        -- pickers = {
+        --   find_files = {
+        --     hidden = true,
+        --     no_ignore = true,
+        --     -- optionally hide .git/ or other folders if needed:
+        --     file_ignore_patterns = { '.git/', 'node_modules' },
+        --   },
+        -- },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
