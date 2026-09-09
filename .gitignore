@@ -3,5 +3,5 @@
 lazy-lock.json
 
 claude/mcp.json
-claude/.claude/backups
+claude/Library/Application Support
 pi/.pi/agent/sessions
