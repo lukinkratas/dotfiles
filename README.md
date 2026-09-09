@@ -11,7 +11,7 @@ Install brew + append to PATH
 ```
 
 ``` sh
-	brew install docker ollama node ripgrep neovim fzf bat zsh-syntax-highlighting stow jandedobbeleer/oh-my-posh/oh-my-posh lazygit ydiff awscli uv pre-commit ffmpeg tmux tree
+	brew install docker ripgrep neovim fzf bat zsh-syntax-highlighting stow jandedobbeleer/oh-my-posh/oh-my-posh lazygit ydiff awscli uv pre-commit ffmpeg tmux tree ollama node oven-sh/bun/bun gh
 
     brew install --cask google-chrome ghostty docker-desktop obsidian slack dbeaver-community ollama-app visual-studio-code bruno
 
@@ -26,17 +26,12 @@ Install brew + append to PATH
     brew tap hashicorp/tap
     brew install hashicorp/tap/terraform
 
-    # cmux
-    brew tap manaflow-ai/cmux
-    brew install --cask cmux
-
     # optional
-    brew install pi-coding-agent anomalyco/tap/opencode omnigent-ai/tap/omnigent
-    brew install --cask codex claude claude-code grok-build cursor
+    brew install --cask codex claude claude-code
 ```
 
 ```sh
-    stow --target=$HOME --ignore='.*\.example' --adopt --verbose zsh ghostty nvim oh-my-posh lazygit claude tmux pi
+    stow --target=$HOME --ignore='.*\.example' --adopt --verbose zsh ghostty nvim oh-my-posh lazygit claude tmux
 ```
 
 Fill env vars into zsh/.env
