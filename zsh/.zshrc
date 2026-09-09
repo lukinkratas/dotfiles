@@ -37,6 +37,7 @@ alias ghstrc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
 alias omprc="$EDITOR $HOME/.config/omp.toml"
 alias trc="$EDITOR $HOME/.tmux.conf"
 alias ccrc="$EDITOR $HOME/.claude/settings.json"
+alias mcprc="$EDITOR $HOME/mcp.json"
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"
@@ -73,6 +74,7 @@ alias nvf='nvim $(fzf -m --preview="bat --color=always {}")'
 alias chrome="open -a 'Google Chrome'"
 alias lg='lazygit'
 alias ld='lazydocker'
+alias cc="claude --mcp-config $HOME/mcp.json"
 
 # used for prompting llms
 function prompt {
