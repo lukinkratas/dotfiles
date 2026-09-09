@@ -19,5 +19,10 @@
   "enabledPlugins": {
     "databricks@databricks-agent-skills": true
   },
-  "outputStyle": "Concise"
+  "outputStyle": "Concise",
+  "permissions": {
+    "deny": [
+      "Read(./.env)"
+    ]
+  }
 }

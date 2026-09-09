@@ -36,6 +36,7 @@ alias nvrc="$EDITOR ${XDG_CONFIG_FOME:-$HOME/.config}/nvim/init.lua"
 alias ghstrc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
 alias omprc="$EDITOR $HOME/.config/omp.toml"
 alias trc="$EDITOR $HOME/.tmux.conf"
+alias ccrc="$EDITOR $HOME/.claude/settings.json"
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"
