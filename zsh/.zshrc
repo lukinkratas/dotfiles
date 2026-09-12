@@ -127,7 +127,7 @@ function prompt {
 # ----- git -----
 alias grc="$EDITOR $HOME/.gitconfig"
 alias gi="git init"
-alias gcl="git clone"
+alias gcl="git clone --bare" # base to use worktrees
 alias gc="git checkout"
 alias gcb="git checkout -b"
 alias gb="git branch"            # see local branches
@@ -136,13 +136,16 @@ alias gba="git branch --all"     # see local and remote branches
 alias gs="git status"
 alias ga="git add "
 alias gaa="git add --all"
-alias gcm="git commit --message "
+alias gcm="git commit --message"
 alias gd="git difftool --tool=nvimdiff --no-prompt"
 alias gl="git log"
 alias gp="git_push_to_current_branch" # function to avoid command not found: git_current_branch on reload
 alias gpt="git push --tags"
 alias gpl="git_pull_current_branch"   # function to avoid command not found: git_current_branch on reload
 alias gcp="git_config_personal"
+alias gwa="git worktree add"
+alias gwls="git worktree list"
+alias gwrm="git worktree remove"
 
 function git_current_branch {
   [[ $# -ne 0 ]] && echo "No arguments are allowed." && return 1
