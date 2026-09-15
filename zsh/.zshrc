@@ -64,7 +64,6 @@ function md {
 
 # ----- tools -----
 alias grep="grep -Hnr --color=auto "
-alias rsync="rsync -avzPhI --chmod=774 "
 alias bat="bat --color=always"
 alias py="python3"
 alias pip="pip3"
