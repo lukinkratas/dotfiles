@@ -1,38 +1,35 @@
-console_title_template = '{{ .Shell }} in {{ .Folder }}'
+console_title_template = "{{ .Shell }} in {{ .Folder }}"
 version = 4
 final_space = true
 
 [palette]
-  black = '#262B44'
-  blue = '#4B95E9'
-  green = '#59C9A5'
-  orange = '#F07623'
-  red = '#D81E5B'
-  white = '#E0DEF4'
-  yellow = '#F3AE35'
+  info = "#0099CC"
+  success = "#007E33"
+  warning = "#FF8800"
+  danger = "#CC0000"
 
 [upgrade]
-  source = 'cdn'
-  interval = '168h'
+  source = "cdn"
+  interval = "168h"
   auto = false
   notice = false
 
 [[blocks]]
-  type = 'prompt'
-  alignment = 'left'
+  type = "prompt"
+  alignment = "left"
 
   [[blocks.segments]]
-    type = 'status'
-    template = ' {{ if gt .Code 0 }}{{ else }}{{ end }}'
-    foreground = 'p:green'
-    foreground_templates = ['{{ if gt .Code 0 }}p:red{{ end }}']
+    type = "status"
+    template = " {{ if gt .Code 0 }}{{ else }}{{ end }}"
+    foreground = "p:success"
+    foreground_templates = ["{{ if gt .Code 0 }}p:danger{{ end }}"]
 
     [blocks.segments.options]
       always_enabled = true
 
   [[blocks.segments]]
     type = "executiontime"
-    foreground = "p:blue"
+    foreground = "p:info"
     template = " {{ .FormattedMs }}"
 
     [blocks.segments.options]
@@ -40,9 +37,9 @@ final_space = true
       style = "austin"
 
   [[blocks.segments]]
-    type = 'path'
-    template = ' {{ path .Path .Location }}'
-    foreground = 'p:orange'
+    type = "path"
+    template = " {{ path .Path .Location }}"
+    foreground = "p:info"
 
     [blocks.segments.options]
       style = "full"
@@ -50,20 +47,26 @@ final_space = true
 
   [[blocks.segments]]
     type = "aws"
-    template = "  {{.Profile}}{{if .Region}}@{{.Region}}{{end}}"
+    foreground = "#FF9900"
+    template = " aws:{{.Profile}}{{if .Region}}@{{.Region}}{{end}}"
 
   [[blocks.segments]]
-    type = 'git'
-    template = ' {{ .UpstreamIcon }} {{.User.Email}} {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}'
-    foreground = 'p:green'
+    type = "gcp"
+    foreground = "#4285F4"
+    template = " gcp:{{ .Project }}"
+
+  [[blocks.segments]]
+    type = "git"
+    template = " git:{{.User.Email}} [{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}]"
+    foreground = "p:success"
     foreground_templates = [
-      '{{ if or (.Working.Changed) (.Staging.Changed) }}p:yellow{{ end }}',
-      '{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:red{{ end }}'
+      "{{ if or (.Working.Changed) (.Staging.Changed) }}p:warning{{ end }}",
+      "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:danger{{ end }}"
     ]
 
     [blocks.segments.options]
-      branch_icon = ''
+      branch_icon = ""
       fetch_status = true
-      fetch_upstream_icon = true
+      fetch_upstream_icon = false
       fetch_user = true
 
