@@ -44,17 +44,6 @@ final_space = true
     [blocks.segments.options]
       style = "full"
 
-
-  [[blocks.segments]]
-    type = "aws"
-    foreground = "#FF9900"
-    template = " aws:{{.Profile}}{{if .Region}}@{{.Region}}{{end}}"
-
-  [[blocks.segments]]
-    type = "gcp"
-    foreground = "#4285F4"
-    template = " gcp:{{ .Project }}"
-
   [[blocks.segments]]
     type = "git"
     template = " git:{{.User.Email}} [{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}]"
@@ -69,4 +58,18 @@ final_space = true
       fetch_status = true
       fetch_upstream_icon = false
       fetch_user = true
+
+[[blocks]]
+  type = "rprompt"
+  alignment = "right"
+
+  [[blocks.segments]]
+    type = "aws"
+    foreground = "#FF9900"
+    template = " aws:{{.Profile}}{{if .Region}}@{{.Region}}{{end}}"
+
+  [[blocks.segments]]
+    type = "gcp"
+    foreground = "#4285F4"
+    template = " gcp:{{ .Project }}"
 
