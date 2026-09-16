@@ -3,10 +3,10 @@ version = 4
 final_space = true
 
 [palette]
-  info = "#0099CC"
-  success = "#007E33"
-  warning = "#FF8800"
-  danger = "#CC0000"
+  info = "#2CAAFF"
+  success = "#24D57A"
+  warning = "#F98B01"
+  danger = "#F74032"
 
 [upgrade]
   source = "cdn"
