@@ -4,9 +4,9 @@ final_space = true
 
 [palette]
   info = "#2CAAFF"
-  success = "#24D57A"
-  warning = "#F98B01"
-  danger = "#F74032"
+  success = "#59C9A5"
+  warning = "#F3AE35"
+  danger = "#D81E5B"
 
 [upgrade]
   source = "cdn"
