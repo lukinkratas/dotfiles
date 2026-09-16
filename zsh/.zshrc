@@ -215,3 +215,9 @@ function extract {
     echo -e "$1 is not a valid file."
   fi
 }
+
+# The next line updates PATH for the Google Cloud SDK.
+[[ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]] && source "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"
+
+# The next line enables shell command completion for gcloud.
+[[ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"
