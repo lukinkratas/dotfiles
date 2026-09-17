@@ -187,7 +187,8 @@ alias tfi="terraform init -backend-config='profile=terraform'"
 alias tfv="terraform validate"
 alias tfp="terraform fmt && terraform validate && terraform plan"
 alias tfa="terraform fmt && terraform validate && terraform apply"
-alias tfsls="terraform state list"
+alias tfls="terraform state list"
+alias tfrm="terraform destroy"
 
 # ----- cds -----
 alias proj="cd $HOME/projects/ && l"
