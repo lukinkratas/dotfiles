@@ -38,6 +38,9 @@ alias omprc="$EDITOR $HOME/.config/omp.toml"
 alias trc="$EDITOR $HOME/.tmux.conf"
 alias ccrc="$EDITOR $HOME/.claude/settings.json"
 alias mcprc="$EDITOR $HOME/mcp.json"
+alias sshrc="$EDITOR $HOME/.ssh/config"
+alias grc="$EDITOR $HOME/.gitconfig"
+alias dbxrc="$EDITOR $HOME/.databrickscfg"
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"
@@ -124,7 +127,6 @@ function prompt {
 }
 
 # ----- git -----
-alias grc="$EDITOR $HOME/.gitconfig"
 alias gi="git init"
 alias gcl="git clone --bare" # base to use worktrees
 alias gc="git checkout"
@@ -172,7 +174,6 @@ alias pci="pre-commit install"
 alias pcr="pre-commit run --all-files --verbose"
 
 # ----- dbx -----
-alias dbxrc="$EDITOR $HOME/.databrickscfg"
 alias dat="databricks auth token --profile"
 alias dal="databricks auth login --profile"
 alias dbi="databricks bundle init"
