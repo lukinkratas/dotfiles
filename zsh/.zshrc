@@ -3,7 +3,6 @@ setopt globdots
 export EDITOR=nvim
 export PATH="$PATH:$HOME/.antigravity/antigravity/bin:$HOME/.local/bin"
 export XDG_CONFIG_HOME=$HOME/.config
-export AWS_PROFILE=terraform
 
 # add Homebrew to PATH
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
@@ -184,7 +183,7 @@ alias dbrm="databricks bundle destroy --target"
 
 # ----- terraform -----
 alias tf="terraform"
-alias tfi="terraform init -backend-config='profile=terraform'"
+alias tfi="terraform init"
 alias tfv="terraform validate"
 alias tfp="terraform fmt && terraform validate && terraform plan"
 alias tfa="terraform fmt && terraform validate && terraform apply"
