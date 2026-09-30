@@ -1,9 +1,28 @@
 {
-  "model": "opus[1m]",
+  "permissions": {
+    "allow": [
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr list:*)"
+    ],
+    "deny": [
+      "Read(./.env)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)"
+    ]
+  },
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
     "padding": 2
+  },
+  "enabledPlugins": {
+    "databricks@databricks-agent-skills": true
   },
   "extraKnownMarketplaces": {
     "databricks-agent-skills": {
@@ -13,27 +32,13 @@
       }
     }
   },
+  "outputStyle": "Concise",
   "effortLevel": "xhigh",
   "tui": "fullscreen",
   "theme": "dark",
-  "enabledPlugins": {
-    "databricks@databricks-agent-skills": true
-  },
-  "outputStyle": "Concise",
-  "permissions": {
-    "deny": [
-      "Read(./.env)"
-    ],
-    "allow": [
-        "Bash(git checkout:*)",
-        "Bash(git add:*)",
-        "Bash(git commit:*)",
-        "Bash(gh pr view:*)",
-        "Bash(gh pr list:*)"
-    ],
-    "ask": [
-        "Bash(git push:*)",
-        "Bash(gh pr create:*)"
-    ]
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
   }
 }
