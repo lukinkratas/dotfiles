@@ -6,7 +6,8 @@ EFFORT_LVL=$(echo "$input" | jq -r '.effort.level')
 DIR=$(echo "$input" | jq -r '.workspace.current_dir')
 COST=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
 PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
-USAGE=$(echo "$input" | jq -r '.context_window.current_usage')
+INP_TOKENS=$(echo "$input" | jq -r '.context_window.total_input_tokens')
+OUT_TOKENS=$(echo "$input" | jq -r '.context_window.total_output_tokens')
 EXCEEDS=$(echo "$input" | jq -r '.exceeds_200k_tokens')
 DURATION_MS=$(echo "$input" | jq -r '.cost.total_duration_ms // 0')
 
@@ -28,4 +29,4 @@ git rev-parse --git-dir > /dev/null 2>&1 && BRANCH=" | $(git branch --show-curre
 
 echo -e "${CYAN}[$MODEL $EFFORT_LVL]${RESET} ${DIR##*/}$BRANCH"
 COST_FMT=$(printf '$%.2f' "$COST")
-echo -e "${BAR_COLOR}${BAR}${RESET} ${PCT}% ${USAGE} ${EXCEEDS} | ${YELLOW}${COST_FMT}${RESET} | ${MINS}m ${SECS}s"
+echo -e "${BAR_COLOR}${BAR}${RESET} ${PCT}% ${INP_TOKENS} ${OUT_TOKENS} ${EXCEEDS} | ${YELLOW}${COST_FMT}${RESET} | ${MINS}m ${SECS}s"
