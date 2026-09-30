@@ -26,6 +26,10 @@ Install brew + append to PATH
     brew tap hashicorp/tap
     brew install hashicorp/tap/terraform
 
+    # docker sandboxes
+    brew trust docker/tap
+    brew install docker/tap/sbx
+
     # optional
     brew install --cask codex claude claude-code
 ```
