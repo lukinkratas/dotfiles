@@ -173,13 +173,12 @@ alias pci="pre-commit install"
 alias pcr="pre-commit run --all-files --verbose"
 
 # ----- dbx -----
-alias dat="databricks auth token --profile"
-alias dal="databricks auth login --profile"
+alias dal="databricks auth login"
 alias dbi="databricks bundle init"
-alias dbv="databricks bundle validate --target"
-alias dbd="databricks bundle deploy --target"
-alias dbr="databricks bundle run --target"
-alias dbrm="databricks bundle destroy --target"
+alias dbv="databricks bundle validate"
+alias dbd="databricks bundle deploy"
+alias dbr="databricks bundle run"
+alias dbrm="databricks bundle destroy"
 
 # ----- terraform -----
 alias tf="terraform"
