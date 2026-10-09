@@ -139,7 +139,7 @@ alias gaa="git add --all"
 alias gcm="git commit --message"
 alias gd="git difftool --tool=nvimdiff --no-prompt"
 alias gl="git log"
-alias gp="git_push_to_current_branch" # function to avoid command not found: git_current_branch on reload
+alias gp="git_push_current_branch" # function to avoid command not found: git_current_branch on reload
 alias gpt="git push --tags"
 alias gpl="git_pull_current_branch"   # function to avoid command not found: git_current_branch on reload
 alias gcp="git_config_personal"
@@ -152,7 +152,7 @@ function git_current_branch {
   [[ -d .git ]] && git branch --show-current || ".git not found."
 }
 
-function git_push_to_current_branch {
+function git_push_current_branch {
   [[ $# -ne 0 ]] && echo "No arguments are allowed." && return 1
   git push origin $(git_current_branch)
 }

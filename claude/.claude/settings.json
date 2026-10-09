@@ -2,7 +2,18 @@
   "sandbox": {
     "enabled": true,
     "failIfUnavailable": true,
-    "allowUnsandboxedCommands": false
+    "allowUnsandboxedCommands": false,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "*.npmjs.org",
+        "pypi.org",
+        "*.pythonhosted.org",
+        "*.databricks.com"
+      ],
+      "deniedDomains": ["gist.github.com"],
+      "strictAllowlist": true
+    }
   },
   "permissions": {
     "allow": [
