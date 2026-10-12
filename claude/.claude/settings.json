@@ -4,18 +4,19 @@
     "failIfUnavailable": true,
     "allowUnsandboxedCommands": false,
     "network": {
-      "allowedDomains": [
-        "github.com",
-        "*.npmjs.org",
-        "pypi.org",
-        "*.pythonhosted.org",
-        "*.databricks.com"
-      ],
-      "deniedDomains": ["gist.github.com"],
-      "strictAllowlist": true
+      "allowedDomains": ["*"],
+      "deniedDomains": [
+        "gist.github.com",
+        "pastebin.com",
+        "*.ngrok.io",
+        "*.ngrok-free.app",
+        "webhook.site",
+        "transfer.sh"
+      ]
     }
   },
   "permissions": {
+    "blockReadsOutsideWorkingDirectories": true,
     "allow": [
       "Bash(git checkout:*)",
       "Bash(git add:*)",
@@ -36,19 +37,15 @@
       "Bash(tflint *)"
     ],
     "deny": [
-      "Read(./.env)",
       "Bash(terraform destroy *)",
       "Bash(terraform * -auto-approve*)",
       "Bash(terraform apply -destroy *)",
       "Bash(terraform state push *)",
       "Bash(terraform force-unlock *)",
-      "Bash(terraform -chdir=*)",
-      "Read(**/*.tfvars)",
-      "Read(**/*.tfstate)",
-      "Read(**/*.tfstate.backup)",
-      "Read(**/.terraform/**)"
+      "Bash(terraform -chdir=*)"
     ],
     "ask": [
+      "Read(./.env)",
       "Bash(git push:*)",
       "Bash(gh pr create:*)",
       "Bash(terrafom apply:*)",
@@ -57,7 +54,11 @@
       "Bash(terraform state mv *)",
       "Bash(terraform state rm *)",
       "Bash(terraform workspace *)",
-      "Bash(terraform taint *)"
+      "Bash(terraform taint *)",
+      "Read(**/*.tfvars)",
+      "Read(**/*.tfstate)",
+      "Read(**/*.tfstate.backup)",
+      "Read(**/.terraform/**)"
     ]
   },
   "model": "opus",
