@@ -126,6 +126,8 @@ function prompt {
 }
 
 # ----- git -----
+# https://kapeli.com/cheat_sheets/Oh-My-Zsh_Git.docset/Contents/Resources/Documents/index
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 alias gi="git init"
 alias gcl="git clone --bare" # base to use worktrees
 alias gc="git checkout"
@@ -173,6 +175,7 @@ alias pci="pre-commit install"
 alias pcr="pre-commit run --all-files --verbose"
 
 # ----- dbx -----
+alias dbx="databricks"
 alias dal="databricks auth login"
 alias dbi="databricks bundle init"
 alias dbv="databricks bundle validate"
@@ -181,6 +184,7 @@ alias dbr="databricks bundle run"
 alias dbrm="databricks bundle destroy"
 
 # ----- terraform -----
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/terraform/README.md
 alias tf="terraform"
 alias tfi="terraform init"
 alias tfv="terraform validate"
