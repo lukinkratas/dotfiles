@@ -42,7 +42,11 @@
       "Bash(terraform apply -destroy *)",
       "Bash(terraform state push *)",
       "Bash(terraform force-unlock *)",
-      "Bash(terraform -chdir=*)"
+      "Bash(terraform -chdir=*)",
+      "mcp__linear-server__delete_comment",
+      "mcp__linear-server__delete_attachment",
+      "mcp__linear-server__delete_status_update",
+      "mcp__linear-server__delete_diff_comment"
     ],
     "ask": [
       "Read(./.env)",
