@@ -3,6 +3,7 @@
     "enabled": true,
     "failIfUnavailable": true,
     "allowUnsandboxedCommands": false,
+    "autoAllowBashIfSandboxed": true,
     "network": {
       "allowedDomains": ["*"],
       "deniedDomains": [
@@ -16,8 +17,8 @@
     }
   },
   "permissions": {
-    "blockReadsOutsideWorkingDirectories": true,
     "allow": [
+      "Read(./**)",
       "Bash(git checkout:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
@@ -49,10 +50,10 @@
       "mcp__linear-server__delete_diff_comment"
     ],
     "ask": [
-      "Read(./.env)",
+      "Read(**/.env)",
       "Bash(git push:*)",
       "Bash(gh pr create:*)",
-      "Bash(terrafom apply:*)",
+      "Bash(terraform apply:*)",
       "Bash(terraform apply *)",
       "Bash(terraform import *)",
       "Bash(terraform state mv *)",
