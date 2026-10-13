@@ -176,12 +176,12 @@ alias pcr="pre-commit run --all-files --verbose"
 
 # ----- dbx -----
 alias dbx="databricks"
-alias dal="databricks auth login"
-alias dbi="databricks bundle init"
-alias dbv="databricks bundle validate"
-alias dbd="databricks bundle deploy"
-alias dbr="databricks bundle run"
-alias dbrm="databricks bundle destroy"
+alias dbxal="databricks auth login"
+alias dbxbi="databricks bundle init"
+alias dbxbv="databricks bundle validate"
+alias dbxbd="databricks bundle deploy"
+alias dbxbr="databricks bundle run"
+alias dbxbrm="databricks bundle destroy"
 
 # ----- terraform -----
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/terraform/README.md
