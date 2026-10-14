@@ -141,32 +141,42 @@ alias gaa="git add --all"
 alias gcm="git commit --message"
 alias gd="git difftool --tool=nvimdiff --no-prompt"
 alias gl="git log"
-alias gp="git_push_current_branch" # function to avoid command not found: git_current_branch on reload
+alias gp="git push"
 alias gpt="git push --tags"
-alias gpl="git_pull_current_branch"   # function to avoid command not found: git_current_branch on reload
+alias gpl="git pull --rebase"
 alias gcp="git_config_personal"
-alias gwa="git worktree add"
+alias gwa="git_worktree_add"
 alias gwls="git worktree list"
 alias gwrm="git worktree remove"
-
-function git_current_branch {
-  [[ $# -ne 0 ]] && echo "No arguments are allowed." && return 1
-  [[ -d .git ]] && git branch --show-current || ".git not found."
-}
-
-function git_push_current_branch {
-  [[ $# -ne 0 ]] && echo "No arguments are allowed." && return 1
-  git push origin $(git_current_branch)
-}
-
-function git_pull_current_branch {
-  [[ $# -ne 0 ]] && echo "No arguments are allowed." && return 1
-  git pull --rebase origin $(git_current_branch)
-}
 
 function git_config_personal {
   git config user.name lukinkratas
   git config user.email lukinkratas@seznam.cz
+}
+
+function git_worktree_add {
+  [[ $# -ne 1 ]] && echo "Usage: $0 <branch>" >&2 && return 1
+  local branch common_dir root folder
+
+  branch="$1"
+
+  # Find the repo root (works from any subfolder or worktree)
+  common_dir="$(git rev-parse --path-format=absolute --git-common-dir)" \
+    || { echo "Not inside a git repo" >&2; return 1; }
+  root="$(dirname "${common_dir}")"
+
+  folder="${root}/${branch//\//-}"   # replace every "/" with "-"
+
+  # Use the branch if it exists (locally or on a remote), otherwise create it
+  if git show-ref --verify --quiet "refs/heads/${branch}" \
+     || git ls-remote --exit-code --heads origin "${branch}" >/dev/null 2>&1; then
+    echo "Branch ${branch} already exists."
+    git worktree add "${folder}" "${branch}"
+  else
+    git worktree add -b "${branch}" "${folder}"
+  fi
+
+  echo "Worktree ready: ${folder}"
 }
 
 # ----- pre-commit -----
