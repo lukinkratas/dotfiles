@@ -1,21 +1,4 @@
 {
-  "sandbox": {
-    "enabled": true,
-    "failIfUnavailable": true,
-    "allowUnsandboxedCommands": false,
-    "autoAllowBashIfSandboxed": true,
-    "network": {
-      "allowedDomains": ["*"],
-      "deniedDomains": [
-        "gist.github.com",
-        "pastebin.com",
-        "*.ngrok.io",
-        "*.ngrok-free.app",
-        "webhook.site",
-        "transfer.sh"
-      ]
-    }
-  },
   "permissions": {
     "allow": [
       "Read(./**)",
@@ -84,12 +67,31 @@
     }
   },
   "outputStyle": "Concise",
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "network": {
+      "allowedDomains": [
+        "*"
+      ],
+      "deniedDomains": [
+        "gist.github.com",
+        "pastebin.com",
+        "*.ngrok.io",
+        "*.ngrok-free.app",
+        "webhook.site",
+        "transfer.sh"
+      ]
+    }
+  },
   "effortLevel": "xhigh",
-  "tui": "fullscreen",
-  "theme": "dark",
   "modelSettings": {
     "claude-opus-5-5": {
-      "effortLevel": "medium"
+      "effortLevel": "high"
     }
-  }
+  },
+  "tui": "fullscreen",
+  "theme": "dark"
 }

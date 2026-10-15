@@ -29,4 +29,4 @@ git rev-parse --git-dir > /dev/null 2>&1 && BRANCH=" | $(git branch --show-curre
 
 echo -e "${CYAN}[$MODEL $EFFORT_LVL]${RESET} ${DIR##*/}$BRANCH"
 COST_FMT=$(printf '$%.2f' "$COST")
-echo -e "${BAR_COLOR}${BAR}${RESET} ${PCT}% ${INP_TOKENS} ${OUT_TOKENS} ${EXCEEDS} | ${YELLOW}${COST_FMT}${RESET} | ${MINS}m ${SECS}s"
+echo -e "${BAR_COLOR}${BAR}${RESET} ${PCT}% IN:${INP_TOKENS} OUT:${OUT_TOKENS} Exceeds:${EXCEEDS} | ${YELLOW}${COST_FMT}${RESET} | ${MINS}m ${SECS}s"
