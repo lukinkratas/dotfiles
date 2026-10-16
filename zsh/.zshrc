@@ -76,6 +76,7 @@ alias chrome="open -a 'Google Chrome'"
 alias lg='lazygit'
 alias ld='lazydocker'
 alias cc="claude --mcp-config $HOME/mcp.json"
+alias hd="hunk diff"
 
 # used for prompting llms
 function prompt {
@@ -156,16 +157,14 @@ function git_config_personal {
 
 function git_worktree_add {
   [[ $# -ne 1 ]] && echo "Usage: $0 <branch>" >&2 && return 1
-  local branch common_dir root folder
 
-  branch="$1"
+  local branch="$1"
 
   # Find the repo root (works from any subfolder or worktree)
-  common_dir="$(git rev-parse --path-format=absolute --git-common-dir)" \
+  local common_dir="$(git rev-parse --path-format=absolute --git-common-dir)" \
     || { echo "Not inside a git repo" >&2; return 1; }
-  root="$(dirname "${common_dir}")"
-
-  folder="${root}/${branch//\//-}"   # replace every "/" with "-"
+  local root="$(dirname "${common_dir}")"
+  local folder="${root}/${branch//\//-}"   # replace every "/" with "-"
 
   # Use the branch if it exists (locally or on a remote), otherwise create it
   if git show-ref --verify --quiet "refs/heads/${branch}" \
