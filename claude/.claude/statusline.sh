@@ -60,4 +60,4 @@ git rev-parse --git-dir > /dev/null 2>&1 && BRANCH="$(git branch --show-current 
 
 echo -e "${CYAN}$MODEL [$EFFORT_LVL]${RESET} in ${DIR##*/} ${YELLOW}[${BRANCH}]${RESET}"
 echo -e "Ctx : $(bar "$CTX_PCT" "$CTX_COLOR") | In:${INP_TOKENS} | Out:${OUT_TOKENS} | Exceeds:${EXCEEDS}"
-echo -e "5-hr: $(bar "$FIVE_H_LMT") | Week: $(bar "$WEEK_LMT") | ${YELLOW}$(printf '$%.2f' "$COST")${RESET} | ${MINS}m ${SECS}s"
+echo -e "5-hr: $(bar "$FIVE_H_LMT")  | Week: $(bar "$WEEK_LMT") | ${YELLOW}$(printf '$%.2f' "$COST")${RESET} | ${MINS}m ${SECS}s"
