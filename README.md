@@ -1,8 +1,10 @@
 # Dotfiles
 
-## Prereq
+## Prerequisities
 
-Install brew + append to PATH
+  - Install brew + append to PATH
+
+  - Fill env vars into zsh/.env
 
 ## Install
 
@@ -34,7 +36,5 @@ Install brew + append to PATH
 ```
 
 ```sh
-    stow --target=$HOME --ignore='.*\.example' --adopt --verbose zsh ghostty nvim oh-my-posh lazygit claude tmux
+    stow --target=$HOME --ignore='.*\.example' --verbose zsh ghostty nvim oh-my-posh lazygit claude tmux
 ```
-
-Fill env vars into zsh/.env
