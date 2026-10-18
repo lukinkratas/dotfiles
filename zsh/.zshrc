@@ -29,6 +29,10 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config $HOME/.config/omp.toml)"
 fi
 
+# ----- cds -----
+alias proj="cd $HOME/projects/ && l"
+alias cdd="cd $HOME/dotfiles && l"
+
 # ----- configs -----
 alias rc="$EDITOR $HOME/.zshrc"
 alias nvrc="$EDITOR ${XDG_CONFIG_FOME:-$HOME/.config}/nvim/init.lua"
@@ -76,7 +80,6 @@ alias chrome="open -a 'Google Chrome'"
 alias lg='lazygit'
 alias ld='lazydocker'
 alias cc="claude --mcp-config $HOME/mcp.json"
-alias hd="hunk diff"
 
 # used for prompting llms
 function prompt {
@@ -202,9 +205,11 @@ alias tfa="terraform fmt && terraform validate && terraform apply"
 alias tfls="terraform state list"
 alias tfrm="terraform destroy"
 
-# ----- cds -----
-alias proj="cd $HOME/projects/ && l"
-alias cdd="cd $HOME/dotfiles && l"
+# ----- hunk -----
+alias hd="hunk diff" # uncommitted only
+alias hs="hunk show" # last commit only
+# alias hdm="hunk diff main...HEAD" # all committed branch work
+alias hdm="hunk diff $(git merge-base main HEAD)" # all commited branch work, plus uncommitted edits
 
 # ----- functions -----
 function extract {
