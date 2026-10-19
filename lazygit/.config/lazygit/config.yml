@@ -1,4 +1,7 @@
 git:
   diffRenderers:
-    - colorArg: never
-      command: ydiff -p cat -s --wrap --width={{columnWidth}}
+    - name: hunk
+      colorArg: never
+      command: hunk pager
+gui:
+  sidePanelWidth: 0.2 # default is ~0.33
