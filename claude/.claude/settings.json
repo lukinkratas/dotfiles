@@ -50,13 +50,28 @@
     ]
   },
   "model": "opus",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "^(startup|resume|clear|compact|fork)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/lukin/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
     "padding": 2
   },
   "enabledPlugins": {
-    "databricks@databricks-agent-skills": true
+    "databricks@databricks-agent-skills": true,
+    "mattpocock-skills@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "databricks-agent-skills": {
@@ -93,6 +108,5 @@
     }
   },
   "tui": "fullscreen",
-  "theme": "dark",
-  "hooks": {"SessionStart":[{"matcher":"^(startup|resume|clear|compact|fork)$","hooks":[{"type":"command","command":"bash '/Users/lukin/.claude/hooks/herdr-agent-state.sh' session","timeout":10}]}]}
+  "theme": "dark"
 }
