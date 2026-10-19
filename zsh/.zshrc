@@ -44,6 +44,7 @@ alias mcprc="$EDITOR $HOME/mcp.json"
 alias sshrc="$EDITOR $HOME/.ssh/config"
 alias grc="$EDITOR $HOME/.gitconfig"
 alias dbxrc="$EDITOR $HOME/.databrickscfg"
+alias hrc="$EDITOR $HOME/.config/herdr/config.toml"
 
 # ----- system -----
 alias l="ls -lahFG --color=auto"
