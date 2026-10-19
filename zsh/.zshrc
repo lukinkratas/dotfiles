@@ -133,7 +133,8 @@ function prompt {
 # https://kapeli.com/cheat_sheets/Oh-My-Zsh_Git.docset/Contents/Resources/Documents/index
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 alias gi="git init"
-alias gcl="git clone --bare" # base to use worktrees
+alias gcp="git_config_personal"
+alias gcl="git_clone_bare"
 alias gc="git checkout"
 alias gcb="git checkout -b"
 alias gb="git branch"            # see local branches
@@ -148,7 +149,7 @@ alias gl="git log"
 alias gp="git push"
 alias gpt="git push --tags"
 alias gpl="git pull --rebase"
-alias gcp="git_config_personal"
+alias gw="git worktree"
 alias gwa="git_worktree_add"
 alias gwls="git worktree list"
 alias gwrm="git worktree remove"
@@ -158,13 +159,28 @@ function git_config_personal {
   git config user.email lukinkratas@seznam.cz
 }
 
+function git_clone_bare {
+  [[ $# -lt 1 ]] && echo "Usage: gcl <url>" >&2 && return 1
+  local url="$1"
+  local dir=$(basename "${url%.git}") # repo name without .git
+
+  git clone --bare "$url" "$dir/.bare" || return 1
+  echo "gitdir: ./.bare" > "$dir/.git" # so git commands work from $dir/
+  echo "Cloned into $dir"
+  cd $dir
+  git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" # sets refrespec (place for fetched branched)
+  git fetch origin # fetch remote branches
+  git_worktree_add "$(git symbolic-ref --short HEAD)"
+}
+
 function git_worktree_add {
   [[ $# -ne 1 ]] && echo "Usage: $0 <branch>" >&2 && return 1
 
   local branch="$1"
 
   # Find the repo root (works from any subfolder or worktree)
-  local common_dir="$(git rev-parse --path-format=absolute --git-common-dir)" \
+  local common_dir
+  common_dir="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)" \
     || { echo "Not inside a git repo" >&2; return 1; }
   local root="$(dirname "${common_dir}")"
   local folder="${root}/${branch//\//-}"   # replace every "/" with "-"
@@ -176,9 +192,7 @@ function git_worktree_add {
     git worktree add "${folder}" "${branch}"
   else
     git worktree add -b "${branch}" "${folder}"
-  fi
-
-  echo "Worktree ready: ${folder}"
+  fi && echo "Worktree ready: ${folder}" && cd $folder
 }
 
 # ----- pre-commit -----
