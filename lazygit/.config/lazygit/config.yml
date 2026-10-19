@@ -4,4 +4,4 @@ git:
       colorArg: never
       command: hunk pager
 gui:
-  sidePanelWidth: 0.2 # default is ~0.33
+  sidePanelWidth: 0.25 # default is ~0.33
