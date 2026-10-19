@@ -13,7 +13,7 @@
 ```
 
 ``` sh
-	brew install ripgrep fzf bat stow zsh-syntax-highlighting jandedobbeleer/oh-my-posh/oh-my-posh \
+    brew install ripgrep fzf bat stow zsh-syntax-highlighting jandedobbeleer/oh-my-posh/oh-my-posh \
       lazygit hunk tree ffmpeg pre-commit awscli ollama gh \
       docker neovim uv node oven-sh/bun/bun \
       tmux herdr
