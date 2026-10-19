@@ -22,3 +22,7 @@
 !output-styles/**
 !statusline.sh
 !*.md
+
+# managed by sync, not authored by me
+skills/synced/
+skills/.trash/
