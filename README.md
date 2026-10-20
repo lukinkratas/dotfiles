@@ -14,12 +14,12 @@
 
 ``` sh
     brew install ripgrep fzf bat stow zsh-syntax-highlighting jandedobbeleer/oh-my-posh/oh-my-posh \
-      lazygit hunk tree ffmpeg pre-commit awscli ollama gh \
+      lazygit tree ffmpeg pre-commit awscli ollama gh \
       docker neovim uv node oven-sh/bun/bun go \
-      tmux herdr
 
     brew install --cask google-chrome ghostty docker-desktop obsidian slack \
       dbeaver-community ollama-app visual-studio-code bruno
+      codex claude
 
     # fonts
     brew install --cask font-0xproto-nerd-font \
@@ -34,11 +34,24 @@
     brew tap hashicorp/tap
     brew install hashicorp/tap/terraform
 
-    # optional
-    brew install --cask codex claude claude-code
+    brew install herdr
+    # install herdr-auto-title plugin https://github.com/kryptamine/herdr-auto-title
+    herdr plugin install kryptamine/herdr-auto-title
+    herdr plugin action invoke herdr.auto-title.restart
+
+    brew instal hunk
+    # set hunk as git diff pager
+    git config --global code.pager "hunk pager"
+
+    brew install --cast claude-code
+    # databricks skills https://github.com/databricks/databricks-agent-skills/tree/main
+    /plugin marketplace add databricks/databricks-agent-skills
+    /plugin install databricks@databricks-agent-skills
+    # Matt Pocock skills https://github.com/mattpocock/skills
+    claude plugin install mattpocock-skills@claude-plugins-official
 ```
 
 ```sh
     stow --target=$HOME --ignore='.*\.example' --adopt --verbose \
-      zsh ghostty nvim oh-my-posh lazygit claude tmux pi herdr
+      zsh ghostty nvim oh-my-posh lazygit claude pi herdr
 ```
