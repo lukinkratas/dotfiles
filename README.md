@@ -14,12 +14,14 @@
 
 ``` sh
     brew install ripgrep fzf bat stow zsh-syntax-highlighting jandedobbeleer/oh-my-posh/oh-my-posh \
-      lazygit tree ffmpeg pre-commit awscli ollama gh \
+      lazygit tree ffmpeg pre-commit ollama gh \
       docker neovim uv node oven-sh/bun/bun go \
+      awscli hcloud
 
     brew install --cask google-chrome ghostty docker-desktop obsidian slack \
-      dbeaver-community ollama-app visual-studio-code bruno
-      codex claude
+      dbeaver-community visual-studio-code bruno \
+      ollama-app codex claude \
+      gcloud-cli
 
     # fonts
     brew install --cask font-0xproto-nerd-font \
