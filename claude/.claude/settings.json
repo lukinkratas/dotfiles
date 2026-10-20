@@ -1,4 +1,29 @@
 {
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "excludedCommands": [
+      "terraform *",
+      "tflint *",
+      "gh *",
+      "git *"
+    ],
+    "network": {
+      "allowedDomains": [
+        "*"
+      ],
+      "deniedDomains": [
+        "gist.github.com",
+        "pastebin.com",
+        "*.ngrok.io",
+        "*.ngrok-free.app",
+        "webhook.site",
+        "transfer.sh"
+      ]
+    }
+  },
   "permissions": {
     "allow": [
       "Read(./**)",
@@ -82,25 +107,6 @@
     }
   },
   "outputStyle": "Concise",
-  "sandbox": {
-    "enabled": true,
-    "failIfUnavailable": true,
-    "autoAllowBashIfSandboxed": true,
-    "allowUnsandboxedCommands": false,
-    "network": {
-      "allowedDomains": [
-        "*"
-      ],
-      "deniedDomains": [
-        "gist.github.com",
-        "pastebin.com",
-        "*.ngrok.io",
-        "*.ngrok-free.app",
-        "webhook.site",
-        "transfer.sh"
-      ]
-    }
-  },
   "effortLevel": "xhigh",
   "modelSettings": {
     "claude-opus-5-5": {
