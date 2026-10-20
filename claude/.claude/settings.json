@@ -8,7 +8,8 @@
       "terraform *",
       "tflint *",
       "gh *",
-      "git *"
+      "git *",
+      "uv *"
     ],
     "network": {
       "allowedDomains": [
@@ -43,7 +44,20 @@
       "Bash(terraform version)",
       "Bash(terraform state list *)",
       "Bash(terraform state show *)",
-      "Bash(tflint *)"
+      "Bash(tflint *)",
+      "Bash(uv --version)",
+      "Bash(uv sync)",
+      "Bash(uv sync --frozen)",
+      "Bash(uv lock)",
+      "Bash(uv lock --check)",
+      "Bash(uv tree:*)",
+      "Bash(uv pip list:*)",
+      "Bash(uv pip show:*)",
+      "Bash(uv python list:*)",
+      "Bash(uv run pytest:*)",
+      "Bash(uv run ruff:*)",
+      "Bash(uv run mypy:*)",
+      "Bash(uv run pyright:*)"
     ],
     "deny": [
       "Bash(terraform destroy *)",
@@ -55,7 +69,13 @@
       "mcp__linear-server__delete_comment",
       "mcp__linear-server__delete_attachment",
       "mcp__linear-server__delete_status_update",
-      "mcp__linear-server__delete_diff_comment"
+      "mcp__linear-server__delete_diff_comment",
+      "Bash(uv publish:*)",
+      "Bash(uv self update:*)",
+      "Bash(uv tool install:*)",
+      "Bash(uv tool uninstall:*)",
+      "Bash(uv cache clean:*)",
+      "Bash(uv cache prune:*)"
     ],
     "ask": [
       "Read(**/.env)",
@@ -71,7 +91,18 @@
       "Read(**/*.tfvars)",
       "Read(**/*.tfstate)",
       "Read(**/*.tfstate.backup)",
-      "Read(**/.terraform/**)"
+      "Read(**/.terraform/**)",
+      "Bash(uv add:*)",
+      "Bash(uv remove:*)",
+      "Bash(uv lock --upgrade:*)",
+      "Bash(uv sync --upgrade:*)",
+      "Bash(uv pip install:*)",
+      "Bash(uv pip uninstall:*)",
+      "Bash(uv venv:*)",
+      "Bash(uv python install:*)",
+      "Bash(uv run:*)",
+      "Bash(uvx:*)",
+      "Bash(uv tool run:*)"
     ]
   },
   "model": "opus",
