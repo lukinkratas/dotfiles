@@ -232,7 +232,7 @@ alias hsd"hcloud server delete"
 alias devboxup="hcloud server create \
   --name devbox --type cx23 --image ubuntu-26.04 \
   --ssh-key macos \
-  --user-data-from-file $HOME/dotfiles/hcloud/cloud-init.yaml \
+  --user-data-from-file $HOME/dotfiles/hcloud/cloud-init.yaml
 "
 alias devboxdown="hcloud server delete devbox"
 alias devboxresetpassword="hcloud server reset-password devbox"
