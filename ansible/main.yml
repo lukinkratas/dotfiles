@@ -1,11 +1,8 @@
 ---
-- name: Mac dev setup
+- name: Local MacOS setup
   hosts: localhost
   connection: local
   gather_facts: false
-
-  environment:
-    PATH: "/opt/homebrew/bin:/opt/homebrew/sbin:{{ lookup('env', 'PATH') }}"
 
   tasks:
     - name: Add taps
@@ -63,7 +60,6 @@
           - claude
           - claude-code
           - gcloud-cli
-          # fonts
           - font-0xproto-nerd-font
           - font-ubuntu-mono-nerd-font
           - font-hack-nerd-font
@@ -76,17 +72,6 @@
         dest: "{{ lookup('env', 'HOME') }}/dotfiles"
         update: true
 
-    - name: Stow dry-run (what would change?)
-      ansible.builtin.command:
-        cmd: >
-          stow --no --verbose --target={{ lookup('env', 'HOME') }}
-          --ignore='.*\.example'
-          zsh ghostty nvim oh-my-posh lazygit claude pi herdr
-        chdir: "{{ lookup('env', 'HOME') }}/dotfiles"
-      register: stow_check
-      changed_when: false
-      failed_when: stow_check.rc != 0 and 'conflict' not in stow_check.stderr
-
     - name: Stow packages
       ansible.builtin.command:
         cmd: >
@@ -94,7 +79,6 @@
           --ignore='.*\.example' --adopt
           zsh ghostty nvim oh-my-posh lazygit claude pi herdr
         chdir: "{{ lookup('env', 'HOME') }}/dotfiles"
-      when: "'LINK' in stow_check.stderr or 'conflict' in stow_check.stderr"
 
     - name: Use hunk as git pager
       community.general.git_config:
@@ -116,15 +100,9 @@
       ansible.builtin.command: "claude plugin marketplace add {{ item }}"
       loop:
         - databricks/databricks-agent-skills
-      register: mkt
-      changed_when: "'already' not in (mkt.stdout + mkt.stderr) | lower"
-      failed_when: mkt.rc != 0 and 'already' not in (mkt.stdout + mkt.stderr) | lower
 
     - name: Install Claude plugins
       ansible.builtin.command: "claude plugin install {{ item }}"
       loop:
         - databricks@databricks-agent-skills
         - mattpocock-skills@claude-plugins-official
-      register: plg
-      changed_when: "'already' not in (plg.stdout + plg.stderr) | lower"
-      failed_when: plg.rc != 0 and 'already' not in (plg.stdout + plg.stderr) | lower

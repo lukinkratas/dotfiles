@@ -2,11 +2,15 @@
 
 ## Prerequisities
 
-  - Install brew + append to PATH
+  - Install [brew](https://brew.sh/) + append to PATH
 
   - Fill env vars into zsh/.env
 
-## Install
+  - `brew install ansible`
+
+  - `ansible-playbook ansible/main.yaml`
+
+## (Legacy) Install
 
 ```sh
     git clone https://github.com/lukinkratas/dotfiles.git $HOME/dotfiles
