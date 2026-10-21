@@ -1,18 +1,54 @@
 #cloud-config
 users:
   - name: dev
-    groups: [wheel, sudo]
-    shell: /bin/bash               # switched to zsh in runcmd, after zsh is installed
+    groups:
+      - sudo
+    shell: /bin/bash
     sudo: "ALL=(ALL) NOPASSWD:ALL"
     ssh_authorized_keys:
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFoE2xBW8OMZPWLS7Eii86caJ2/KKL4djgcS8yScz+Db lukin@devbox
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFoE2xBW8OMZPWLS7Eii86caJ2/KKL4djgcS8yScz+Db
 
-ssh_pwauth: false
+# ssh_pwauth: false set in write_files
 disable_root: true
 
 package_update: true
 package_upgrade: true
 packages:
+  - ufw
+  - fail2ban
   - git
   - curl
   - python3
+
+write_files:
+  - path: /etc/ssh/sshd_config.d/00-hardening.conf
+    content: |
+      PermitRootLogin no
+      PasswordAuthentication no
+      Port 2222
+      KbdInteractiveAuthentication no
+      ChallengeResponseAuthentication no
+      MaxAuthTries 2
+      AllowTcpForwarding no
+      X11Forwarding no
+      AllowAgentForwarding no
+      AuthorizedKeysFile .ssh/authorized_keys
+      AllowUsers dev
+  - path: /etc/fail2ban/jail.local
+    content: |
+      [sshd]
+      enabled = true
+      port = 2222
+      backend = systemd
+      banaction = iptables-multiport
+
+runcmd:
+  - systemctl enable fail2ban
+  - ufw allow 2222/tcp
+  - ufw --force enable
+
+final_message: "devbox ready after $UPTIME s"
+
+power_state:
+  mode: reboot
+  condition: true
