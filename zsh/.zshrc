@@ -230,7 +230,7 @@ alias hdm="hunk diff $(git merge-base main HEAD)" # all commited branch work, pl
 alias hsc="hcloud server create"
 alias hsd"hcloud server delete"
 alias devboxup="hcloud server create \
-  --name devbox --type cx23 --image ubuntu-24.04 \
+  --name devbox --type cx23 --image ubuntu-26.04 \
   --ssh-key macos \
   --user-data-from-file $HOME/dotfiles/hcloud/cloud-init.yaml \
 "

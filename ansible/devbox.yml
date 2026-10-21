@@ -1,31 +1,20 @@
 ---
-- name: Local MacOS setup
-  hosts: localhost
-  connection: local
-  gather_facts: false
-
-  environment:
-    PATH: "/opt/homebrew/bin:{{ lookup('env', 'PATH') }}"
+- name: Hetzner devbox setup
+  hosts: devbox
+  gather_facts: true # python3 is installed by cloud-init
 
   tasks:
-    - name: Add taps
-      community.general.homebrew_tap:
+    - name: Install apt packages
+      become: true
+      ansible.builtin.apt:
         name:
-          - jandedobbeleer/oh-my-posh
-          - oven-sh/bun
-          - databricks/tap
-          - hashicorp/tap
-        state: present
-
-    - name: Install formulae
-      community.general.homebrew:
-        name:
+          - unzip
+          - ca-certificates
+          - build-essential
           - ripgrep
           - fzf
           - bat
           - stow
-          - zsh-syntax-highlighting
-          - jandedobbeleer/oh-my-posh/oh-my-posh
           - lazygit
           - tree
           - ffmpeg
@@ -34,38 +23,23 @@
           - neovim
           - uv
           - node
-          - oven-sh/bun/bun
+          - bun
           - go
           - awscli
+          - gcloud-cli
           - hcloud
-          - databricks/tap/databricks
-          - hashicorp/tap/terraform
+          - databricks
+          - terraform
           - herdr
           - hunk
-        state: present
-        update_homebrew: true
-
-    - name: Install casks
-      community.general.homebrew_cask:
-        name:
-          - google-chrome
-          - ghostty
-          - docker-desktop
-          - obsidian
-          - slack
-          - dbeaver-community
-          - visual-studio-code
-          - bruno
-          - ollama-app
+          - ollama
+          - docker
           - codex
-          - claude
           - claude-code
-          - gcloud-cli
-          - font-0xproto-nerd-font
-          - font-ubuntu-mono-nerd-font
-          - font-hack-nerd-font
-          - font-jetbrains-mono-nerd-font
+          - pi-coding-agent
         state: present
+        update_cache: true
+        cache_valid_time: 3600
 
     - name: Clone dotfiles
       ansible.builtin.git:
@@ -86,11 +60,8 @@
         value: hunk pager
         scope: global
 
-    - name: Install herdr auto-title plugin
+    - name: Install herdr plugins
       ansible.builtin.command: herdr plugin install kryptamine/herdr-auto-title
-
-    - name: Restart herdr auto-title
-      ansible.builtin.command: herdr plugin action invoke herdr.auto-title.restart
 
     - name: Add Claude plugin marketplaces
       ansible.builtin.command: claude plugin marketplace add databricks/databricks-agent-skills
@@ -100,3 +71,6 @@
       loop:
         - databricks@databricks-agent-skills
         - mattpocock-skills@claude-plugins-official
+
+    - name: Install Pi extensions
+      ansible.builtin.command: pi install npm:pi-web-access

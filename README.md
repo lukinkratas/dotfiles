@@ -8,7 +8,7 @@
 
   - `brew install ansible`
 
-  - `ansible-playbook ansible/main.yaml`
+  - `ansible-playbook ansible/local_macos.yaml`
 
 ## (Legacy) Install
 
