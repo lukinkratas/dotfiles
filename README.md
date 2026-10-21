@@ -41,13 +41,13 @@
     herdr plugin install kryptamine/herdr-auto-title
     herdr plugin action invoke herdr.auto-title.restart
 
-    brew instal hunk
+    brew install hunk
     # set hunk as git diff pager
-    git config --global code.pager "hunk pager"
+    git config --global core.pager "hunk pager"
 
-    brew install --cast claude-code
+    brew install --cask claude-code
     # databricks skills https://github.com/databricks/databricks-agent-skills/tree/main
-    /plugin marketplace add databricks/databricks-agent-skills
+    claude plugin marketplace add databricks/databricks-agent-skills
     /plugin install databricks@databricks-agent-skills
     # Matt Pocock skills https://github.com/mattpocock/skills
     claude plugin install mattpocock-skills@claude-plugins-official
