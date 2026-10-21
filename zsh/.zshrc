@@ -226,6 +226,17 @@ alias hs="hunk show" # last commit only
 # alias hdm="hunk diff main...HEAD" # all committed branch work
 alias hdm="hunk diff $(git merge-base main HEAD)" # all commited branch work, plus uncommitted edits
 
+# ----- hcloud -----
+alias hsc="hcloud server create"
+alias hsd"hcloud server delete"
+alias devboxup="hcloud server create \
+  --name devbox --type cx23 --image ubuntu-24.04 \
+  --ssh-key macos \
+  --user-data-from-file $HOME/dotfiles/hcloud/cloud-init.yaml \
+"
+alias devboxdown="hcloud server delete devbox"
+alias devboxresetpassword="hcloud server reset-password devbox"
+
 # ----- functions -----
 function extract {
   if [ -f $1 ]; then

@@ -1,0 +1,18 @@
+#cloud-config
+users:
+  - name: dev
+    groups: [wheel, sudo]
+    shell: /bin/bash               # switched to zsh in runcmd, after zsh is installed
+    sudo: "ALL=(ALL) NOPASSWD:ALL"
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFoE2xBW8OMZPWLS7Eii86caJ2/KKL4djgcS8yScz+Db lukin@devbox
+
+ssh_pwauth: false
+disable_root: true
+
+package_update: true
+package_upgrade: true
+packages:
+  - git
+  - curl
+  - python3
