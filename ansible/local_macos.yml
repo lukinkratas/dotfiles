@@ -55,7 +55,6 @@
     - name: Install casks
       community.general.homebrew_cask:
         name:
-          - google-chrome
           - ghostty
           - docker-desktop
           - obsidian
