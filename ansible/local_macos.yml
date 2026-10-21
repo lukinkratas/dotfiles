@@ -34,6 +34,7 @@
           - lazygit
           - tree
           - ffmpeg
+          - jq
           - pre-commit
           - gh
           - neovim
@@ -94,9 +95,6 @@
 
     - name: Install herdr plugins
       ansible.builtin.command: herdr plugin install kryptamine/herdr-auto-title
-
-    - name: Add Claude plugin marketplaces
-      ansible.builtin.command: claude plugin marketplace add databricks/databricks-agent-skills
 
     - name: Install Claude plugins
       ansible.builtin.command: "claude plugin install {{ item }}"

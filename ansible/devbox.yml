@@ -18,6 +18,7 @@
           - lazygit
           - tree
           - ffmpeg
+          - jq
           - pre-commit
           - gh
           - neovim
