@@ -1,0 +1,130 @@
+---
+- name: Mac dev setup
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  environment:
+    PATH: "/opt/homebrew/bin:/opt/homebrew/sbin:{{ lookup('env', 'PATH') }}"
+
+  tasks:
+    - name: Add taps
+      community.general.homebrew_tap:
+        name:
+          - jandedobbeleer/oh-my-posh
+          - oven-sh/bun
+          - databricks/tap
+          - hashicorp/tap
+        state: present
+
+    - name: Install formulae
+      community.general.homebrew:
+        name:
+          - ripgrep
+          - fzf
+          - bat
+          - stow
+          - zsh-syntax-highlighting
+          - jandedobbeleer/oh-my-posh/oh-my-posh
+          - lazygit
+          - tree
+          - ffmpeg
+          - pre-commit
+          - ollama
+          - gh
+          - docker
+          - neovim
+          - uv
+          - node
+          - oven-sh/bun/bun
+          - go
+          - awscli
+          - hcloud
+          - databricks/tap/databricks
+          - hashicorp/tap/terraform
+          - herdr
+          - hunk
+        state: present
+        update_homebrew: true
+
+    - name: Install casks
+      community.general.homebrew_cask:
+        name:
+          - google-chrome
+          - ghostty
+          - docker-desktop
+          - obsidian
+          - slack
+          - dbeaver-community
+          - visual-studio-code
+          - bruno
+          - ollama-app
+          - codex
+          - claude
+          - claude-code
+          - gcloud-cli
+          # fonts
+          - font-0xproto-nerd-font
+          - font-ubuntu-mono-nerd-font
+          - font-hack-nerd-font
+          - font-jetbrains-mono-nerd-font
+        state: present
+
+    - name: Clone dotfiles
+      ansible.builtin.git:
+        repo: https://github.com/lukinkratas/dotfiles.git
+        dest: "{{ lookup('env', 'HOME') }}/dotfiles"
+        update: true
+
+    - name: Stow dry-run (what would change?)
+      ansible.builtin.command:
+        cmd: >
+          stow --no --verbose --target={{ lookup('env', 'HOME') }}
+          --ignore='.*\.example'
+          zsh ghostty nvim oh-my-posh lazygit claude pi herdr
+        chdir: "{{ lookup('env', 'HOME') }}/dotfiles"
+      register: stow_check
+      changed_when: false
+      failed_when: stow_check.rc != 0 and 'conflict' not in stow_check.stderr
+
+    - name: Stow packages
+      ansible.builtin.command:
+        cmd: >
+          stow --verbose --target={{ lookup('env', 'HOME') }}
+          --ignore='.*\.example' --adopt
+          zsh ghostty nvim oh-my-posh lazygit claude pi herdr
+        chdir: "{{ lookup('env', 'HOME') }}/dotfiles"
+      when: "'LINK' in stow_check.stderr or 'conflict' in stow_check.stderr"
+
+    - name: Use hunk as git pager
+      community.general.git_config:
+        name: core.pager
+        value: hunk pager
+        scope: global
+
+    - name: Install herdr auto-title plugin
+      ansible.builtin.command: herdr plugin install kryptamine/herdr-auto-title
+      register: herdr_out
+      changed_when: "'already' not in (herdr_out.stdout + herdr_out.stderr) | lower"
+      failed_when: herdr_out.rc != 0 and 'already' not in (herdr_out.stdout + herdr_out.stderr) | lower
+
+    - name: Restart herdr auto-title
+      ansible.builtin.command: herdr plugin action invoke herdr.auto-title.restart
+      when: herdr_out is changed
+
+    - name: Add Claude plugin marketplaces
+      ansible.builtin.command: "claude plugin marketplace add {{ item }}"
+      loop:
+        - databricks/databricks-agent-skills
+      register: mkt
+      changed_when: "'already' not in (mkt.stdout + mkt.stderr) | lower"
+      failed_when: mkt.rc != 0 and 'already' not in (mkt.stdout + mkt.stderr) | lower
+
+    - name: Install Claude plugins
+      ansible.builtin.command: "claude plugin install {{ item }}"
+      loop:
+        - databricks@databricks-agent-skills
+        - mattpocock-skills@claude-plugins-official
+      register: plg
+      changed_when: "'already' not in (plg.stdout + plg.stderr) | lower"
+      failed_when: plg.rc != 0 and 'already' not in (plg.stdout + plg.stderr) | lower
