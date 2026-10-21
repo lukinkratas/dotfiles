@@ -4,6 +4,9 @@
   connection: local
   gather_facts: false
 
+  environment:
+    PATH: "/opt/homebrew/bin:{{ lookup('env', 'PATH') }}"
+
   tasks:
     - name: Add taps
       community.general.homebrew_tap:
@@ -27,9 +30,7 @@
           - tree
           - ffmpeg
           - pre-commit
-          - ollama
           - gh
-          - docker
           - neovim
           - uv
           - node
@@ -75,8 +76,7 @@
     - name: Stow packages
       ansible.builtin.command:
         cmd: >
-          stow --verbose --target={{ lookup('env', 'HOME') }}
-          --ignore='.*\.example' --adopt
+          stow --verbose --no-folding --target={{ lookup('env', 'HOME') }} --ignore='.*\.example'
           zsh ghostty nvim oh-my-posh lazygit claude pi herdr
         chdir: "{{ lookup('env', 'HOME') }}/dotfiles"
 
@@ -88,18 +88,12 @@
 
     - name: Install herdr auto-title plugin
       ansible.builtin.command: herdr plugin install kryptamine/herdr-auto-title
-      register: herdr_out
-      changed_when: "'already' not in (herdr_out.stdout + herdr_out.stderr) | lower"
-      failed_when: herdr_out.rc != 0 and 'already' not in (herdr_out.stdout + herdr_out.stderr) | lower
 
     - name: Restart herdr auto-title
       ansible.builtin.command: herdr plugin action invoke herdr.auto-title.restart
-      when: herdr_out is changed
 
     - name: Add Claude plugin marketplaces
-      ansible.builtin.command: "claude plugin marketplace add {{ item }}"
-      loop:
-        - databricks/databricks-agent-skills
+      ansible.builtin.command: claude plugin marketplace add databricks/databricks-agent-skills
 
     - name: Install Claude plugins
       ansible.builtin.command: "claude plugin install {{ item }}"

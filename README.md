@@ -58,6 +58,6 @@
 ```
 
 ```sh
-    stow --target=$HOME --ignore='.*\.example' --adopt --verbose \
+    stow --target=$HOME --ignore='.*\.example' --verbose --no-folding \
       zsh ghostty nvim oh-my-posh lazygit claude pi herdr
 ```
