@@ -3,6 +3,11 @@
   hosts: devbox
   gather_facts: true # python3 is installed by cloud-init
 
+  handlers:
+    - name: Restart herdr auto-title
+      ansible.builtin.command: herdr plugin action invoke herdr.auto-title.restart
+      changed_when: true
+
   tasks:
     - name: Install apt packages
       become: true
@@ -45,7 +50,7 @@
     - name: Clone dotfiles
       ansible.builtin.git:
         repo: https://github.com/lukinkratas/dotfiles.git
-        dest: "{{ lookup('env', 'HOME') }}/dotfiles"
+        dest: "{{ ansible_env.HOME }}/dotfiles"
         update: true
 
     - name: Stow packages
@@ -53,7 +58,7 @@
         cmd: >
           stow --verbose --no-folding --target={{ lookup('env', 'HOME') }} --ignore='.*\.example'
           zsh ghostty nvim oh-my-posh lazygit claude pi herdr
-        chdir: "{{ lookup('env', 'HOME') }}/dotfiles"
+        chdit: "{{ ansible_env.HOME }}/dotfiles"
 
     - name: Use hunk as git pager
       community.general.git_config:
@@ -63,9 +68,7 @@
 
     - name: Install herdr plugins
       ansible.builtin.command: herdr plugin install kryptamine/herdr-auto-title
-
-    - name: Add Claude plugin marketplaces
-      ansible.builtin.command: claude plugin marketplace add databricks/databricks-agent-skills
+      notify: Restart herdr auto-title
 
     - name: Install Claude plugins
       ansible.builtin.command: "claude plugin install {{ item }}"
