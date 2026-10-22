@@ -242,7 +242,6 @@ hcloud server create \
 
 echo "devbox up at $(hcloud server ip devbox)"
 echo "do not forget to update at $HOME/.ssh/config"
-echo "and then: ssh devbox 'bash -s' < $HOME/dotfiles/setup.sh"
 }
 
 # ----- functions -----
