@@ -13,71 +13,14 @@
     PATH: "/opt/homebrew/bin:{{ lookup('env', 'PATH') }}"
 
   tasks:
-    - name: Add taps
-      community.general.homebrew_tap:
-        name:
-          - jandedobbeleer/oh-my-posh
-          - oven-sh/bun
-          - databricks/tap
-          - hashicorp/tap
-        state: present
-
-    - name: Install formulae
-      community.general.homebrew:
-        name:
-          - ripgrep
-          - fzf
-          - bat
-          - stow
-          - zsh-syntax-highlighting
-          - jandedobbeleer/oh-my-posh/oh-my-posh
-          - lazygit
-          - tree
-          - ffmpeg
-          - jq
-          - pre-commit
-          - gh
-          - neovim
-          - uv
-          - node
-          - oven-sh/bun/bun
-          - go
-          - awscli
-          - hcloud
-          - databricks/tap/databricks
-          - hashicorp/tap/terraform
-          - herdr
-          - hunk
-          - pi-coding-agent
-        state: present
-        update_homebrew: true
-
-    - name: Install casks
-      community.general.homebrew_cask:
-        name:
-          - ghostty
-          - docker-desktop
-          - obsidian
-          - slack
-          - dbeaver-community
-          - visual-studio-code
-          - bruno
-          - ollama-app
-          - codex
-          - claude
-          - claude-code
-          - gcloud-cli
-          - font-0xproto-nerd-font
-          - font-ubuntu-mono-nerd-font
-          - font-hack-nerd-font
-          - font-jetbrains-mono-nerd-font
-        state: present
-
     - name: Clone dotfiles
       ansible.builtin.git:
         repo: https://github.com/lukinkratas/dotfiles.git
         dest: "{{ lookup('env', 'HOME') }}/dotfiles"
         update: true
+
+    - name: Install from Brewfile
+      ansible.builtin.command: brew bundle --file={{ lookup('env', 'HOME')}}/dotfiles/Brewfile
 
     - name: Stow packages
       ansible.builtin.command:
@@ -94,6 +37,7 @@
 
     - name: Install herdr plugins
       ansible.builtin.command: herdr plugin install kryptamine/herdr-auto-title
+      notify: Restart herdr auto-title
 
     - name: Install Claude plugins
       ansible.builtin.command: "claude plugin install {{ item }}"

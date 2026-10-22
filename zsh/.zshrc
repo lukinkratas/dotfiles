@@ -56,6 +56,7 @@ alias rmd="rm -Rfv"
 alias rma="rm -RIv *"
 alias reload="source $HOME/.zshrc"
 alias cp="cp -Rv"
+alias update="brew update && brew bundle --file=$HOME/dotfiles/Brewfile" # alternatively set export HOMEBREW_BUNDLE_FILE
 
 function cs {
   [[ $# -ne 1 ]] && echo "Only directory argument is allowed." && return 1
@@ -229,13 +230,20 @@ alias hdm="hunk diff $(git merge-base main HEAD)" # all commited branch work, pl
 # ----- hcloud -----
 alias hsc="hcloud server create"
 alias hsd"hcloud server delete"
-alias devboxup="hcloud server create \
+alias boxup="devbox_up"
+alias boxdown="hcloud server delete devbox"
+alias boxresetpassword="hcloud server reset-password devbox"
+
+function devboxup() {
+hcloud server create \
   --name devbox --type cx23 --image ubuntu-26.04 \
   --ssh-key macos \
-  --user-data-from-file $HOME/dotfiles/hcloud/cloud-init.yaml
-"
-alias devboxdown="hcloud server delete devbox"
-alias devboxresetpassword="hcloud server reset-password devbox"
+  --user-data-from-file $HOME/dotfiles/hcloud/cloud-init.yaml || return
+
+echo "devbox up at $(hcloud server ip devbox)"
+echo "do not forget to update at $HOME/.ssh/config"
+echo "and then: ssh devbox 'bash -s' < $HOME/dotfiles/setup.sh"
+}
 
 # ----- functions -----
 function extract {
