@@ -56,7 +56,6 @@ alias rmd="rm -Rfv"
 alias rma="rm -RIv *"
 alias reload="source $HOME/.zshrc"
 alias cp="cp -Rv"
-alias update="brew update && brew bundle --file=$HOME/dotfiles/Brewfile" # alternatively set export HOMEBREW_BUNDLE_FILE
 
 function cs {
   [[ $# -ne 1 ]] && echo "Only directory argument is allowed." && return 1
