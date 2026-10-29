@@ -6,11 +6,11 @@
 
   - Fill env vars into zsh/.env
 
-  - `git clone https://github.com/lukinkratas/dotfiles $HOME/dotfiles`
-
-  - `brew install ansible` + `ansible-playbook ansible/local_macos.yaml` or './setup.sh' or:
-
 ```sh
+git clone https://github.com/lukinkratas/dotfiles $HOME/dotfiles
+
+brew bundle --file=$HOME/dotfiles/Brewfile
+
 stow --target=$HOME --ignore='.*\.example' --verbose --no-folding \
   zsh ghostty nvim oh-my-posh lazygit claude pi herdr
 
@@ -21,11 +21,9 @@ git config --global core.pager "hunk pager"
 herdr plugin install kryptamine/herdr-auto-title
 herdr plugin action invoke herdr.auto-title.restart
 
-
 # add cc plugins
 # databricks skills https://github.com/databricks/databricks-agent-skills/tree/main
-/plugin install databricks@databricks-agent-skills
-
+claude plugin install databricks@databricks-agent-skills
 # Matt Pocock skills https://github.com/mattpocock/skills
 claude plugin install mattpocock-skills@claude-plugins-official
 

@@ -183,7 +183,7 @@ function git_worktree_add {
   # Find the repo root (works from any subfolder or worktree)
   local common_dir
   common_dir="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)" \
-    || { echo "Not inside a git repo" >&2; return 1; }
+    || { echo "Not inside a git repo" >&2; return 1 }
   local root="$(dirname "${common_dir}")"
   local folder="${root}/${branch//\//-}"   # replace every "/" with "-"
 
@@ -238,7 +238,7 @@ function devboxup() {
 hcloud server create \
   --name devbox --type cx23 --image ubuntu-26.04 \
   --ssh-key macos \
-  --user-data-from-file $HOME/dotfiles/hcloud/cloud-init.yaml || return
+  --user-data-from-file $HOME/dotfiles/hcloud/cloud-init.yaml || return 1
 
 echo "devbox up at $(hcloud server ip devbox)"
 echo "do not forget to update at $HOME/.ssh/config"
