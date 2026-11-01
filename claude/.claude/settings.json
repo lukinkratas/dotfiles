@@ -5,6 +5,7 @@
     "autoAllowBashIfSandboxed": false,
     "allowUnsandboxedCommands": false,
     "network": {
+    "allowLocalBinding": true,
       "allowedDomains": [ "*" ],
       "deniedDomains": [
         "gist.github.com",
