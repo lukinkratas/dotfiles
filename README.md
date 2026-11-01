@@ -12,7 +12,7 @@ git clone https://github.com/lukinkratas/dotfiles $HOME/dotfiles
 brew bundle --file=$HOME/dotfiles/Brewfile
 
 stow --target=$HOME --ignore='.*\.example' --verbose --no-folding \
-  zsh ghostty nvim oh-my-posh lazygit claude pi herdr
+  zsh ghostty nvim oh-my-posh lazygit claude pi herdr codex
 
 # set hunk as git diff pager
 git config --global core.pager "hunk pager"
