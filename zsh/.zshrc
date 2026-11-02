@@ -48,6 +48,7 @@ alias dbxrc="$EDITOR $HOME/.databrickscfg"
 alias hrc="$EDITOR $HOME/.config/herdr/config.toml"
 
 # ----- system -----
+alias bundle="brew bundle --file=$HOME/dotfiles/Brewfile"
 alias l="ls -lahFG --color=auto"
 alias lt="ls -lahFGtr --color=auto"
 alias mkdir="mkdir -vp"
