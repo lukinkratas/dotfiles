@@ -25,6 +25,7 @@
       "mcp__linear-server__delete_diff_comment",
       "Bash(terraform *destroy*)",
       "Bash(databricks bundle destroy *)",
+      "Edit(~/.env)",
       "Edit(~/.databrickscfg)"
     ],
     "allow": [
