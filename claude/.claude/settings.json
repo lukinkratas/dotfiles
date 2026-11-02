@@ -4,6 +4,12 @@
     "failIfUnavailable": true,
     "autoAllowBashIfSandboxed": false,
     "allowUnsandboxedCommands": false,
+    "excludedCommands": [
+      "databricks bundle validate *",
+      "terraform init *",
+      "terraform plan *",
+      "playwright-cli *"
+    ],
     "network": {
     "allowLocalBinding": true,
       "allowedDomains": [ "*" ],
@@ -33,7 +39,8 @@
       "Bash(terraform validate *)",
       "Bash(terraform plan *)",
       "Bash(terraform init *)",
-      "Bash(databricks bundle validate *)"
+      "Bash(databricks bundle validate *)",
+      "Bash(playwright-cli *)"
     ]
   },
   "model": "opus",
