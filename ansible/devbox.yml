@@ -1,0 +1,79 @@
+---
+- name: Hetzner devbox setup
+  hosts: devbox
+  gather_facts: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+  handlers:
+    - name: Restart herdr auto-title
+      ansible.builtin.command: herdr plugin action invoke herdr.auto-title.restart
+      changed_when: true
+
+  tasks:
+    - name: Install apt packages
+      become: true
+      ansible.builtin.apt:
+        name:
+          - build-essential
+          - unzip
+          - ca-certificates
+          - git
+          - stow
+          - ripgrep
+          - fzf
+          - bat
+          - lazygit
+          - tree
+          - ffmpeg
+          - jq
+          - pre-commit
+          - gh
+          - neovim
+          - nodejs
+          - npm
+          - golang-go
+          - hcloud-cli
+          # uv
+          # oh-my-posh
+          # bun
+          # terraform
+          # herdr
+          # hunk
+          # pi-coding-agent
+          # awscli
+          # gcloud-cli
+          # hcloud
+          # docker
+          # ollama
+          # codex
+          # claude-code
+          # antigravity-cli
+        state: present
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Clone dotfiles
+      ansible.builtin.git:
+        repo: https://github.com/lukinkratas/dotfiles.git
+        dest: "{{ ansible_facts['env']['HOME'] }}/dotfiles"
+        update: true
+
+    - name: Stow packages
+      ansible.builtin.command:
+        cmd: >
+          stow --verbose --no-folding --target={{ ansible_facts['env']['HOME'] }} --ignore='.*\.example'
+          zsh ghostty nvim oh-my-posh lazygit claude pi herdr codex omnigent gemini
+        chdir: "{{ ansible_facts['env']['HOME'] }}/dotfiles"
+      register: stow
+      changed_when: "'LINK' in stow.stderr"
+
+    - name: Use hunk as git pager
+      community.general.git_config:
+        name: core.pager
+        value: hunk pager
+        scope: global
+
+    # - name: Install herdr plugins
+    #   ansible.builtin.command: herdr plugin install kryptamine/herdr-auto-title
+    #   notify: Restart herdr auto-title

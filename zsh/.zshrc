@@ -11,6 +11,12 @@ eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 source <(fzf --zsh)
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# The next line updates PATH for the Google Cloud SDK.
+[[ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]] && source "$HOME/google-cloud-sdk/path.zsh.inc"
+
+# The next line enables shell command completion for gcloud.
+[[ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/google-cloud-sdk/completion.zsh.inc"
+
 # ----- .env -----
 [[ -f ~/.env ]] && source ~/.env
 
@@ -35,7 +41,7 @@ alias cdd="cd $HOME/dotfiles && l"
 
 # ----- configs -----
 alias rc="$EDITOR $HOME/.zshrc"
-alias nvrc="$EDITOR ${XDG_CONFIG_FOME:-$HOME/.config}/nvim/init.lua"
+alias nvrc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/init.lua"
 alias ghstrc="$EDITOR ${XDG_CONFIG_HOME:-$HOME/.config}/ghostty/config"
 alias omprc="$EDITOR $HOME/.config/omp.toml"
 alias trc="$EDITOR $HOME/.tmux.conf"
@@ -226,23 +232,54 @@ alias tfrm="terraform destroy"
 alias hd="hunk diff" # uncommitted only
 alias hs="hunk show" # last commit only
 # alias hdm="hunk diff main...HEAD" # all committed branch work
-alias hdm="hunk diff $(git merge-base main HEAD)" # all commited branch work, plus uncommitted edits
+alias hdm='hunk diff $(git merge-base main HEAD)' # all commited branch work, plus uncommitted edits
 
 # ----- hcloud -----
-alias hsc="hcloud server create"
-alias hsd"hcloud server delete"
-alias boxup="devbox_up"
-alias boxdown="hcloud server delete devbox"
+alias hcs="hcloud server"
+alias hcsc="hcloud server create"
+alias hcsd="hcloud server delete"
+alias hcsls="hcloud server list"
 alias boxresetpassword="hcloud server reset-password devbox"
 
 function devboxup() {
-hcloud server create \
-  --name devbox --type cx23 --image ubuntu-26.04 \
-  --ssh-key macos \
-  --user-data-from-file $HOME/dotfiles/hcloud/cloud-init.yaml || return 1
+  local ip
+  ip=$(hcloud server create \
+    --name devbox --type cx23 --image ubuntu-26.04 \
+    --ssh-key macos \
+    --user-data-from-file $HOME/dotfiles/hcloud/cloud-init.yaml \
+    -o json | jq -r '.server.public_net.ipv4.ip') || return 1
 
-echo "devbox up at $(hcloud server ip devbox)"
-echo "do not forget to update at $HOME/.ssh/config"
+  # local ip=$(hcloud server ip devbox) || return 1
+  echo "devbox IP: $ip"
+
+  local filepath="$HOME/.ssh/config.d/devbox"
+  cat > $filepath <<EOF
+Host devbox
+  HostName $ip
+  Port 2222
+  User dev
+  StrictHostKeyChecking accept-new
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_ed25519_hetzner
+  IdentitiesOnly yes
+EOF
+
+  # removes the old host key for that IP and port from ~/.ssh/known_hosts.
+  ssh-keygen -R "[$ip]:2222" &>/dev/null
+  echo "SSH config written: $filepath"
+
+  echo "Waiting for SSH..."
+  until ssh -o ConnectTimeout=5 devbox true &>/dev/null; do sleep 5; done
+  ssh devbox 'cloud-init status --wait' >/dev/null
+
+  echo "You can 'ssh devbox' now."
+
+  echo "ansible-playbook -v $HOME/dotfiles/ansible/devbox.yml -i 'devbox,'"
+}
+
+function devboxdown() {
+  hcloud server delete devbox
+  rm "$HOME/.ssh/config.d/devbox"
 }
 
 # ----- functions -----
@@ -267,9 +304,3 @@ function extract {
     echo -e "$1 is not a valid file."
   fi
 }
-
-# The next line updates PATH for the Google Cloud SDK.
-[[ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]] && source "$HOME/google-cloud-sdk/path.zsh.inc"
-
-# The next line enables shell command completion for gcloud.
-[[ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/google-cloud-sdk/completion.zsh.inc"
