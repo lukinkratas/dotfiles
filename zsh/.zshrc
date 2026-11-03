@@ -246,16 +246,16 @@ function hcsc() {
 
   local ip
   ip=$(hcloud server create \
-    --name $name --type cx23 --image ubuntu-26.04 --location fsn1 \
+    --name "$name" --type cx23 --image ubuntu-26.04 --location fsn1 \
     --ssh-key macos \
-    --user-data-from-file $HOME/dotfiles/hcloud/cloud-init.yaml \
+    --user-data-from-file "$HOME/dotfiles/hcloud/cloud-init.yaml" \
     -o json | jq -r '.server.public_net.ipv4.ip') || return 1
 
-  # local ip=$(hcloud server ip devbox) || return 1
+  # local ip=$(hcloud server ip $name) || return 1
   echo "$name IP: $ip"
 
-  local filepath="$HOME/.ssh/config.d/devbox"
-  cat > $filepath <<EOF
+  local filepath="$HOME/.ssh/config.d/$name"
+  cat > "$filepath" <<EOF
 Host $name
   HostName $ip
   Port 2222
@@ -271,7 +271,7 @@ EOF
   echo "SSH config written: $filepath"
 
   echo "Waiting for SSH..."
-  until ssh -o ConnectTimeout=5 devbox true &>/dev/null; do sleep 5; done
+  until ssh -o ConnectTimeout=5 $name true &>/dev/null; do sleep 5; done
   ssh $name 'cloud-init status --wait' >/dev/null
 
   echo "You can 'ssh $name' now."
@@ -279,7 +279,7 @@ EOF
   echo "ansible-playbook -v $HOME/dotfiles/ansible/$name.yml -i '$name,'"
 }
 
-function hcsd() {
+function hcsrm() {
   [[ $# -ne 1 ]] && echo "Usage: $0 <name>" >&2 && return 1
   local name="$1"
 
