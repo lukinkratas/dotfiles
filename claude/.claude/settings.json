@@ -25,6 +25,11 @@
   },
   "permissions": {
     "deny": [
+      "EnterPlanMode",
+      "ExitPlanMode",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
       "mcp__linear-server__delete_comment",
       "mcp__linear-server__delete_attachment",
       "mcp__linear-server__delete_status_update",
@@ -43,6 +48,9 @@
       "Bash(playwright-cli *)"
     ]
   },
+  "disableRemoteControl": true,
+  "disableClaudeAiConnectors": true,
+  "enableArtifact": false,
   "model": "opus",
   "hooks": {
     "SessionStart": [
