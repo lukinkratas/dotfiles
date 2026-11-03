@@ -236,25 +236,27 @@ alias hdm='hunk diff $(git merge-base main HEAD)' # all commited branch work, pl
 
 # ----- hcloud -----
 alias hcs="hcloud server"
-alias hcsc="hcloud server create"
-alias hcsd="hcloud server delete"
 alias hcsls="hcloud server list"
-alias boxresetpassword="hcloud server reset-password devbox"
+alias hcsrp="hcloud server reset-password"
 
-function devboxup() {
+function hcsc() {
+  [[ $# -ne 1 ]] && echo "Usage: $0 <name>" >&2 && return 1
+
+  local name="$1"
+
   local ip
   ip=$(hcloud server create \
-    --name devbox --type cx23 --image ubuntu-26.04 \
+    --name $name --type cx23 --image ubuntu-26.04 --location fsn1 \
     --ssh-key macos \
     --user-data-from-file $HOME/dotfiles/hcloud/cloud-init.yaml \
     -o json | jq -r '.server.public_net.ipv4.ip') || return 1
 
   # local ip=$(hcloud server ip devbox) || return 1
-  echo "devbox IP: $ip"
+  echo "$name IP: $ip"
 
   local filepath="$HOME/.ssh/config.d/devbox"
   cat > $filepath <<EOF
-Host devbox
+Host $name
   HostName $ip
   Port 2222
   User dev
@@ -270,16 +272,19 @@ EOF
 
   echo "Waiting for SSH..."
   until ssh -o ConnectTimeout=5 devbox true &>/dev/null; do sleep 5; done
-  ssh devbox 'cloud-init status --wait' >/dev/null
+  ssh $name 'cloud-init status --wait' >/dev/null
 
-  echo "You can 'ssh devbox' now."
+  echo "You can 'ssh $name' now."
 
-  echo "ansible-playbook -v $HOME/dotfiles/ansible/devbox.yml -i 'devbox,'"
+  echo "ansible-playbook -v $HOME/dotfiles/ansible/$name.yml -i '$name,'"
 }
 
-function devboxdown() {
-  hcloud server delete devbox
-  rm "$HOME/.ssh/config.d/devbox"
+function hcsd() {
+  [[ $# -ne 1 ]] && echo "Usage: $0 <name>" >&2 && return 1
+  local name="$1"
+
+  hcloud server delete $name
+  rm "$HOME/.ssh/config.d/$name"
 }
 
 # ----- functions -----
