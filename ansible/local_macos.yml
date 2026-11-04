@@ -15,7 +15,7 @@
   tasks:
     - name: Clone dotfiles
       ansible.builtin.git:
-        repo: https://github.com/lukinkratas/dotfiles.git
+        repo: git@github.com:lukinkratas/dotfiles.git
         dest: "{{ lookup('env', 'HOME') }}/dotfiles"
         update: true
 

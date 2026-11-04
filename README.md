@@ -6,7 +6,7 @@
 
   - Fill env vars into zsh/.env
 
-  - `git clone https://github.com/lukinkratas/dotfiles $HOME/dotfiles`
+  - `git clone git@github.com:lukinkratas/dotfiles.git`
 
   - `brew install ansible` + `ansible-playbook ansible/local_macos.yaml` or:
 
