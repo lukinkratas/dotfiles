@@ -209,14 +209,12 @@ alias pc="pre-commit"
 alias pci="pre-commit install"
 alias pcr="pre-commit run --all-files --verbose"
 
-# ----- dbx -----
-alias dbx="databricks"
-alias dbxal="databricks auth login"
-alias dbxbi="databricks bundle init"
-alias dbxbv="databricks bundle validate"
-alias dbxbd="databricks bundle deploy"
-alias dbxbr="databricks bundle run"
-alias dbxbrm="databricks bundle destroy"
+
+# ----- hunk -----
+alias hd="hunk diff" # uncommitted only
+alias hs="hunk show" # last commit only
+# alias hdm="hunk diff main...HEAD" # all committed branch work
+alias hdm='hunk diff $(git merge-base main HEAD)' # all commited branch work, plus uncommitted edits
 
 # ----- terraform -----
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/terraform/README.md
@@ -228,11 +226,19 @@ alias tfa="terraform fmt && terraform validate && terraform apply"
 alias tfls="terraform state list"
 alias tfrm="terraform destroy"
 
-# ----- hunk -----
-alias hd="hunk diff" # uncommitted only
-alias hs="hunk show" # last commit only
-# alias hdm="hunk diff main...HEAD" # all committed branch work
-alias hdm='hunk diff $(git merge-base main HEAD)' # all commited branch work, plus uncommitted edits
+# ----- ansible -----
+alias ap="ansible-playbook --verbose"
+alias apc="ansible-playbook --verbose --check"
+
+# ----- dbx -----
+alias dbx="databricks"
+alias dbxal="databricks auth login" # (profile)
+alias dbxbi="databricks bundle init"
+alias dbxbv="databricks bundle validate"
+alias dbxbd="databricks bundle deploy" # (profile)
+alias dbxbr="databricks bundle run"
+alias dbxbrm="databricks bundle destroy" # (profile)
+alias dbxtls="databricks tables list" # catalog schema (profile)
 
 # ----- hcloud -----
 alias hcs="hcloud server"
@@ -287,10 +293,6 @@ function hcsrm() {
   hcloud server delete $name
   rm "$HOME/.ssh/config.d/$name"
 }
-
-# ----- hcloud -----
-alias ap="ansible-playbook --verbose"
-alias apc="ansible-playbook --verbose --check"
 
 # ----- functions -----
 function extract {
