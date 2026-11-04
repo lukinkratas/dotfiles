@@ -287,6 +287,10 @@ function hcsrm() {
   rm "$HOME/.ssh/config.d/$name"
 }
 
+# ----- hcloud -----
+alias ap="ansible-playbook --verbose"
+alias apc="ansible-playbook --verbose --check"
+
 # ----- functions -----
 function extract {
   if [ -f $1 ]; then
