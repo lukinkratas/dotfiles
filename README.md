@@ -6,11 +6,16 @@
 
   - Fill env vars into zsh/.env
 
-  - `git clone git@github.com:lukinkratas/dotfiles.git`
-
-  - `brew install ansible` + `ansible-playbook ansible/local_macos.yaml` or:
-
 ```sh
+
+[[ -d ~/dotfiles ]] || git clone git@github.com:lukinkratas/dotfiles.git
+git -C ~/dotfiles pull --ff-only
+
+brew install ansible
+ansible-playbook ansible/local_macos.yaml
+
+# or:
+
 brew bundle --file=$HOME/dotfiles/Brewfile
 
 stow --target=$HOME --ignore='.*\.example' --verbose --no-folding \
