@@ -2,7 +2,7 @@ setopt globdots
 
 export EDITOR=nvim
 export PATH="$PATH:$HOME/.antigravity/antigravity/bin:$HOME/.local/bin"
-export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # add Homebrew to PATH
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
@@ -254,6 +254,7 @@ function hcsc() {
   # local ip=$(hcloud server ip $name) || return 1
   echo "$name IP: $ip"
 
+  [[ -d "$HOME/.ssh/config.d" ]] || mkdir "$HOME/.ssh/config.d"
   local filepath="$HOME/.ssh/config.d/$name"
   cat > "$filepath" <<EOF
 Host $name
