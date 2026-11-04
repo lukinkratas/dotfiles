@@ -14,7 +14,7 @@
 brew bundle --file=$HOME/dotfiles/Brewfile
 
 stow --target=$HOME --ignore='.*\.example' --verbose --no-folding \
-  zsh ghostty nvim oh-my-posh lazygit claude pi herdr codex omnigent gemini
+  zsh ghostty oh-my-posh nvim lazygit claude herdr
 
 # set hunk as git diff pager
 git config --global core.pager "hunk pager"

@@ -26,7 +26,7 @@
       ansible.builtin.command:
         cmd: >
           stow --verbose --no-folding --target={{ lookup('env', 'HOME') }} --ignore='.*\.example'
-          zsh ghostty nvim oh-my-posh lazygit claude pi herdr codex omnigent gemini
+          zsh ghostty oh-my-posh nvim lazygit claude herdr
         chdir: "{{ lookup('env', 'HOME') }}/dotfiles"
 
     - name: Use hunk as git pager
