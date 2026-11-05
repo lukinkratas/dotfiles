@@ -29,7 +29,7 @@ CTX_TOKENS=$(echo "$input" | jq -r '(.context_window.current_usage // {})
   | (.input_tokens // 0) + (.cache_creation_input_tokens // 0) + (.cache_read_input_tokens // 0)')
 
 if   (( CTX_TOKENS > 200000 )); then CTX_COLOR=$RED
-elif (( CTX_TOKENS > 180000 )); then CTX_COLOR=$YELLOW
+elif (( CTX_TOKENS > 150000 )); then CTX_COLOR=$YELLOW
 else CTX_COLOR=$GREEN; fi
 
 # bar <percent> [color]  ->  colored 10-cell bar + "NN%"  (or "--" when value is missing)
