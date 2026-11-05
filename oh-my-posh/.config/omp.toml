@@ -20,7 +20,7 @@ final_space = true
 
   [[blocks.segments]]
     type = "status"
-    template = " {{ if gt .Code 0 }}{{ else }}{{ end }}"
+    template = "{{ if gt .Code 0 }}{{ else }}{{ end }}"
     foreground = "p:success"
     foreground_templates = ["{{ if gt .Code 0 }}p:danger{{ end }}"]
 
@@ -29,24 +29,37 @@ final_space = true
 
   [[blocks.segments]]
     type = "executiontime"
-    foreground = "p:info"
+    foreground = "cyan"
     template = " {{ .FormattedMs }}"
 
     [blocks.segments.options]
       threshold = 100
-      style = "austin"
+
+[[blocks]]
+  type = "prompt"
+  alignment = "left"
+  newline = true
+
+  [[blocks.segments]]
+    type = "time"
+    foreground = "blue"
 
   [[blocks.segments]]
     type = "path"
-    template = " {{ path .Path .Location }}"
-    foreground = "p:info"
+    template = "{{ path .Path .Location }}"
+    foreground = "cyan"
 
     [blocks.segments.options]
       style = "full"
 
   [[blocks.segments]]
+    type = "session"
+    foreground = "magenta"
+    template = "{{ if .SSHSession }} {{ .UserName }}@{{ .HostName }}{{ end }}"
+
+  [[blocks.segments]]
     type = "git"
-    template = " git:{{.User.Email}} [{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}]"
+    template = " git:{{.User.Email}}[{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }}]"
     foreground = "p:success"
     foreground_templates = [
       "{{ if or (.Working.Changed) (.Staging.Changed) }}p:warning{{ end }}",
@@ -60,7 +73,7 @@ final_space = true
       fetch_user = true
 
 [[blocks]]
-  type = "rprompt"
+  type = "prompt"
   alignment = "right"
 
   [[blocks.segments]]
@@ -71,5 +84,13 @@ final_space = true
   [[blocks.segments]]
     type = "gcp"
     foreground = "#4285F4"
-    template = " gcp:{{ .Project }}"
+    template = " gcp:{{ .Project }} "
 
+[[blocks]]
+  type = "prompt"
+  alignment = "left"
+  newline = true
+
+  [[blocks.segments]]
+    type = "text"
+    template = " >"
