@@ -36,7 +36,9 @@
         scope: global
 
     - name: Install herdr plugins
-      ansible.builtin.command: herdr plugin install kryptamine/herdr-auto-title
+      ansible.builtin.command: "herdr plugin install {{ item }}"
+      loop: 
+        - kryptamine/herdr-auto-title
       notify: Restart herdr auto-title
 
     - name: Install Claude plugins
@@ -46,4 +48,6 @@
         - mattpocock-skills@claude-plugins-official
 
     - name: Install Pi extensions
-      ansible.builtin.command: pi install npm:pi-web-access
+      ansible.builtin.command: "pi install {{ item }}"
+      loop:
+        - npm:pi-web-access

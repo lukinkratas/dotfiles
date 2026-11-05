@@ -1,4 +1,4 @@
----
+
 - name: Hetzner devbox setup
   hosts: devbox
   gather_facts: true
@@ -11,6 +11,25 @@
       changed_when: true
 
   tasks:
+    - name: Add HashiCorp GPG key
+      become: true
+      ansible.builtin.get_url:
+        url: https://apt.releases.hashicorp.com/gpg
+        dest: /etc/apt/keyrings/hashicorp.asc
+        mode: "0644"
+
+    - name: Add HashiCorp apt repo
+      become: true
+      ansible.builtin.deb822_repository:
+        name: hashicorp
+        types: deb
+        uris: https://apt.releases.hashicorp.com
+        suites: "{{ ansible_facts['distribution_release'] }}"
+        components: main
+        architectures: "{{ 'arm64' if ansible_facts['architecture'] == 'aarch64' else 'amd64' }}"
+        signed_by: https://apt.releases.hashicorp.com/gpg
+        state: present
+
     - name: Install apt packages
       become: true
       ansible.builtin.apt:
@@ -34,13 +53,9 @@
           - npm
           - golang-go
           - hcloud-cli
-          # uv
-          # oh-my-posh
+          - zsh
+          - terraform
           # bun
-          # terraform
-          # herdr
-          # hunk
-          # pi-coding-agent
           # awscli
           # gcloud-cli
           # hcloud
@@ -53,6 +68,71 @@
         update_cache: true
         cache_valid_time: 3600
 
+    - name: Install uv
+      ansible.builtin.shell:
+        cmd: set -o pipefail && curl -LsSf https://astral.sh/uv/install.sh | sh
+        executable: /bin/bash
+        creates: "{{ ansible_facts['env']['HOME'] }}/.local/bin/uv"
+      environment:
+        UV_NO_MODIFY_PATH: "1"
+
+    - name: Install oh-my-posh
+      ansible.builtin.shell:
+        cmd: >
+          set -o pipefail &&
+          curl -fsSL https://ohmyposh.dev/install.sh |
+          bash -s -- -d {{ ansible_facts['env']['HOME'] }}/.local/bin
+        executable: /bin/bash
+        creates: "{{ ansible_facts['env']['HOME'] }}/.local/bin/oh-my-posh"
+
+    - name: hunk
+      block:
+        - name: Install hunk
+          ansible.builtin.shell:
+            cmd: set -o pipefail && curl -fsSL https://hunk.dev/install.sh | sh
+            executable: /bin/bash
+            creates: "{{ ansible_facts['env']['HOME'] }}/.hunk/bin/hunk"
+          environment:
+            HUNK_NO_MODIFY_PATH: "1"
+
+        - name: Use hunk as git pager
+          community.general.git_config:
+            name: core.pager
+            value: hunk pager
+            scope: global
+
+    - name: herdr
+      block:
+        - name: Install herdr
+          ansible.builtin.shell:
+            cmd: set -o pipefail && curl -fsSL https://herdr.dev/install.sh | sh
+            executable: /bin/bash
+            creates: "{{ ansible_facts['env']['HOME'] }}/.local/bin/herdr"
+
+        # - name: Install herdr plugins
+        #   ansible.builtin.command: "herdr plugin install {{ item }}"
+        #   loop: 
+        #     - kryptamine/herdr-auto-title
+        #   notify: Restart herdr auto-title
+
+    # - name: pi
+    #   block:
+    #     - name: Install pi
+    #       ansible.builtin.shell:
+    #         cmd: set -o pipefail && curl -fsSL https://pi.dev/install.sh | sh
+    #         executable: /bin/bash
+    #
+    #     - name: Install Pi extensions
+    #       ansible.builtin.command: "pi install {{ item }}"
+    #       loop:
+    #         - npm:pi-web-access
+
+    - name: Set zsh as default shell
+      become: true
+      ansible.builtin.user:
+        name: "{{ ansible_facts['user_id'] }}"
+        shell: /usr/bin/zsh
+
     - name: Clone dotfiles
       ansible.builtin.git:
         repo: https://github.com/lukinkratas/dotfiles.git
@@ -63,17 +143,7 @@
       ansible.builtin.command:
         cmd: >
           stow --verbose --no-folding --target={{ ansible_facts['env']['HOME'] }} --ignore='.*\.example'
-          zsh nvim lazygit
+          oh-my-posh zsh nvim lazygit
         chdir: "{{ ansible_facts['env']['HOME'] }}/dotfiles"
       register: stow
       changed_when: "'LINK' in stow.stderr"
-
-    - name: Use hunk as git pager
-      community.general.git_config:
-        name: core.pager
-        value: hunk pager
-        scope: global
-
-    # - name: Install herdr plugins
-    #   ansible.builtin.command: herdr plugin install kryptamine/herdr-auto-title
-    #   notify: Restart herdr auto-title

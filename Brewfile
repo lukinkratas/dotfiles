@@ -1,14 +1,14 @@
 # Taps
 tap "jandedobbeleer/oh-my-posh"
-tap "oven-sh/bun"
 tap "databricks/tap"
 tap "hashicorp/tap"
+tap "oven-sh/bun"
 
 # Formulae
 brew "jandedobbeleer/oh-my-posh/oh-my-posh"
-brew "oven-sh/bun/bun"
 brew "hashicorp/tap/terraform"
 brew "databricks/tap/databricks"
+brew "oven-sh/bun/bun"
 brew "ripgrep"
 brew "fzf"
 brew "bat"
