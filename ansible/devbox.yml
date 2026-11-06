@@ -113,6 +113,7 @@
         #   ansible.builtin.command: "herdr plugin install {{ item }}"
         #   loop: 
         #     - kryptamine/herdr-auto-title
+        #     - voice0726/herdr-jump-number
         #   notify: Restart herdr auto-title
 
     # - name: pi
