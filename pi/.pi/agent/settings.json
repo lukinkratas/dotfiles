@@ -1,10 +1,13 @@
 {
-  "lastChangelogVersion": "1.4.0",
+  "lastChangelogVersion": "1.5.0",
   "theme": "dark",
   "defaultProvider": "xai",
   "defaultModel": "grok-4.7",
   "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-web-access"
-  ]
+  ],
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.47.0"
+  }
 }
