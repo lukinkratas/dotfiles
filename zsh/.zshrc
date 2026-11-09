@@ -209,7 +209,6 @@ alias pc="pre-commit"
 alias pci="pre-commit install"
 alias pcr="pre-commit run --all-files --verbose"
 
-
 # ----- hunk -----
 alias hd="hunk diff" # uncommitted only
 alias hs="hunk show" # last commit only
