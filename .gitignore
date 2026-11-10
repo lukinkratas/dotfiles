@@ -3,28 +3,17 @@
 lazy-lock.json
 
 claude/mcp.json
-claude/Library/Application Support
+claude/Library/
 claude/.claude/*
 # instructions & config
 !claude/.claude/mcp.json.example
-!claude/.claude/CLAUDE.md
 !claude/.claude/settings.json
-!.gitignore
 # authored content (dir + contents)
-!claude/.claude/commands/
-!claude/.claude/commands/**
 !claude/.claude/skills/
 !claude/.claude/skills/**
 !claude/.claude/agents/
 !claude/.claude/agents/**
-!claude/.claude/hooks/
-!claude/.claude/hooks/**
-!claude/.claude/rules/
-!claude/.claude/rules/**
-!claude/.claude/output-styles/
-!claude/.claude/output-styles/**
 !claude/.claude/statusline.sh
-!claude/.claude/*.md
 # managed by sync, not authored by me
 claude/.claude/skills/synced/
 claude/.claude/skills/.trash/
