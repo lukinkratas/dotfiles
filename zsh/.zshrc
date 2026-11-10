@@ -229,6 +229,9 @@ alias tfrm="terraform destroy"
 alias ap="ansible-playbook --verbose"
 alias apc="ansible-playbook --verbose --check"
 
+# ----- docker -----
+alias dcp="docker compose up -d"
+
 # ----- dbx -----
 alias dbx="databricks"
 alias dbxal="databricks auth login" # (profile)
