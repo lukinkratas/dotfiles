@@ -49,7 +49,6 @@
     ]
   },
   "disableRemoteControl": true,
-  "disableClaudeAiConnectors": true,
   "enableArtifact": false,
   "model": "opus",
   "hooks": {
@@ -72,7 +71,6 @@
     "padding": 2
   },
   "enabledPlugins": {
-    "databricks@databricks-agent-skills": true,
     "mattpocock-skills@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
