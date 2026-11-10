@@ -45,7 +45,6 @@
     - name: Install Claude plugins
       ansible.builtin.command: "claude plugin install {{ item }}"
       loop:
-        - databricks@databricks-agent-skills
         - mattpocock-skills@claude-plugins-official
 
     - name: Install Pi extensions

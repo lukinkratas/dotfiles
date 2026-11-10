@@ -167,6 +167,11 @@
     # - name: Reset SSH connection to apply group membership
     #   ansible.builtin.meta: reset_connection
 
+    - name: Install Claude plugins
+      ansible.builtin.command: "claude plugin install {{ item }}"
+      loop:
+        - mattpocock-skills@claude-plugins-official
+
     # - name: pi
     #   block:
     #     - name: Install pi
@@ -195,7 +200,7 @@
       ansible.builtin.command:
         cmd: >
           stow --verbose --no-folding --target={{ ansible_facts['env']['HOME'] }} --ignore='.*\.example'
-          oh-my-posh zsh nvim lazygit
+          oh-my-posh zsh nvim lazygit claude herdr
         chdir: "{{ ansible_facts['env']['HOME'] }}/dotfiles"
       register: stow
       changed_when: "'LINK' in stow.stderr"
