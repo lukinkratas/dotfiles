@@ -143,7 +143,7 @@ function prompt {
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 alias gi="git init"
 alias gcp="git_config_personal"
-alias gcl="git_clone_bare"
+alias gcl="git clone"
 alias gc="git checkout"
 alias gcb="git checkout -b"
 alias gb="git branch"            # see local branches
@@ -168,19 +168,19 @@ function git_config_personal {
   git config user.email lukinkratas@seznam.cz
 }
 
-function git_clone_bare {
-  [[ $# -lt 1 ]] && echo "Usage: gcl <url>" >&2 && return 1
-  local url="$1"
-  local dir=$(basename "${url%.git}") # repo name without .git
-
-  git clone --bare "$url" "$dir/.bare" || return 1
-  echo "gitdir: ./.bare" > "$dir/.git" # so git commands work from $dir/
-  echo "Cloned into $dir"
-  cd $dir
-  git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" # sets refrespec (place for fetched branched)
-  git fetch origin # fetch remote branches
-  git_worktree_add "$(git symbolic-ref --short HEAD)"
-}
+# function git_clone_bare {
+#   [[ $# -lt 1 ]] && echo "Usage: gcl <url>" >&2 && return 1
+#   local url="$1"
+#   local dir=$(basename "${url%.git}") # repo name without .git
+#
+#   git clone --bare "$url" "$dir/.bare" || return 1
+#   echo "gitdir: ./.bare" > "$dir/.git" # so git commands work from $dir/
+#   echo "Cloned into $dir"
+#   cd $dir
+#   git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" # sets refrespec (place for fetched branched)
+#   git fetch origin # fetch remote branches
+#   git_worktree_add "$(git symbolic-ref --short HEAD)"
+# }
 
 function git_worktree_add {
   [[ $# -ne 1 ]] && echo "Usage: $0 <branch>" >&2 && return 1
@@ -192,9 +192,10 @@ function git_worktree_add {
   common_dir="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)" \
     || { echo "Not inside a git repo" >&2; return 1 }
   local root="$(dirname "${common_dir}")"
-  local folder="${root}/${branch//\//-}"   # replace every "/" with "-"
+  local repo_name="$(basename "${root}")"
+  local folder="$(dirname "${root}")/${repo_name}-${branch//\//-}"   # sibling: ../repo-branch
 
-  # Use the branch if it exists (locally or on a remote), otherwise create it
+  # Use the branch if it exists (locally then on a remote), otherwise create it
   if git show-ref --verify --quiet "refs/heads/${branch}" \
      || git ls-remote --exit-code --heads origin "${branch}" >/dev/null 2>&1; then
     echo "Branch ${branch} already exists."
