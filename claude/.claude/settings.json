@@ -2,12 +2,11 @@
   "sandbox": {
     "enabled": true,
     "failIfUnavailable": true,
-    "autoAllowBashIfSandboxed": false,
+    "autoAllowBashIfSandboxed": true,
     "allowUnsandboxedCommands": false,
     "excludedCommands": [
-      "databricks bundle validate *",
-      "terraform init *",
-      "terraform plan *",
+      "databricks *",
+      "terraform *",
       "playwright-cli *"
     ],
     "network": {
@@ -30,25 +29,22 @@
       "CronCreate",
       "CronDelete",
       "CronList",
-      "mcp__linear-server__delete_comment",
-      "mcp__linear-server__delete_attachment",
-      "mcp__linear-server__delete_status_update",
-      "mcp__linear-server__delete_diff_comment",
       "Bash(terraform *destroy*)",
       "Bash(databricks bundle destroy *)",
       "Edit(~/.env)",
       "Edit(~/.databrickscfg)"
     ],
     "allow": [
+      "Bash(terraform init *)",
       "Bash(terraform fmt *)",
       "Bash(terraform validate *)",
       "Bash(terraform plan *)",
-      "Bash(terraform init *)",
       "Bash(databricks bundle validate *)",
       "Bash(playwright-cli *)"
     ]
   },
   "disableRemoteControl": true,
+  "disableClaudeAiConnectors": true,
   "enableArtifact": false,
   "model": "opus",
   "hooks": {
