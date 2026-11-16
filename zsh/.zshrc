@@ -47,7 +47,6 @@ alias omprc="$EDITOR $HOME/.config/omp.toml"
 alias trc="$EDITOR $HOME/.tmux.conf"
 alias ccrc="$EDITOR $HOME/.claude/settings.json"
 alias pirc="$EDITOR $HOME/.pi/agent/settings.json"
-alias mcprc="$EDITOR $HOME/mcp.json"
 alias sshrc="$EDITOR $HOME/.ssh/config"
 alias grc="$EDITOR $HOME/.gitconfig"
 alias dbxrc="$EDITOR $HOME/.databrickscfg"
@@ -88,7 +87,7 @@ alias nvf='nvim $(fzf -m --preview="bat --color=always {}")'
 alias chrome="open -a 'Google Chrome'"
 alias lg='lazygit'
 alias ld='lazydocker'
-alias cc="claude --mcp-config $HOME/mcp.json"
+alias cc="claude"
 
 # used for prompting llms
 function prompt {
