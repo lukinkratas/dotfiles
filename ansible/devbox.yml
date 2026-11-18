@@ -1,4 +1,3 @@
-
 - name: Hetzner devbox setup
   hosts: devbox
   gather_facts: true
@@ -183,6 +182,7 @@
     #       ansible.builtin.command: "pi install {{ item }}"
     #       loop:
     #         - npm:pi-web-access
+    #         - npm:pi-model-sync
 
     - name: Set zsh as default shell
       become: true
