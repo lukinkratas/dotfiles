@@ -1,8 +1,6 @@
 ---
 name: explain-code
 description: Explains code with visual diagrams and analogies. Use when asked "How this code work?" or "Explain this codebase." or similar.
-allowed-tools: Read, Grep
-model: opus
 ---
 
 When explaining code, always include:

@@ -1,6 +1,6 @@
 ---
 name: analyze-stock-fundamentals
-description: Perform a fundamentals analysis of a given stock.
+description: Fundamentals analysis of a given stock - income statement, balance sheet and cashflow analysis. Use when asked "Analyze stock <TICKET>" or "Do a fundamentals analysis of <TICKER>" or similar.
 ---
 
 # Stock Fundamentals Analysis

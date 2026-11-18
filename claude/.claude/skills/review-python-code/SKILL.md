@@ -1,8 +1,6 @@
 ---
 name: review-python-code
-description: Review python codebase with focus on funcionality, code quality, security, performance, testing and documentation aspects. Use when asked "Review this python code." or "Provide me a code review" or similar
-allowed-tools: Read, Grep
-model: opus
+description: Review python codebase with focus on funcionality, code quality, security, performance, testing and documentation aspects. Use when asked "Review this python code." or "Provide a code review" or similar.
 ---
 # Review python code
 
