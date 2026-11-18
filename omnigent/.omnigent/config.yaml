@@ -1,12 +1,27 @@
-providers:
-  claude:
-    cli: claude
-    default: true
-    kind: subscription
+harness:
+  default: claude-sdk
 
-  codex:
-    cli: codex
+providers:
+  # Subscriptions
+  # Prereq: `claude auth login --claudeai` + `codex login`
+  # or: `omni setup` → Subscription
+  claude:
     kind: subscription
+    cli: claude               # Claude Pro/Max → claude-sdk / claude-native harnesses
+    default: true             # default for the anthropic family
+  codex:
+    kind: subscription
+    cli: codex                # ChatGPT plan → codex harness
+    default: openai           # default for the openai family
+
+  # API-key gateways
+  # Gemini: easiest `omni setup` → Antigravity → Configure native agy API key → Gemini — API key
+  gemini:
+    kind: key
+    default: [gemini]
+    gemini:
+      base_url: https://generativelanguage.googleapis.com/v1beta/openai
+      api_key: $GEMINI_API_KEY
 
   deepseek:
     kind: gateway
@@ -16,9 +31,6 @@ providers:
       wire_api: chat
       models:
         default: deepseek-v4.1-flash
-      pricing:
-        input_per_million: 0.30
-        output_per_million: 1.20
 
   nvidia:
     kind: gateway
@@ -27,12 +39,14 @@ providers:
       api_key_ref: env:NVIDIA_API_KEY
       wire_api: chat
       models:
-        default:       mistralai/mistral-large-4-1t-a52b   # Mistral Large 4 (default)
-        minimax-flash: minimaxai/minimax-m3.1-flash        # MiniMax M3.1 Flash
-        step5:         stepfun-ai/step-5-preview           # Step 5 Preview
-        glm-flash:     z-ai/glm-5.3-flash                  # GLM-5.3 Flash   ⚠ verify id
-        deepseek:      deepseek-ai/deepseek-v4.1-flash     # DeepSeek V4.1 Flash ⚠ verify id
-      pricing: 
-      pricing:
-        input_per_million: 0.0
-        output_per_million: 0.0
+        default: moonshotai/kimi-k3.1-pro
+
+  openrouter:                 # optional: any model via one key
+    kind: gateway
+    anthropic:                # Claude Code → Anthropic-compatible root
+      base_url: https://openrouter.ai/api
+      api_key_ref: env:OPENROUTER_API_KEY
+    openai:                   # Codex / Pi → OpenAI-compatible root
+      base_url: https://openrouter.ai/api/v1
+      api_key_ref: env:OPENROUTER_API_KEY
+      wire_api: chat
