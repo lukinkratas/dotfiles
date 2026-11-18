@@ -91,50 +91,39 @@ alias cc="claude"
 
 # used for prompting llms
 function prompt {
-  # todo:
-  # - [x] prompt versioning - prompt.txt.1, ...
-  # - [ ] default copy to clipboard, into text file only if -o flag
-  # - [x] -t for tree as optinal (in case I do not want node_modules in prompt)
-  # - [ ] -o for output into storage
-
   local include_tree=false
   local args=()
 
   # parse args
   for arg in "$@"; do
     case "$arg" in
-      -t)
-        include_tree=true
-        ;;
-      *)
-        args+=("$arg")
-        ;;
+      -t) include_tree=true ;;
+      *)  args+=("$arg") ;;
     esac
   done
 
-  # add tree (optional)
-  if $include_tree; then
-    echo "### Project Structure" >> prompt.txt
-    tree -I __pycache__ >> prompt.txt
-  fi
+  {
+    # add tree (optional)
+    if $include_tree; then
+      echo "### Project Structure" >> prompt.txt
+      tree -I __pycache__ >> prompt.txt
+    fi
 
-  # add chosen filename and its content
-  find "${args[@]}" \
-    -type d \( -name __pycache__ -o -name .git -o -name node_modules \) -prune -o \
-    -type f -exec sh -c '
-      for f; do
-        # omit binaries
-        if grep -Iq . "$f"; then
-          echo
-          echo "$f: \`\`\`"
-          cat $f
-          echo "\`\`\`"
-        fi
-      done
-    ' _ {} + >> prompt.txt
-
-  # copy to clipboard
-  cat prompt.txt | pbcopy
+    # add chosen filename and its content
+    find "${args[@]}" \
+      -type d \( -name __pycache__ -o -name .git -o -name node_modules \) -prune -o \
+      -type f -exec sh -c '
+        for f; do
+          # omit binaries
+          if grep -Iq . "$f"; then
+            echo
+            echo "$f: \`\`\`"
+            cat $f
+            echo "\`\`\`"
+          fi
+        done
+      ' _ {} +
+  } | pbcopy
 }
 
 # ----- git -----
