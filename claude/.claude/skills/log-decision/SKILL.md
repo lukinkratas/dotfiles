@@ -175,27 +175,6 @@ All the important architectural decisions are written in `DECISIONS_LOG.md`. If 
   choice: pydantic-settings - bcs it is PROD grade and acc. to fastapi docs
 ```
 
-#### Not yet decided example
-
-```md
-### api.repositories.* insert() and update() methods with dynamic/dict or static args:
-
-  UsersTable.update(..., data: dict), (data dict contains email, password_hash)
-  LocationsTable.update(..., data: dict), (data dict contains location_name)
-  (example of dynamic/dict)
-
-  choice: dynamic, bcs with static args what location_name/email/password_hash = None actually means? To update to None or do not update? For now updating to None is not needed, bcs location/email/password_hash cannot be empty, but the dynamic approach is future proof and more intentional and that is - update only, what is inside data dict.
-
-  UsersTable.insert(..., email: str, password_hash: str)
-  LocationsTable.insert(..., location_name: str)
-  (example of static)
-
-  - static pros: more explicit
-  - dynamic pros: fields are centralized in pydantic schemas on router lvl, plus match the style of update methods
-
-  choice:
-```
-
 #### Single option example
 
 ```md
