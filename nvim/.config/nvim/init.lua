@@ -482,6 +482,10 @@ local plugins = {
           --  To jump back, press <C-t>.
           map('grd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
+          map('grv', function()
+            require('telescope.builtin').lsp_definitions { jump_type = 'vsplit' }
+          end, '[G]oto Definition (in [V]split)')
+
           map('grr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
@@ -495,10 +499,6 @@ local plugins = {
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
           map('gri', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-
-          -- WARN: This is not Goto Definition, this is Goto Declaration.
-          --  For example, in C this would take you to the header.
-          map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
@@ -616,8 +616,12 @@ local plugins = {
       local servers = {
         -- clangd = {},
         gopls = {},
-        -- pyright = {},
-        ruff = {},
+        pyright = {
+          settings = {
+            pyright = { disableOrganizeImports = true }, -- ruff does imports
+          },
+        },
+        -- ruff = {},
         -- rust_analyzer = {},
         terraformls = {},
         lua_ls = {
