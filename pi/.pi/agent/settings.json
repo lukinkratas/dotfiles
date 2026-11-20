@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "1.5.2",
+  "lastChangelogVersion": "1.6.0",
   "theme": "dark",
-  "defaultProvider": "xai",
-  "defaultModel": "grok-4.7",
+  "defaultProvider": "nvidia",
+  "defaultModel": "moonshotai/kimi-k3.1-pro",
   "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-web-access",
