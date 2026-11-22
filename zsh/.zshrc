@@ -65,8 +65,14 @@ alias reload="source $HOME/.zshrc"
 alias cp="cp -Rv"
 
 function cs {
-  [[ $# -ne 1 ]] && echo "Only directory argument is allowed." && return 1
-  [[ -d $1 ]] && cd $1 && l
+  [[ $# -ne 1 ]] && echo "Usage: $0 <directory>" >&2 && return 1
+  local directory="$1"
+
+  if [[ -d $directory ]]; then
+    cd $directory && l
+  else
+    echo "$directory is not a directory" >&2 && return 1
+  fi
 }
 
 function md {
@@ -178,7 +184,6 @@ function git_config_personal {
 
 function git_worktree_add {
   [[ $# -ne 1 ]] && echo "Usage: $0 <branch>" >&2 && return 1
-
   local branch="$1"
 
   # Find the repo root (works from any subfolder or worktree)
@@ -244,7 +249,6 @@ alias hcsrp="hcloud server reset-password"
 
 function hcsc() {
   [[ $# -ne 1 ]] && echo "Usage: $0 <name>" >&2 && return 1
-
   local name="$1"
 
   local ip
