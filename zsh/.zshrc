@@ -76,6 +76,12 @@ function md {
   [[ $# -eq 1 ]] && cd $1
 }
 
+function sshgen {
+  [[ $# -ne 1 ]] && echo "Usage: $0 <filename>" >&2 && return 1
+  local filename="$1"
+  ssh-keygen -t ed25519 -f "$HOME/.ssh/id_ed22519_$filename"
+}
+
 # ----- tools -----
 alias grep="grep -Hnr --color=auto "
 alias bat="bat --color=always"
